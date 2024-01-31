@@ -15,8 +15,8 @@ class Event{
 
     static const List<Event> events=[
         Event(
-            name:'Clash',
-            price:100,
+            name:'Wall Street',
+            price:60,
             imageUrl :'',
             duration:'2:00'),
         Event(
@@ -26,22 +26,22 @@ class Event{
             duration: "30"),
         Event(
             name: 'Clash', 
-            price: 150, 
+            price: 40, 
             imageUrl: "", 
-            duration: "130"),
+            duration: "50"),
         Event(
             name: 'DataWiz', 
-            price: 500, 
+            price: 30, 
             imageUrl: "", 
             duration: "230"),
         Event(
             name: 'Cretonix', 
-            price: 350, 
+            price: 30, 
             imageUrl: "", 
             duration: "320"),
         Event(
             name: 'Enigma', 
-            price: 150, 
+            price: 50, 
             imageUrl: "", 
             duration: "130"),
         ]; 

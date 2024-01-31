@@ -39,7 +39,7 @@ class EventProducts extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(HomePage());
+                      Get.to(MyAppPayment());
                       // Add your logic to navigate to the payment screen
                     },
                     child: Text('Go to Payment'),
@@ -119,7 +119,7 @@ class CartTotal extends StatelessWidget {
             ),
           ),
           Obx(() => Text(
-            '\$${controller.total}',
+            '\Rs.${controller.total}',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
