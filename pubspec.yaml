@@ -39,6 +39,11 @@ dependencies:
   get: ^4.6.5
   upi_india: ^3.0.1
   quantupi: ^0.0.6
+  flutter_add_to_cart_button: ^1.1.0
+  animated_icon_button: ^1.0.2
+  flutter_animated_button: ^2.0.3
+  simple_animated_button: ^0.0.9
+  
 detv_dependencies:
   flutter_test:
     sdk: flutter
