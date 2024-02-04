@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 class Event{
     final String name;
     final double price;
@@ -12,7 +10,7 @@ class Event{
         required this.imageUrl,
         required this.duration,
     });
-
+    
     static const List<Event> events=[
         Event(
             name:'Wall Street',

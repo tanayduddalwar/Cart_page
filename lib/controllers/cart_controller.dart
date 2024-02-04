@@ -24,25 +24,55 @@ class CartController extends GetxController {
 
   get events => _events;
 
-  void removeProduct(Event eventobj){
-    if(_events.containsKey(eventobj) && _events[eventobj]==1){
-      _events.removeWhere((key, value) => key==eventobj);
-    }
-    else{
+void removeProduct(Event eventobj) {
+  if (_events.containsKey(eventobj)) {
+    if (_events.length == 1) {
+      Get.back();
+      // If there is only one item in the cart
+      _events.clear();
       Get.snackbar(
-        'Event is already removed',
-        '',
+        'Cart is empty',
+        'Event removed from cart',
         snackPosition: SnackPosition.BOTTOM,
-        borderColor: Colors.purple,
+        borderColor: Colors.amber,
         borderWidth: 4,
         isDismissible: true,
         forwardAnimationCurve: Curves.bounceInOut,
-        duration: Duration(milliseconds: 1200),);
+        duration: Duration(milliseconds: 1200),
+      );
+      Get.back(); // Navigate back to the old screen
+    } else {
+      _events.remove(eventobj); // Remove the specified event
+      Get.snackbar(
+        'Event removed from cart',
+        '',
+        snackPosition: SnackPosition.BOTTOM,
+        borderColor: Colors.amberAccent,
+        borderWidth: 4,
+        isDismissible: true,
+        forwardAnimationCurve: Curves.bounceInOut,
+        duration: Duration(milliseconds: 1200),
+      );
     }
+  } else {
+    Get.snackbar(
+      'Event is already removed',
+      '',
+      snackPosition: SnackPosition.BOTTOM,
+      borderColor: Colors.purple,
+      borderWidth: 4,
+      isDismissible: true,
+      forwardAnimationCurve: Curves.bounceInOut,
+      duration: Duration(milliseconds: 1200),
+    );
   }
+}
 
-  double get eventSubtotal =>
-      _events.entries.map((eventobj) => eventobj.key.price).toList().reduce((a, b) => a + b);
+
+  double get eventSubtotal => _events.entries
+      .map((eventobj) => eventobj.key.price)
+      .toList()
+      .reduce((a, b) => a + b);
 
   String get total => eventSubtotal.toStringAsFixed(2);
 }
