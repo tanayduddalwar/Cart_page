@@ -47,7 +47,7 @@ void removeProduct(Event eventobj) {
         'Event removed from cart',
         '',
         snackPosition: SnackPosition.BOTTOM,
-        borderColor: Colors.amberAccent,
+        borderColor: Colors.amber,
         borderWidth: 4,
         isDismissible: true,
         forwardAnimationCurve: Curves.bounceInOut,

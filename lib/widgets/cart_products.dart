@@ -3,7 +3,7 @@ import 'package:cart_page/widgets/event_product.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
+//import 'package:lottie/lottie.dart';
 
 import '../controllers/cart_controller.dart';
 import '../models/event_model.dart';

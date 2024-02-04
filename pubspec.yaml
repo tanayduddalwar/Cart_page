@@ -43,9 +43,12 @@ dependencies:
   animated_icon_button: ^1.0.2
   flutter_animated_button: ^2.0.3
   simple_animated_button: ^0.0.9
-  lottie: ^3.0.0
   url_launcher: ^6.2.4
   fluid_bottom_nav_bar: ^1.4.0
+#   url_launcher: ^6.2.4
+#   fluid_bottom_nav_bar: ^1.4.0
+# =======
+# >>>>>>> e4a4eb98ed3d279eb42afbf529f0a69dbefdd823
   
 detv_dependencies:
   flutter_test:
