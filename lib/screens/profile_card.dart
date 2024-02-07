@@ -1,66 +1,91 @@
-import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+// import 'package:cart_page/controllers/events_controller.dart';
+// import 'package:flutter/material.dart';
+// import 'package:cart_page/controllers/cart_controller.dart';
+//  // Import your Event model here
 
+// class EventProductCard extends StatelessWidget {
+//   final CartController controller;
+//   final Event eventobj;
+//   final int index;
 
+//   const EventProductCard({
+//     Key? key,
+//     required this.controller,
+//     required this.eventobj,
+//     required this.index,
+//   }) : super(key: key);
 
-List _elements = [
-  {'name': 'John', 'group': 'Team A'},
-  {'name': 'Will', 'group': 'Team B'},
-  {'name': 'Beth', 'group': 'Team A'},
-  {'name': 'Miranda', 'group': 'Team B'},
-  {'name': 'Mike', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team C'},
-];
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+//       child: Container(
+//         decoration: BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage('assets/cardback.jpg'),
+//             fit: BoxFit.fitWidth,
+//           ),
+//         ),
+//         height: 160,
+//         child: Card(
+//           elevation: 50,
+//           color: Colors.white54,
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               SizedBox(
+//                 height: 10,
+//               ),
+//               CircleAvatar(
+//                 radius: 23,
+//                 backgroundColor: Colors.black,
+//               ),
+//               SizedBox(height: 10),
+//               Text(
+//                 eventobj.name,
+//                 style: TextStyle(
+//                   color: Colors.black,
+//                   fontSize: 26,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//               SizedBox(height: 10),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                 children: [
+//                   Text(
+//                     "Amount: ${eventobj.price}", // Assuming you want to display the price
+//                     style: TextStyle(
+//                       color: Colors.black,
+//                       fontSize: 20,
+//                     ),
+//                   ),
+//                   IconButton(
+//                     onPressed: () async {
+//                       controller.removeProduct(context, eventobj);
+//                     },
+//                     icon: Icon(Icons.remove_circle_outline_rounded),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({Key? key}) : super(key: key);
+// // Now, you can use this class within a ListView like this:
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Grouped List View Example'),
-        ),
-        body: GroupedListView<dynamic, String>(
-          elements: _elements,
-          groupBy: (element) => element['group'],
-          groupComparator: (value1, value2) => value2.compareTo(value1),
-          itemComparator: (item1, item2) =>
-              item1['name'].compareTo(item2['name']),
-          order: GroupedListOrder.DESC,
-          useStickyGroupSeparators: true,
-          groupSeparatorBuilder: (String value) => Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              value,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          itemBuilder: (c, element) {
-            return Card(
-              elevation: 8.0,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              child: SizedBox(
-                child: ListTile(
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 10.0),
-                  leading: const Icon(Icons.account_circle),
-                  title: Text(element['name']),
-                  trailing: const Icon(Icons.arrow_forward),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
+// ListView.builder(
+//   itemCount: events.length, // Assuming 'events' is your list of Event objects
+//   itemBuilder: (context, index) {
+//     final event = events[index];
+//     return EventProductCard(
+//       controller: yourCartControllerInstance,
+//       eventobj: event,
+//       index: index,
+//     );
+//   },
+// )

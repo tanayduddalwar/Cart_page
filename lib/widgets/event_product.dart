@@ -19,7 +19,7 @@ class CatelogProducts extends StatelessWidget {
           itemCount: Event.events.length,
           itemBuilder: (BuildContext context, int index) {
             return CatelogProductCard(index: index);
-            ElevatedButton(
+            ElevatedButton( 
               onPressed: () {
                 Get.to(AboutUs());
               },
@@ -84,6 +84,7 @@ class CatelogProductCard extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 SizedBox(height: 10),
+                // Text(cartController.techEvents.length.toString()),
                 Expanded(
                   child: Text(
                     Event.events[index].name,

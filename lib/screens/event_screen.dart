@@ -40,7 +40,8 @@ class EventsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              CatelogProducts(), // Assuming this should be CartProducts()
+              CatelogProducts(),
+              // Text(), // Assuming this should be CartProducts()
               ElevatedLayerButton(
                 onClick: () {
     //                  if (controller.events.isEmpty) {
