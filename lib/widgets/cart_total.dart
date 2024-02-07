@@ -13,13 +13,27 @@ class CartTotal extends StatelessWidget {
     return Obx(
       () => Container(
         padding: const EdgeInsets.symmetric(horizontal: 75),
-        color: Colors.orange, // Set the background color here
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Total', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            Text('\$${controller.total}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          ],
+        height: 52,
+        color: Colors.white70, // Set the background color here
+        child: Container(
+          //margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+          
+            borderRadius: BorderRadius.circular(50), // Set the border radius here
+          ),
+          child: Container(
+             decoration: BoxDecoration(
+          
+            borderRadius: BorderRadius.circular(50), // Set the border radius here
+          ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Total', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                Text('\Rs:${controller.total}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
         ),
       ),
     );

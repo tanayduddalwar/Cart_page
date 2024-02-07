@@ -20,7 +20,7 @@ class AboutUs extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  SizedBox(height: 150);
+                  SizedBox(height: 5);
                   return CustomListTile(); // Calling custom list tile
                 },
               ),
@@ -77,15 +77,14 @@ class CustomListTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          
-
-                        },
+                        onPressed: () {},
                         icon: Icon(Icons.phone_android_outlined)),
                     IconButton(
-                        onPressed: () async{
-                          launchUrl(Uri.parse("mailto:tanay2duddalwar@gmail.com"));
-                        }, icon: Icon(Icons.mail_outlined)),
+                        onPressed: () async {
+                          launchUrl(
+                              Uri.parse("mailto:tanay2duddalwar@gmail.com"));
+                        },
+                        icon: Icon(Icons.mail_outlined)),
                     IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
                   ],
                 )

@@ -1,53 +1,72 @@
-import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/cart_products.dart';
 import '../widgets/event_product.dart';
 import '../screens/aboutus.dart';
 import 'package:simple_animated_button/elevated_layer_button.dart';
+import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class EventsScreen extends StatelessWidget {
-  const EventsScreen({Key? key}) : super(key: key);
+  // final CartController controller = Get.find();
+  EventsScreen({Key? key}) : super(key: key);
 
   void _handleNavigationChange(int index) {
-
     // Handle navigation change here
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Events Catalog"),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-      ),
       body: Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/image.jpg"),fit: BoxFit.cover)),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/image.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CatelogProducts(),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Get.to(AboutUs());
-              //   },
-              //   child: Text("About Us"),
-              // ),
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Text(
+                  "Events Catalog",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              CatelogProducts(), // Assuming this should be CartProducts()
               ElevatedLayerButton(
                 onClick: () {
-                  Get.to(EventProducts());
+    //                  if (controller.events.isEmpty) {
+    //   // Show snackbar if the cart is empty
+    //   Get.snackbar(
+    //     'Nothing Added To Cart!',
+    //     'Ship is not ready to Voyaging!',
+    //     snackPosition: SnackPosition.TOP,
+    //     backgroundColor: Colors.red,
+    //     colorText: Colors.white,
+    //     duration: Duration(seconds: 3),
+    //   );
+    // } else {
+                    Get.to(EventProducts());
+                  
                 },
                 buttonHeight: 60,
                 buttonWidth: 270,
                 animationDuration: const Duration(milliseconds: 200),
-                animationCurve: Curves.ease,
+                animationCurve: Curves.bounceInOut,
                 topDecoration: BoxDecoration(
                   color: Colors.amber,
                   border: Border.all(),
                 ),
                 topLayerChild: Text(
-                  "GO TO CART",
+                  "SAIL TO CART",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 baseDecoration: BoxDecoration(
@@ -76,7 +95,6 @@ class EventsScreen extends StatelessWidget {
           FluidNavBarIcon(
             icon: Icons.person_pin,
             extras: {"label": "conference"},
-            
           ),
         ],
         onChange: _handleNavigationChange,
@@ -84,8 +102,6 @@ class EventsScreen extends StatelessWidget {
           iconUnselectedForegroundColor: Colors.black,
           iconSelectedForegroundColor: Colors.black,
           barBackgroundColor: Colors.tealAccent,
-          
-          
         ),
         scaleFactor: 1.0,
         animationFactor: 0.6,

@@ -45,6 +45,13 @@ dependencies:
   simple_animated_button: ^0.0.9
   url_launcher: ^6.2.4
   fluid_bottom_nav_bar: ^1.4.0
+  awesome_snackbar_content: ^0.1.2
+  flutter_card_swiper: ^7.0.0
+  card_swiper: ^3.0.1
+  profile: ^0.0.1
+  circular_profile_avatar: ^2.0.5
+  grouped_list: ^5.1.2
+  glassmorphism_ui: ^0.3.0
 #   url_launcher: ^6.2.4
 #   fluid_bottom_nav_bar: ^1.4.0
 # =======
