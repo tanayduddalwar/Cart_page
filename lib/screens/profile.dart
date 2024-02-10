@@ -1,10 +1,9 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
-// Import your Event model here
+import 'package:cart_page/screens/tech_events.dart'; // Import your TechEventsPage here
+import 'package:cart_page/screens/nontech_events.dart'; // Import your NonTechEventsPage here
 
 class AdminPage extends StatelessWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class AdminPage extends StatelessWidget {
     final CartController controller = Get.find();
 
     return DefaultTabController(
-      length: 6, // Number of tabs
+      length: 2, // Number of tabs
       child: Scaffold(
         body: Container(
           height: double.infinity,
@@ -94,119 +93,68 @@ class AdminPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 10,),
-              TabBar(
-                // Add your tabs here
-                tabs: [
-                  // Tab(
-                  //   icon: Icon(Icons.directions_car),
-                  //   text: "car",
-                  // ),
-                  // Tab(
-                  //   icon: Icon(Icons.directions_transit),
-                  //   text: "transit",
-                  // ),
-                  Tab(text: "Tech Events",),
-                  Tab(text: "Non Tech Events",),
-                  // Tab(icon: Icon(Icons.directions_transit)),
-                  // Tab(icon: Icon(Icons.directions_bike)),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    Expanded(
-              child: Obx(() => ListView.builder(
-                    itemCount: controller.techEvents.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        EventProductCard(
-                      controller: controller,
-                      eventobj: controller.events.keys.toList()[index],
-                      index: index,
-                    ),
-                  ))),
-                    
-                    // Add your tab views here
-                    // Example: EventProductCard(controller: controller, eventobj: eventobj, index: index)
-                  ],
-                ),
-              ),
-            ],
-          ),
+              SizedBox(height: 10),
+TabBar(
+  isScrollable: true,
+  dividerColor: Colors.amber,
+  automaticIndicatorColorAdjustment: true,
+  dividerHeight: 5,
+
+  enableFeedback: true,
+
+  labelColor: Colors.amber,
+  labelPadding: EdgeInsets.all(10),
+  indicator: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+   // color: Colors.pink.withOpacity(0.5), // Adjust opacity as needed
+  ),
+  tabs: [
+    Tab(
+
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.amber.withOpacity(0.1), // Adjust opacity as needed
+        ),
+        child: Text(
+          "Tech Events",
+          style: TextStyle(fontSize: 19,),
+
         ),
       ),
-    );
-  }
-}
-
-class EventProductCard extends StatelessWidget {
-  final CartController controller;
-  final Event eventobj;
-  final int index;
-
-  const EventProductCard({
-    Key? key,
-    required this.controller,
-    required this.eventobj,
-    required this.index,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+    ),
+    
+    Tab(
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/cardback.jpg'),
-            fit: BoxFit.fitWidth,
-          ),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.amber.withOpacity(0.3), // Adjust opacity as needed
         ),
-        height: 160,
-        child: Card(
-          elevation: 50,
-          color: Colors.white54,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              CircleAvatar(radius: 23, backgroundColor: Colors.black),
-              SizedBox(height: 10),
-              Text(
-                eventobj.name,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 10),
-              Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Text(
+          "Non Tech Events",
+          style: TextStyle(fontSize: 19,),
+        ),
+      ),
+    ),
+  ],
+),
+
+              Expanded(
+                child: TabBarView(
+
                   children: [
-                    Text(
-                      "Amount : ${eventobj.price}",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Text("Duration: ${eventobj.duration}"),
-                    // IconButton(
-                    //   onPressed: () async {
-                    //     controller.removeProduct(context, eventobj);
-                    //   },
-                    //   icon: Icon(Icons.remove_circle_outline_rounded),
-                    // ),
+                    controller.techEvents.isEmpty
+                        ? Center(child: Text("No Tech Events",style: TextStyle(fontSize: 22,color: Colors.white,fontWeight: FontWeight.bold),))
+                        : TechEventsPage(),
+                    controller.nonTechEvents.isEmpty
+                        ? Center(child: Text("No Non Tech Events",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 22),))
+                        : NonTechEventsPage(),
                   ],
                 ),
               ),
+
             ],
           ),
         ),

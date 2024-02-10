@@ -39,7 +39,7 @@ class EventProducts extends StatelessWidget {
                     "Your Cart",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  Text(controller.techEvents.length.toString()),
+                  
                   Expanded(
                     child: Obx(() => ListView.builder(
                           itemCount: controller.events.length,

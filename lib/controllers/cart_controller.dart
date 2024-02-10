@@ -37,7 +37,8 @@ void addProduct(BuildContext context, Event eventobj) {
     // Add event to the appropriate dictionary based on its type
     if (eventobj.isTechnical) {
       _techEvents[eventobj] = 1;
-    } else {
+    } 
+    if(!eventobj.isTechnical) {
       _nonTechEvents[eventobj] = 1;
     }
   }
