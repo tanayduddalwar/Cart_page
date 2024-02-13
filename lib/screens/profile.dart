@@ -47,7 +47,7 @@ class AdminPage extends StatelessWidget {
                     cacheImage: true,
                     imageFit: BoxFit.cover,
                     onTap: () {
-                      print(controller.techEvents);
+                      
                     },
                     showInitialTextAbovePicture: false,
                   ),

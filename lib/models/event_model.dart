@@ -59,4 +59,12 @@ class Event {
       isTechnical: false, // Set it as non-technical
     ),
   ];
+  // static Event fromSnapshot(DocumentSnapshot snap) {
+  //   Event event = Event(
+  //       name: snap["name"],
+  //       price: snap["price"],
+  //       imageUrl: snap["url"],
+  //       duration: snap["time"],
+  //       isTechnical: snap["istechnical"]);
+  // }
 }
