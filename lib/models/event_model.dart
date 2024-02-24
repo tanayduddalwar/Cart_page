@@ -7,7 +7,7 @@ class Event {
   final String duration;
   final bool isTechnical; // New field to indicate if the event is technical
 
-  const Event({
+  Event({
     required this.name,
     required this.price,
     required this.imageUrl,
@@ -15,48 +15,55 @@ class Event {
     required this.isTechnical, // Initialize isTechnical in the constructor
   });
 
-  static const List<Event> events = [
+  static List<Event> events = [
     Event(
       name: 'Wall Street',
       price: 60,
-      imageUrl: '',
+      imageUrl: "assets/wallstreet.png",
       duration: '2:00',
       isTechnical: false, // Set it as technical
     ),
     Event(
       name: 'RC',
       price: 50,
-      imageUrl: '',
+      imageUrl: 'assets/RC.png',
       duration: '30',
       isTechnical: true, // Set it as non-technical
     ),
     Event(
       name: 'Clash',
       price: 40,
-      imageUrl: '',
+      imageUrl: 'assets/Clash.png',
       duration: '50',
       isTechnical: true, // Set it as non-technical
     ),
     Event(
       name: 'DataWiz',
       price: 30,
-      imageUrl: '',
+      imageUrl: 'assets/datawiz.png',
       duration: '230',
       isTechnical: true, // Set it as technical
     ),
     Event(
       name: 'Cretonix',
       price: 30,
-      imageUrl: '',
+      imageUrl: 'assets/cretronix.png',
       duration: '320',
       isTechnical: true, // Set it as technical
     ),
     Event(
       name: 'Enigma',
       price: 50,
-      imageUrl: '',
+      imageUrl: 'assets/enigma.png',
       duration: '130',
       isTechnical: false, // Set it as non-technical
+    ),
+    Event(
+      name: 'WebWeaver',
+      price: 50,
+      imageUrl: 'assets/webweaver.png',
+      duration: '30',
+      isTechnical: true, // Set it as non-technical
     ),
   ];
   // static Event fromSnapshot(DocumentSnapshot snap) {

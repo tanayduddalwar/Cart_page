@@ -8,12 +8,14 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         title: Text("About Us"),
         centerTitle: true,
-        elevation: 1.2,
+        elevation: 0,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image:AssetImage("assets/fish-1-transformed.png"),fit: BoxFit.cover)),
         child: Column(
           children: [
             Expanded(
@@ -43,6 +45,7 @@ class CustomListTile extends StatelessWidget {
           height: 300,
           width: double.infinity,
           child: Card(
+            color: Colors.transparent,
             child: Column(
               children: [
                 Padding(
@@ -68,7 +71,7 @@ class CustomListTile extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Tanay Duddalwar")],
+                  children: [Text("CREDENZ USER")],
                 ),
                 SizedBox(
                   height: 30,

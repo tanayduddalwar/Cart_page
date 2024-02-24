@@ -1,6 +1,8 @@
-import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:badges/badges.dart' as badges;
+import '../controllers/cart_controller.dart';
 import '../widgets/cart_products.dart';
 import '../widgets/event_product.dart';
 import '../screens/aboutus.dart';
@@ -9,7 +11,9 @@ import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class EventsScreen extends StatelessWidget {
-  // final CartController controller = Get.find();
+  final CartController controller = Get.put(CartController());
+  final player = AudioPlayer();
+
   EventsScreen({Key? key}) : super(key: key);
 
   void _handleNavigationChange(int index) {
@@ -18,6 +22,8 @@ class EventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -31,44 +37,60 @@ class EventsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Text(
-                  "Events Catalog",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                padding: EdgeInsets.all(screenWidth * 0.05),
+                child: AppBar(
+                  centerTitle: true,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  title: Text(
+                    "Events Catalog",
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.06,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Ulove",
+                    ),
                   ),
+                  actions: [
+                    Obx(
+                      () => Row(
+                        children: [
+                          badges.Badge(
+                            onTap: () => EventProducts(),
+                            badgeContent: Text(
+                              "${controller.events.length}",
+                              style: TextStyle(fontFamily: "Bunaken"),
+                            ),
+                            child: IconButton(
+                              icon: Icon(Icons.shopping_cart),
+                              onPressed: () => EventProducts(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              CatelogProducts(),
-              // Text(), // Assuming this should be CartProducts()
+              CatelogProducts(), // Corrected to CartProducts()
               ElevatedLayerButton(
                 onClick: () {
-    //                  if (controller.events.isEmpty) {
-    //   // Show snackbar if the cart is empty
-    //   Get.snackbar(
-    //     'Nothing Added To Cart!',
-    //     'Ship is not ready to Voyaging!',
-    //     snackPosition: SnackPosition.TOP,
-    //     backgroundColor: Colors.red,
-    //     colorText: Colors.white,
-    //     duration: Duration(seconds: 3),
-    //   );
-    // } else {
-                    Get.to(EventProducts());
-                  
+                  player.play(AssetSource("assets/water-drop-85731.mp3"));
+                  Get.to(EventProducts());
                 },
-                buttonHeight: 60,
-                buttonWidth: 270,
+                buttonHeight: screenWidth * 0.15,
+                buttonWidth: screenWidth * 0.7,
                 animationDuration: const Duration(milliseconds: 200),
                 animationCurve: Curves.bounceInOut,
                 topDecoration: BoxDecoration(
                   color: Colors.amber,
                   border: Border.all(),
                 ),
-                topLayerChild: Text(
-                  "SAIL TO CART",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                topLayerChild: Hero(
+                  tag: "home",
+                  child: Text(
+                    "SAIL TO CART",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 baseDecoration: BoxDecoration(
                   color: Colors.green,
