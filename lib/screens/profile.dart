@@ -1,3 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cart_page/screens/nth.dart';
+import 'package:cart_page/screens/privacy_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
@@ -20,22 +23,35 @@ class AdminPage extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/water.jpg"),
+              image: AssetImage("assets/common.jpeg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
-              SizedBox(height: 40),
+              //SizedBox(height: 40),
               AppBar(
-                title: Text(
-                  " PROFILE ",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Ulove",
-                  ),
-                ),
+                
+                centerTitle: true,
+                 title:TextLiquidFill(
+    text: 'PROFILE',
+    waveColor: Colors.blueAccent,
+    boxBackgroundColor:const Color.fromARGB(255, 48, 197, 230),
+    textStyle: TextStyle(
+      fontFamily: "Ulove",
+      fontSize: 30.0,
+      fontWeight: FontWeight.bold,
+    ),
+    boxHeight: 300.0,
+  ),
+  
+                //   " PROFILE ",
+                //   style: TextStyle(
+                //     fontSize: 25,
+                //     fontWeight: FontWeight.bold,
+                //     fontFamily: "Ulove",
+                //   ),
+                // ),
                 backgroundColor: Colors.transparent,
                 actions: [
                   Padding(
@@ -56,10 +72,19 @@ class AdminPage extends StatelessWidget {
                           child: Text("PRIVACY POLICY"),
                           value: "PRIVACY POLICY",
                         ),
+                         PopupMenuItem(
+                          child: Text("NTH"),
+                          value: "NTH",
+                        ),
                       ],
                       onSelected: (value) {
-                        print('Selected: $value');
-                      },
+    if (value == "IEEE") {
+      Get.to(Nth());
+    }
+     if (value == "PRIVACY POLICY") {
+      Get.to(PrivacyPolicy());
+    }
+  },
                     ),
                   ),
                 ],
@@ -162,7 +187,7 @@ class AdminPage extends StatelessWidget {
                   Tab(
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.amber.withOpacity(0.1),
@@ -171,6 +196,7 @@ class AdminPage extends StatelessWidget {
                         "Tech Events",
                         style: TextStyle(
                           fontSize: 19,
+                          fontFamily: "Bunaken"
                         ),
                       ),
                     ),
@@ -187,6 +213,7 @@ class AdminPage extends StatelessWidget {
                         "Non Tech Events",
                         style: TextStyle(
                           fontSize: 19,
+                          fontFamily: "Bunaken"
                         ),
                       ),
                     ),
@@ -203,7 +230,8 @@ class AdminPage extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Bunaken"),
                           ))
                         : TechEventsPage(),
                     controller.nonTechEvents.isEmpty
@@ -213,7 +241,8 @@ class AdminPage extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: 22),
+                                fontSize: 22,
+                                fontFamily: "Bunaken"),
                           ))
                         : NonTechEventsPage(),
                   ],

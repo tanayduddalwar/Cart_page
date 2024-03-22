@@ -1,3 +1,5 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cart_page/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -23,12 +25,12 @@ class EventsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/image.jpg"),
+            image: AssetImage("assets/common.jpeg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -42,14 +44,25 @@ class EventsScreen extends StatelessWidget {
                   centerTitle: true,
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  title: Text(
-                    "Events Catalog",
-                    style: TextStyle(
-                      fontSize: screenWidth * 0.06,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Ulove",
-                    ),
-                  ),
+                  title:
+                    TextLiquidFill(
+    text: 'CATELOG',
+    waveColor: Colors.blueAccent,
+    boxBackgroundColor: Colors.redAccent,
+    textStyle: TextStyle(
+      fontFamily: "Ulove",
+      fontSize: 30.0,
+      fontWeight: FontWeight.bold,
+    ),
+    boxHeight: 300.0,
+  ),
+                    // "Events Catalog",
+                    // style: TextStyle(
+                    //   fontSize: screenWidth * 0.06,
+                    //   fontWeight: FontWeight.bold,
+                    //   fontFamily: "Ulove",
+                    // ),
+                  
                   actions: [
                     Obx(
                       () => Row(
@@ -120,7 +133,8 @@ class EventsScreen extends StatelessWidget {
             extras: {"label": "conference"},
           ),
         ],
-        onChange: _handleNavigationChange,
+         onChange: _handleNavigationChange1,
+
         style: FluidNavBarStyle(
           iconUnselectedForegroundColor: Colors.black,
           iconSelectedForegroundColor: Colors.black,
@@ -130,5 +144,14 @@ class EventsScreen extends StatelessWidget {
         animationFactor: 0.6,
       ),
     );
+  }
+
+  void _handleNavigationChange1(int index) {
+    switch (index) {
+      case 2:
+        Get.to(AdminPage());
+        // Navigate to home screen
+        break;
+    }
   }
 }

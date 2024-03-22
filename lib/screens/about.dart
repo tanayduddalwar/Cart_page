@@ -8,30 +8,34 @@ class BannerListTileExample extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image:AssetImage("assets/fish-1-transformed.png"),fit: BoxFit.cover)
-          
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [Colors.blue, Colors.amber], // Change these colors as desired
-          // ),
-        
-        ),
+            image: DecorationImage(
+                image: AssetImage("assets/OIG.jpg"), fit: BoxFit.cover)
+
+            // gradient: LinearGradient(
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            //   colors: [Colors.blue, Colors.amber], // Change these colors as desired
+            // ),
+
+            ),
         child: Column(
           children: [
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              
-              child:AppBar(title: Text(
-                "About Us",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              child: AppBar(
+                title: Text(
+                  "About Us",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),),
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: 1, // Adjust this as needed
@@ -43,7 +47,7 @@ class BannerListTileExample extends StatelessWidget {
                       backgroundColor: Colors.amber.shade200,
                       borderRadius: BorderRadius.circular(8),
                       height: 150,
-                    
+
                       // bannerPosition: BannerPosition.topLeft,
                       imageContainer: Image(
                         image: NetworkImage(
@@ -61,9 +65,12 @@ class BannerListTileExample extends StatelessWidget {
                           Text("Hello"),
                           Row(
                             children: [
-                              IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
-                              IconButton(onPressed: () {}, icon: Icon(Icons.mail)),
-                              IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.phone)),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.mail)),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.abc)),
                             ],
                           ),
                         ],

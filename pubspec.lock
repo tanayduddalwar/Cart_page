@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      sha256: "37392a5376c9a1a503b02463c38bc0342ef814ddbb8f9977bc90f2a84b22fa92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   async:
     dependency: transitive
     description:
@@ -573,6 +581,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  popup_banner:
+    dependency: "direct main"
+    description:
+      name: popup_banner
+      sha256: "6db86b01af4eef701804c1f8d8a9b8b5f601a7db4fd87a148f28ead5d4b04e22"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   profile:
     dependency: "direct main"
     description:
@@ -581,6 +597,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "64957a3930367bf97cc211a5af99551d630f2f4625e38af10edd6b19131b64b3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
+  qr_flutter:
+    dependency: transitive
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   quantupi:
     dependency: "direct main"
     description:
@@ -589,6 +621,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.6"
+  random_text_reveal:
+    dependency: "direct main"
+    description:
+      name: random_text_reveal
+      sha256: "6bbc9f875afff31cad56190e0b44d93b671469865103b2912e52e24d9143f0ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.7"
   razorpay_flutter:
     dependency: "direct main"
     description:
@@ -618,6 +658,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sliding_widget:
+    dependency: "direct main"
+    description:
+      name: sliding_widget
+      sha256: "71491c576a54b58aa37262d6e36bddf6a55b3cbd25ef1b060300abf953b209e3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   source_span:
     dependency: transitive
     description:
@@ -730,6 +778,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  upi_payment_qrcode_generator:
+    dependency: "direct main"
+    description:
+      name: upi_payment_qrcode_generator
+      sha256: cf6e53d71c57f18acb53e1c4a39331db21ee3c27388b7c1bc2f3260a8f471944
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   url_launcher:
     dependency: "direct main"
     description:
@@ -818,6 +874,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  widget_circular_animator:
+    dependency: "direct main"
+    description:
+      name: widget_circular_animator
+      sha256: "3be8c05cfe32eceda237c7b68339e60940a84011df80c63bd4e71bd0daa7a770"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:

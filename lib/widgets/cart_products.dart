@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cart_page/screens/about.dart';
 import 'package:cart_page/screens/aboutus.dart';
+import 'package:cart_page/screens/payment.dart';
 import 'package:cart_page/screens/profile.dart';
 import 'package:cart_page/widgets/cart_total.dart';
 import 'package:cart_page/widgets/event_product.dart';
@@ -11,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:simple_animated_button/elevated_layer_button.dart';
 import 'package:super_banners/super_banners.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:sliding_widget/sliding_widget.dart';
 import 'package:badges/badges.dart' as badges;
 
 import '../controllers/cart_controller.dart';
@@ -32,14 +35,13 @@ class EventProducts extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/image.jpg"),
+                  image: AssetImage("assets/common.jpeg"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
                 children: [
-                  //   SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -51,85 +53,127 @@ class EventProducts extends StatelessWidget {
                           centerTitle: true,
                           backgroundColor: Colors.transparent,
                           elevation: 0,
-                          title: Text(
-                            "Your Cart",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Ulove",
-                            ),
+                          title:Container(
+                            width: 270,
+                            child: TextLiquidFill(
+                              boxWidth: 220,
+                                text: 'CART PAGE',
+                                waveColor: Colors.blue,
+                               boxBackgroundColor: const Color.fromARGB(255, 48, 197, 230),
+                                textStyle: TextStyle(
+                                  fontFamily: "Ulove",
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                boxHeight: 300.0,
+                              ),
                           ),
                           actions: [
-                            Obx(
-                              () => Row(
-                                children: [
-                                  badges.Badge(
-                                    onTap: () => EventProducts(),
-                                    badgeContent: Text(
-                                      "${controller.events.length}",
-                                      style: TextStyle(fontFamily: "Bunaken"),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical:8.0),
+                              child: Obx(
+                                () => Row(
+                                  children: [
+                                    badges.Badge(
+                                      onTap: () => EventProducts(),
+                                      badgeContent: Text(
+                                        "${controller.events.length}",
+                                        style: TextStyle(fontFamily: "Bunaken"),
+                                      ),
+                                      child: IconButton(
+                                        icon: Icon(Icons.shopping_cart),
+                                        onPressed: () => {},
+                                      ),
                                     ),
-                                    child: IconButton(
-                                      icon: Icon(Icons.shopping_cart),
-                                      onPressed: () => {},
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
-
-                      // Remove SizedBox and badges.Badge widgets for simplicity
                     ],
                   ),
-
                   if (controller.events.length == 0)
                     Text("No item added to cart")
                   else
                     Expanded(
-                      child: Obx(
-                        () => ListView.builder(
-                          itemCount: controller.events.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              EventProductCard(
-                            controller: controller,
-                            eventobj: controller.events.keys.toList()[index],
-                            index: index,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical:8.0),
+                        child: Obx(
+                          () => ListView.builder(
+                            itemCount: controller.events.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 3.0),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: EventProductCard(
+                                                                controller: controller,
+                                                                eventobj: controller.events.keys.toList()[index],
+                                                                index: index,
+                                                              ),
+                                ),
+                            
                           ),
+                          
                         ),
+                      
                       ),
                     ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedLayerButton(
-                          onClick: () {
-                            Get.to(EventProducts());
-                          },
-                          buttonHeight: 60,
-                          buttonWidth: 270,
-                          animationDuration: const Duration(milliseconds: 200),
-                          animationCurve: Curves.ease,
-                          topDecoration: BoxDecoration(
-                            color: Colors.amber,
-                            border: Border.all(),
+                          padding: const EdgeInsets.all(8.0),
+                          child: SlidingWidget(
+                            width: 260,
+                            height: 58,
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            iconColor: Colors.red,
+
+                            /// Text to be displayed inside the button.
+                            label: 'Go To Payment',
+                            
+                            
+
+                            shadow: const BoxShadow(color: Colors.red),
+
+                            /// Accepts function, default is null, this property is required.
+                            action: () {
+                              Get.to(Payment());
+                            },
+
+                            child: const Icon(Icons.arrow_forward_ios),
+
+                            /// Whether the icon to be fixed at the end.
+                            stickToEnd: false,
+                          )
+                          // child: ElevatedLayerButton(
+                          //   onClick: () {
+                          //     Get.to(Payment());
+                          //   },
+                          //   buttonHeight: 60,
+                          //   buttonWidth: 270,
+                          //   animationDuration: const Duration(milliseconds: 200),
+                          //   animationCurve: Curves.ease,
+                          //   topDecoration: BoxDecoration(
+                          //     color: Colors.amber,
+                          //     border: Border.all(),
+                          //   ),
+                          //   topLayerChild: Text(
+                          //     "GO TO PAYMENT",
+                          //     style: TextStyle(fontWeight: FontWeight.bold),
+                          //   ),
+                          //   baseDecoration: BoxDecoration(
+                          //     color: Colors.green,
+                          //     border: Border.all(),
+                          //   ),
+                          // ),
                           ),
-                          topLayerChild: Text(
-                            "GO TO PAYMENT",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          baseDecoration: BoxDecoration(
-                            color: Colors.green,
-                            border: Border.all(),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
+                  SizedBox(height: 10),
                   CartTotal(),
                 ],
               ),
@@ -156,7 +200,7 @@ class EventProducts extends StatelessWidget {
             extras: {"label": "conference"},
           ),
         ],
-        onChange: _handleNavigationChange,
+         onChange: _handleNavigationChange,
         style: FluidNavBarStyle(
           iconBackgroundColor: Colors.tealAccent,
           iconUnselectedForegroundColor: Colors.black,
@@ -165,8 +209,8 @@ class EventProducts extends StatelessWidget {
         ),
         scaleFactor: 1.0,
         animationFactor: 0.6,
-      ),
-    );
+      
+    ));
   }
 
   void _handleNavigationChange(int index) {
@@ -195,12 +239,6 @@ class EventProducts extends StatelessWidget {
 
 class EventProductCard extends StatelessWidget {
   final player = AudioPlayer();
-  Future<String> createpayment() async {
-    String paymentlink =
-        "upi://pay?pa=ameyasurana10@okaxis&pn=tanay&am=10&tn=Credenz%20IEEE&cu=INR";
-    return paymentlink;
-  }
-
   final CartController controller;
   final Event eventobj;
   final int index;
@@ -214,133 +252,309 @@ class EventProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-      child: Stack(
+    return Flexible(
+      child: Row(
         children: [
-            Positioned(
-            right: 10, // Adjust position as needed
-            top: -2, // Adjust position as needed
-            child: Image(
-              image: AssetImage("assets/credenz.png"),
-              height: 100,
-            ),
-          ),
-          ClipPath(
-            clipper: MyCustomClipper(),
-            child: Container(
-              
-              height: 160,
-              decoration: BoxDecoration(
-               // color: Colors.red,
-               
-                image: DecorationImage(
-                  image: AssetImage('assets/underwater-tropical-seabed-with-reef-sunshine_756748-1988.jpg'),
-                  fit: BoxFit.fitWidth,
-                ),
-                borderRadius: BorderRadius.circular(15),
+          
+          Container(
+            height: 159,
+            width: 260,
+             decoration: BoxDecoration(
+    color: Colors.white38,              
+    borderRadius: BorderRadius.circular(25), 
+  ),
+            child: Card(
+              elevation: 0,
+              color: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.lightBlueAccent,
+                          Colors.lightBlue,
+                          Colors.lightGreen,
+                        ],
+                      ),
+                    ),
+                    
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage("assets/credenz.png"),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ),
+                  SizedBox(height: 3),
+                  Text(
+                    eventobj.name,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Bunaken",
+                    ),
+                  ),
+                  //SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Amount : ${eventobj.price}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: "Bunaken",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: () async {
+                            player.play(AssetSource("water-drop-85731.mp3"));
+                            controller.removeProduct(context, eventobj);
+                          },
+                          icon: Icon(Icons.remove_circle_outline_rounded),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          Card(
-//             CornerBanner(
-//   bannerPosition: CornerBannerPosition.topLeft,
-//   bannerColor: Colors.blue,
-//   child: Text("Hello, World!"),
-// );
-            elevation:0,
-            color: Colors.transparent,
-            shape: RoundedRectangleBorder(
+          Padding(padding: EdgeInsets.fromLTRB(4, 4, 0,4)),
+          Container(
+            
+            
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
+              color: Colors.white38,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Hero(
-                  tag: "event_${eventobj.name}",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Colors.lightBlueAccent,
-                              Colors.lightBlue,
-                              Colors.lightGreen,
-                            ],
-                          ),
-                        ),
-                        child: CircleAvatar(
-                          radius: 35,
-                          backgroundImage: AssetImage(eventobj.imageUrl),
-                          backgroundColor: Colors.transparent,
-                        ),
+            height: 159,
+            width: 104,
+            child: Card(
+              elevation: 0,
+              color: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: 1,
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.lightBlueAccent,
+                          Colors.lightBlue,
+                          Colors.lightGreen,
+                        ],
                       ),
-                    ],
+                    ),
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage(Event.events[index].imageUrl),
+                      backgroundColor: Colors.transparent,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  eventobj.name,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Bunaken",
+                  SizedBox(height: 5),
+                 
+                  //SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                       
+                      
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Amount :"
-                        '${eventobj.price}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: "Bunaken",
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      IconButton(
-                        color: Colors.white,
-                        onPressed: () async {
-                          player.play(AssetSource("water-drop-85731.mp3"));
-                          controller.removeProduct(context, eventobj);
-                        },
-                        icon: Icon(Icons.remove_circle_outline_rounded),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        
         ],
-        
       ),
     );
   }
 }
 
-
-
+// return Padding(
+//   padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+//   child: Row(
+//     children: [
+//       Expanded(
+//         flex: 2,
+//         child: Container(
+//           decoration: BoxDecoration(
+//             image: DecorationImage(
+//               image: AssetImage(
+//                   'assets/underwater-tropical-seabed-with-reef-sunshine_756748-1988.jpg'),
+//               fit: BoxFit.fitWidth,
+//             ),
+//             borderRadius: BorderRadius.circular(15),
+//           ),
+//           child: Card(
+//             elevation: 0,
+//             color: Colors.transparent,
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 SizedBox(
+//                   height: 10,
+//                 ),
+//                 Hero(
+//                   tag: "event_${eventobj.name}",
+//                   child: Container(
+//                     width: 60,
+//                     height: 60,
+//                     decoration: BoxDecoration(
+//                       shape: BoxShape.circle,
+//                       gradient: LinearGradient(
+//                         begin: Alignment.topLeft,
+//                         end: Alignment.bottomRight,
+//                         colors: [
+//                           Colors.lightBlueAccent,
+//                           Colors.lightBlue,
+//                           Colors.lightGreen,
+//                         ],
+//                       ),
+//                     ),
+//                     child: CircleAvatar(
+//                       radius: 35,
+//                       backgroundImage:
+//                           AssetImage("assets/credenz.png"),
+//                       backgroundColor: Colors.transparent,
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(height: 10),
+//                 Text(
+//                   eventobj.name,
+//                   style: TextStyle(
+//                     color: Colors.black,
+//                     fontSize: 26,
+//                     fontWeight: FontWeight.bold,
+//                     fontFamily: "Bunaken",
+//                   ),
+//                 ),
+//                 SizedBox(width: 10),
+//                 Container(
+//                   decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(15),
+//                   ),
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                     children: [
+//                       Text(
+//                         "Amount : ${eventobj.price}",
+//                         style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: 20,
+//                           fontFamily: "Bunaken",
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                       SizedBox(width: 10),
+//                       IconButton(
+//                         color: Colors.white,
+//                         onPressed: () async {
+//                           player.play(AssetSource("water-drop-85731.mp3"));
+//                           controller.removeProduct(context, eventobj);
+//                         },
+//                         icon: Icon(Icons.remove_circle_outline_rounded),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//       SizedBox(width: 10),
+//       Expanded(
+//         flex: 1,
+//         child: Container(
+//           height: 160,
+//           decoration: BoxDecoration(
+//             image: DecorationImage(
+//               image: AssetImage(
+//                   'assets/underwater-tropical-seabed-with-reef-sunshine_756748-1988.jpg'),
+//               fit: BoxFit.fitWidth,
+//             ),
+//             borderRadius: BorderRadius.circular(15),
+//           ),
+//           child: Card(
+//             elevation: 0,
+//             color: Colors.transparent,
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Container(
+//                   width: 80,
+//                   height: 100,
+//                   decoration: BoxDecoration(
+//                     shape: BoxShape.circle,
+//                     gradient: LinearGradient(
+//                       begin: Alignment.topLeft,
+//                       end: Alignment.bottomRight,
+//                       colors: [
+//                         Colors.lightBlueAccent,
+//                         Colors.lightBlue,
+//                         Colors.lightGreen,
+//                       ],
+//                     ),
+//                   ),
+//                   child: CircleAvatar(
+//                     radius: 50,
+//                     backgroundImage: AssetImage(eventobj.imageUrl),
+//                     backgroundColor: Colors.transparent,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     ],
+//   ),
+// );
 
 class MyCustomClipper extends CustomClipper<Path> {
   @override
@@ -348,13 +562,8 @@ class MyCustomClipper extends CustomClipper<Path> {
     final path = Path()
       ..lineTo(0, size.height)
       ..lineTo(size.width, size.height)
-      ..lineTo(size.width, size.height / 2)
+      ..lineTo(size.width, 0)
       ..lineTo(size.width / 2, 0);
-    //..lineTo(size.height, size.width)
-    // ..lineTo(size.width, size.height)
-    //..lineTo(size.width, 0);
-    // ..quadraticBezierTo(
-    //   size.width * 3.9, size.height * 6.9, size.width*6, size.height * 2.2);
     return path;
   }
 

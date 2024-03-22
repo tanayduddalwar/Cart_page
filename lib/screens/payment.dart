@@ -1,185 +1,196 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:get/get.dart';
+import 'package:upi_payment_qrcode_generator/upi_payment_qrcode_generator.dart';
+class Payment extends StatefulWidget {
+  const Payment({Key? key}) : super(key: key);
 
+  @override
+  State<Payment> createState() => _PaymentState();
+}
 
+class _PaymentState extends State<Payment> {
+  final CartController controller = Get.find();
 
-class Razor extends StatelessWidget {
-  const Razor({super.key});
+  late double totalAmount;
 
-  // This widget is the root of your application.
+  @override
+  void initState() {
+    super.initState();
+    totalAmount = double.parse(controller.total);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const RazorPage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class RazorPage extends StatefulWidget {
-  const RazorPage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<RazorPage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<RazorPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Pay with Razorpay',
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.blue,
+          title: Container(
+            width: 200,
+            child: TextLiquidFill(
+                text: 'PAYMENT',
+                waveColor: Colors.blueAccent,
+                boxBackgroundColor: const Color.fromARGB(255, 48, 197, 230),
+                textStyle: TextStyle(
+                  fontFamily: "Ulove",
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                boxHeight: 300.0,
+              ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/common.jpeg"),
+                fit: BoxFit.cover,
+              ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Razorpay razorpay = Razorpay();
-                  var options = {
-                    'key': 'rzp_test_1DP5mmOlF5G5ag',
-                    'amount': 1,
-                    'name': 'Acme Corp.',
-                    'description': 'Fine T-Shirt',
-                    'retry': {'enabled': true, 'max_count': 1},
-                    'send_sms_hash': true,
-                    'prefill': {
-                      'contact': '8888888888',
-                      'email': 'test@razorpay.com'
-                    },
-                    'external': {
-                      'wallets': ['paytm']
-                    }
-                  };
-                  razorpay.on(
-                      Razorpay.EVENT_PAYMENT_ERROR, handlePaymentErrorResponse);
-                  razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                      handlePaymentSuccessResponse);
-                  razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                      handleExternalWalletSelected);
-                  razorpay.open(options);
-                },
-                child: const Text("Pay with Razorpay")),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(height: 30,),
+                Text("ALMOST READY TO GO!!!",style: TextStyle(fontFamily: "Bunaken",fontSize: 25,fontWeight: FontWeight.bold),),
+                SizedBox(height: 100,),
+                Text("Amount to be paid:₹${controller.total}",style: TextStyle(fontFamily: "Bunaken",fontSize: 23,fontWeight: FontWeight.bold),),
+                SizedBox(height: 10,),
+                Text(
+                  "UPI Payment QRCode",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueAccent,
+                    // fontFamily: "Bunaken",
+                    // fontSize: 18
+                  ),
+                ),
+                UPIPaymentQRCode(
+                  upiDetails: UPIDetails(
+                    upiID: "td2345@ibl",
+                    payeeName: "Tanay",
+                    amount: totalAmount,
+                    transactionNote: "IEEE ",
+                  ),
+                  size: 120,
+                  upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.low,
+                ),
+                Text(
+                  "Scan QR to Pay",
+                  style: TextStyle(color: Colors.grey[600], letterSpacing: 1.2),
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add your onPressed logic here
+                        print('Button Pressed');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white54,
+                        onPrimary: Colors.black,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 24,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: BorderSide(
+                            color: Colors.blueAccent,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'If Successful',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Bunaken"
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextFormField(
+                            cursorColor: Colors.red,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                            
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 10,
+                              ),
+                              
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                borderSide: BorderSide(
+                                  color: Colors.amber,
+                                  width: 2,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                  width: 2,
+                                ),
+                              ),
+                              
+                              hintText: 'Enter the transaction ID',
+                            
+                              hintStyle: TextStyle(color: Colors.grey,fontFamily: "Bunaken",fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.blue,
+                              onPrimary: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 24,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                side: BorderSide(
+                                  color: Colors.blueAccent,
+                                  width: 3,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'SUBMIT',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: "Bunaken"
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  void handlePaymentErrorResponse(PaymentFailureResponse response) {
-    /*
-    * PaymentFailureResponse contains three values:
-    * 1. Error Code
-    * 2. Error Description
-    * 3. Metadata
-    * */
-    showAlertDialog(context, "Payment Failed",
-        "Code: ${response.code}\nDescription: ${response.message}\nMetadata:${response.error.toString()}");
-  }
-
-  void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
-    /*
-    * Payment Success Response contains three values:
-    * 1. Order ID
-    * 2. Payment ID
-    * 3. Signature
-    * */
-    print(response.data.toString());
-    showAlertDialog(
-        context, "Payment Successful", "Payment ID: ${response.paymentId}");
-  }
-
-  void handleExternalWalletSelected(ExternalWalletResponse response) {
-    showAlertDialog(
-        context, "External Wallet Selected", "${response.walletName}");
-  }
-
-  void showAlertDialog(BuildContext context, String title, String message) {
-    // set up the buttons
-    Widget continueButton = ElevatedButton(
-      child: const Text("Continue"),
-      onPressed: () {},
-    );
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(title),
-      content: Text(message),
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
     );
   }
 }
+

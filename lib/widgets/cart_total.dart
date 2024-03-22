@@ -29,8 +29,8 @@ class CartTotal extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Total', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                Text('\Rs:${controller.total}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                Text('Total', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "Bunaken")),
+                Text('\Rs:${controller.total}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "Bunaken")),
               ],
             ),
           ),
