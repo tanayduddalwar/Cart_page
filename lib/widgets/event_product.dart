@@ -1,4 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cart_page/eventpage/specific_event%20(1).dart';
+import 'package:cart_page/eventpage/swipeable_content.dart';
 import 'package:cart_page/screens/aboutus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,13 +47,12 @@ class CatelogProductCard extends StatelessWidget {
   final int index;
 
   CatelogProductCard({Key? key, required this.index}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: ClipPath(
-      //  clipper: Clip1Clipper(),
+        //  clipper: Clip1Clipper(),
         child: Container(
           margin: EdgeInsets.all(5),
           height: 170,
@@ -64,14 +65,16 @@ class CatelogProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: InkWell(
-            onTap: () {
-              print("Clicked");
-            },
+           onTap: () {
+  Get.to(SwipeableContent(event: Event.events[index]));
+}
+,
             child: Card(
               color: Colors.white38,
               elevation: 5, // Adding elevation for a shadow effect
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15), // Same border radius here
+                borderRadius:
+                    BorderRadius.circular(15), // Same border radius here
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +87,7 @@ class CatelogProductCard extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                         // Colors.lightBlueAccent,
+                          // Colors.lightBlueAccent,
                           Colors.lightBlue,
                           Colors.lightGreen,
                         ],
@@ -93,14 +96,16 @@ class CatelogProductCard extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 35,
                       backgroundImage: AssetImage(Event.events[index].imageUrl),
-                      backgroundColor: Colors.transparent, // Make background transparent
+                      backgroundColor:
+                          Colors.transparent, // Make background transparent
                     ),
                   ),
                   SizedBox(height: 10),
                   Expanded(
                     child: Text(
                       Event.events[index].name,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -110,7 +115,8 @@ class CatelogProductCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           "Price: ${Event.events[index].price}",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                       ),
                       AnimatedButton(
@@ -118,8 +124,10 @@ class CatelogProductCard extends StatelessWidget {
                         width: 110,
                         animatedOn: AnimatedOn.onHover,
                         onPress: () {
-                          player.play(AssetSource("waves-149581-[AudioTrimmer.com].mp3"));
-                          cartController.addProduct(context, Event.events[index]);
+                          player.play(AssetSource(
+                              "waves-149581-[AudioTrimmer.com].mp3"));
+                          cartController.addProduct(
+                              context, Event.events[index]);
                         },
                         text: 'ADD',
                         isReverse: true,
@@ -130,10 +138,8 @@ class CatelogProductCard extends StatelessWidget {
                           Colors.tealAccent,
                           Colors.lightBlueAccent
                         ]),
-                        selectedGradientColor: LinearGradient(colors: [
-                          Colors.pinkAccent,
-                          Colors.purpleAccent
-                        ]),
+                        selectedGradientColor: LinearGradient(
+                            colors: [Colors.pinkAccent, Colors.purpleAccent]),
                         backgroundColor: Colors.lightBlueAccent,
                         borderColor: Colors.white,
                         selectedBackgroundColor: Colors.lightGreen,
