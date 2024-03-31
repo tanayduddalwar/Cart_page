@@ -7,8 +7,8 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class CartController extends GetxController {
   var _events = {}.obs;
-  var _techEvents = {}.obs; // Dictionary to store technical events
-  var _nonTechEvents = {}.obs; // Dictionary to store non-technical events
+  var _techEvents = {}.obs; 
+  var _nonTechEvents = {}.obs;
 
   RxMap get events => _events;
   RxMap get techEvents => _techEvents;

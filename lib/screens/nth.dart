@@ -69,7 +69,7 @@ List<String> imagesWithText = [
     return ElevatedButton(
       onPressed: () => onClick(),
       style: ElevatedButton.styleFrom(
-        primary: Colors.blue,
+       // primary: Colors.blue,
       ),
       child: Text(
         title,

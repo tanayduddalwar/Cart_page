@@ -10,7 +10,7 @@ class Event {
   final String rules;
   final String schedule;
   final String contact; // New field to indicate if the event is technical
-
+  
   Event({
     required this.name,
     required this.price,
@@ -103,6 +103,42 @@ class Event {
       imageUrl: 'assets/webweaver.png',
       duration: '30',
       isTechnical: true,
+          description: 'Event Description',
+    schedule: 'schedule',
+    rules: 'rules',
+    contact: 'contact',
+      // Set it as non-technical
+    ),
+        Event(
+      name: 'B-Plan',
+      price: 50,
+      imageUrl: 'assets/webweaver.png',
+      duration: '30',
+      isTechnical: false,
+          description: 'Event Description',
+    schedule: 'schedule',
+    rules: 'rules',
+    contact: 'contact',
+      // Set it as non-technical
+    ),
+        Event(
+      name: 'Nth',
+      price: 20,
+      imageUrl: 'assets/webweaver.png',
+      duration: '30',
+      isTechnical: false,
+          description: 'Event Description',
+    schedule: 'schedule',
+    rules: 'rules',
+    contact: 'contact',
+      // Set it as non-technical
+    ),
+     Event(
+      name: 'Quiz',
+      price: 20,
+      imageUrl: 'assets/webweaver.png',
+      duration: '30',
+      isTechnical: false,
           description: 'Event Description',
     schedule: 'schedule',
     rules: 'rules',
