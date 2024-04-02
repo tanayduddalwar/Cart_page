@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:cart_page/Sponsers/glass_box_sessions.dart';
+import 'package:cart_page/landing_page/home.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class VideosScreen extends StatefulWidget {
   const VideosScreen({super.key});
@@ -51,13 +54,19 @@ class _VideosScreenState extends State<VideosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.off(() => HomePage());
+            },
+            icon: Icon(Icons.arrow_back)),
         backgroundColor: Color.fromARGB(34, 15, 40, 52),
         title: const Text(
           'SPONSORS',
           style: TextStyle(
             color: Colors.white,
             fontSize: 38.0,
-            fontFamily: 'ulove',
+            fontFamily: 'berky',
+            fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true, //Title at Centre
@@ -69,7 +78,7 @@ class _VideosScreenState extends State<VideosScreen> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/bgimage1.jpg'),
+                image: AssetImage('assets/7.png'),
                 fit: BoxFit.cover,
               ),
             ),

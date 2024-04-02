@@ -220,7 +220,7 @@ class CombinedEventCard extends StatelessWidget {
                   color1: Color.fromRGBO(4, 90, 171, 0.7),
                   color2: Color.fromRGBO(1, 37, 84, 0.7),
                   width: MediaQuery.of(context).size.width * 0.4,
-                  eventimgsrc: "assets/.png",
+                  eventimgsrc: "assets/roboliga.png",
                 ),
               ),
             ],

@@ -126,8 +126,7 @@ class CatelogProductCard extends StatelessWidget {
                         onPress: () {
                           player.play(AssetSource(
                               "waves-149581-[AudioTrimmer.com].mp3"));
-                          cartController.addProduct(
-                              context, Event.events[index]);
+                         
                         },
                         text: 'ADD',
                         isReverse: true,

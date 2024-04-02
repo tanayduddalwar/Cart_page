@@ -180,59 +180,7 @@ class EventProducts extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        bottomNavigationBar: FluidNavBar(
-          icons: [
-            FluidNavBarIcon(
-              icon: Icons.home,
-              extras: {"label": "home"},
-            ),
-            FluidNavBarIcon(
-              icon: Icons.bookmark_border,
-              extras: {"label": "bookmark"},
-            ),
-            FluidNavBarIcon(
-              icon: Icons.apps,
-              extras: {"label": "partner"},
-            ),
-            FluidNavBarIcon(
-              icon: Icons.person_pin,
-              extras: {"label": "conference"},
-            ),
-          ],
-          onChange: _handleNavigationChange,
-          style: FluidNavBarStyle(
-            iconBackgroundColor: Colors.tealAccent,
-            iconUnselectedForegroundColor: Colors.black,
-            iconSelectedForegroundColor: Colors.black,
-            barBackgroundColor: Colors.tealAccent,
-          ),
-          scaleFactor: 1.0,
-          animationFactor: 0.6,
         ));
-  }
-
-  void _handleNavigationChange(int index) {
-    switch (index) {
-      case 0:
-        // Get.to(CatelogProducts());
-        // Navigate to home screen
-        break;
-      case 1:
-        Get.to(BannerListTileExample());
-        // Navigate to bookmark screen
-        break;
-      case 2:
-        Get.to(AboutUs());
-        // Navigate to partner screen
-        break;
-      case 3:
-        Get.to(AdminPage());
-        // Navigate to conference screen
-        break;
-      default:
-      // Navigate to default screen, if needed
-    }
   }
 }
 
@@ -357,7 +305,7 @@ Padding(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 1),
+              SizedBox(height: 12),
               Container(
                 width: 60,
                 height: 60,
@@ -367,15 +315,17 @@ Padding(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Colors.lightBlueAccent,
-                      Colors.lightBlue,
-                      Colors.lightGreen,
+                      Colors.black,
+                      Colors.white
+                      // Colors.lightBlueAccent,
+                      // Colors.lightBlue,
+                      // Colors.lightGreen,
                     ],
                   ),
                 ),
                 child: CircleAvatar(
                   radius: 35,
-                  backgroundImage: AssetImage("assets/credenz.png"),
+                  backgroundImage: AssetImage("assets/images/Credenz.png"),
                   backgroundColor: Colors.transparent,
                 ),
               ),
@@ -414,176 +364,8 @@ Padding(
     ],
   ),
 ),
-
-
-
-
-
         ],
       ),
     );
   }
-}
-
-// return Padding(
-//   padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-//   child: Row(
-//     children: [
-//       Expanded(
-//         flex: 2,
-//         child: Container(
-//           decoration: BoxDecoration(
-//             image: DecorationImage(
-//               image: AssetImage(
-//                   'assets/underwater-tropical-seabed-with-reef-sunshine_756748-1988.jpg'),
-//               fit: BoxFit.fitWidth,
-//             ),
-//             borderRadius: BorderRadius.circular(15),
-//           ),
-//           child: Card(
-//             elevation: 0,
-//             color: Colors.transparent,
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 SizedBox(
-//                   height: 10,
-//                 ),
-//                 Hero(
-//                   tag: "event_${eventobj.name}",
-//                   child: Container(
-//                     width: 60,
-//                     height: 60,
-//                     decoration: BoxDecoration(
-//                       shape: BoxShape.circle,
-//                       gradient: LinearGradient(
-//                         begin: Alignment.topLeft,
-//                         end: Alignment.bottomRight,
-//                         colors: [
-//                           Colors.lightBlueAccent,
-//                           Colors.lightBlue,
-//                           Colors.lightGreen,
-//                         ],
-//                       ),
-//                     ),
-//                     child: CircleAvatar(
-//                       radius: 35,
-//                       backgroundImage:
-//                           AssetImage("assets/credenz.png"),
-//                       backgroundColor: Colors.transparent,
-//                     ),
-//                   ),
-//                 ),
-//                 SizedBox(height: 10),
-//                 Text(
-//                   eventobj.name,
-//                   style: TextStyle(
-//                     color: Colors.black,
-//                     fontSize: 26,
-//                     fontWeight: FontWeight.bold,
-//                     fontFamily: "Bunaken",
-//                   ),
-//                 ),
-//                 SizedBox(width: 10),
-//                 Container(
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(15),
-//                   ),
-//                   child: Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                     children: [
-//                       Text(
-//                         "Amount : ${eventobj.price}",
-//                         style: TextStyle(
-//                           color: Colors.white,
-//                           fontSize: 20,
-//                           fontFamily: "Bunaken",
-//                           fontWeight: FontWeight.bold,
-//                         ),
-//                       ),
-//                       SizedBox(width: 10),
-//                       IconButton(
-//                         color: Colors.white,
-//                         onPressed: () async {
-//                           player.play(AssetSource("water-drop-85731.mp3"));
-//                           controller.removeProduct(context, eventobj);
-//                         },
-//                         icon: Icon(Icons.remove_circle_outline_rounded),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//       SizedBox(width: 10),
-//       Expanded(
-//         flex: 1,
-//         child: Container(
-//           height: 160,
-//           decoration: BoxDecoration(
-//             image: DecorationImage(
-//               image: AssetImage(
-//                   'assets/underwater-tropical-seabed-with-reef-sunshine_756748-1988.jpg'),
-//               fit: BoxFit.fitWidth,
-//             ),
-//             borderRadius: BorderRadius.circular(15),
-//           ),
-//           child: Card(
-//             elevation: 0,
-//             color: Colors.transparent,
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Container(
-//                   width: 80,
-//                   height: 100,
-//                   decoration: BoxDecoration(
-//                     shape: BoxShape.circle,
-//                     gradient: LinearGradient(
-//                       begin: Alignment.topLeft,
-//                       end: Alignment.bottomRight,
-//                       colors: [
-//                         Colors.lightBlueAccent,
-//                         Colors.lightBlue,
-//                         Colors.lightGreen,
-//                       ],
-//                     ),
-//                   ),
-//                   child: CircleAvatar(
-//                     radius: 50,
-//                     backgroundImage: AssetImage(eventobj.imageUrl),
-//                     backgroundColor: Colors.transparent,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     ],
-//   ),
-// );
-
-class MyCustomClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path()
-      ..lineTo(0, size.height)
-      ..lineTo(size.width, size.height)
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width / 2, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

@@ -60,7 +60,7 @@ class _PaymentState extends State<Payment> {
               Text(
                 "ALMOST READY TO GO!!!",
                 style: TextStyle(
-                  fontFamily: "Bunaken",
+                  fontFamily: "berky",
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -69,7 +69,7 @@ class _PaymentState extends State<Payment> {
               Text(
                 "Amount to be paid: ₹${controller.total}",
                 style: TextStyle(
-                  fontFamily: "Bunaken",
+                  fontFamily: "berky",
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
                 ),
@@ -123,7 +123,7 @@ class _PaymentState extends State<Payment> {
                       'If Successful',
                       style: TextStyle(
                         fontSize: 20,
-                        fontFamily: "Bunaken",
+                        fontFamily: "berky",
                       ),
                     ),
                   ),
@@ -160,7 +160,7 @@ class _PaymentState extends State<Payment> {
                             hintText: 'Enter the transaction ID',
                             hintStyle: TextStyle(
                               color: Colors.grey,
-                              fontFamily: "Bunaken",
+                              fontFamily: "berky",
                               fontSize: 20,
                             ),
                           ),
@@ -186,7 +186,7 @@ class _PaymentState extends State<Payment> {
                             'SUBMIT',
                             style: TextStyle(
                               fontSize: 17,
-                              fontFamily: "Bunaken",
+                              fontFamily: "berky",
                             ),
                           ),
                         ),

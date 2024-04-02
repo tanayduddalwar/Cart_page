@@ -11,7 +11,9 @@ import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
   final Event event;
+
   const SpecificPage({Key? key, required this.event}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _SpecificPageState();
@@ -58,6 +60,7 @@ class _SpecificPageState extends State<SpecificPage>
 
   @override
   Widget build(BuildContext context) {
+    bool isPassAdded = false;
     final Event event = widget.event;
     final MediaQueryData mediaQuery = MediaQuery.of(context);
 
@@ -71,23 +74,24 @@ class _SpecificPageState extends State<SpecificPage>
             icon: const Icon(Icons.arrow_back_rounded)),
         backgroundColor: Colors.transparent,
         elevation: 10,
-        title: Padding(
-          padding:
-              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01),
-          child: Container(
-            //height: MediaQuery.of(context).size.height*0.5,
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: TextLiquidFill(
-              text: "Reverse Coding",
-              waveColor: Colors.blueAccent,
-              //boxBackgroundColor: Colors.transparent,
-              boxBackgroundColor: const Color(0x0060B7),
-
-              boxHeight: 100.0,
-              boxWidth: MediaQuery.of(context).size.width * 6,
-            ),
-          ),
-        ),
+        //   title: Padding(
+        //     padding:
+        //         EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01),
+        //     child: Container(
+        //       //height: MediaQuery.of(context).size.height*0.5,
+        //       width: MediaQuery.of(context).size.width * 0.6,
+        //       child: TextLiquidFill(
+        //         text: "Reverse Coding",
+        //         waveColor: Colors.blueAccent,
+        //         //boxBackgroundColor: Colors.transparent,
+        //         boxBackgroundColor: const Color(0x0060B7),
+        //
+        //         boxHeight: 100.0,
+        //         boxWidth: MediaQuery.of(context).size.width * 6,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
       body: Builder(
         builder: (context) {
@@ -96,7 +100,7 @@ class _SpecificPageState extends State<SpecificPage>
               Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("lib/assets/newbg.jpeg"),
+                    image: AssetImage("assets/images/background.jpeg"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -106,18 +110,34 @@ class _SpecificPageState extends State<SpecificPage>
                 // Adjust top position to fit under the app bar
                 child: Column(
                   children: [
-                    Hero(
-                      tag: 'event-img-${event.imageUrl}',
-                      child: Container(
-                        height: 200,
-                        width: 200,
-                        alignment: Alignment.topCenter,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(event.imageUrl),
+                    Row(
+                      children: [
+                        Hero(
+                          tag: 'event-img-${event.imageUrl}',
+                          child: Container(
+                            height: 200,
+                            width: 200,
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(event.imageUrl),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Hero(
+                          tag: 'event-name${event.name}',
+                          child: Text(
+                            event.name,
+                            style: const TextStyle(
+                              fontFamily: 'Bunaken',
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 15),
                     SwipeableContent(
@@ -133,39 +153,52 @@ class _SpecificPageState extends State<SpecificPage>
       ),
       floatingActionButton: FabCircularMenuPlus(
         ringColor: Colors.transparent,
+        fabColor: Colors.purple,
         ringDiameter: 250,
         ringWidth: 70,
         children: [
-          FloatingActionButton(
-            onPressed: () {
-              final snackbar = SnackBar(
-                backgroundColor: Colors.transparent,
-                content: AwesomeSnackbarContent(
-                  title: "Added to cart",
-                  message: "The Pass has been added to cart",
-                  contentType: ContentType.success,
-                ),
-              );
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(snackbar);
-            },
-            child: const Icon(
-              Icons.card_giftcard_rounded,
+            FloatingActionButton(
+              onPressed: () {
+                final snackbar = SnackBar(
+                  duration: const Duration(seconds: 1),
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    title: isPassAdded
+                        ? "Pass already added to cart" : "Added to cart",
+                    message: isPassAdded
+                        ? "The Pass has already been added to cart"
+                        : "The Pass has been added to cart",
+                    contentType: isPassAdded ? ContentType.failure : ContentType.success,
+                  ),
+                );
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(snackbar);
+                setState(() {
+                  isPassAdded = true;
+                });
+
+              },
+              child: const Icon(
+                color: Colors.purple,
+                Icons.card_giftcard_rounded,
+              ),
             ),
-          ),
           // Unique tag for the second FloatingActionButton
           FloatingActionButton(
-            onPressed: () {
-              Get.to(EventProducts());
-            },
+          
+            onPressed: () {},
             child: const Icon(Icons.shopping_cart),
           ),
+          FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.egg)
+          )
         ],
       ),
+     // floatingActionButtonLocation: ExpandableFab.location,
 
-      // floatingActionButtonAnimator: NoScalingAnimation(),
     );
-    //  elevation: 0,
+
   }
 }

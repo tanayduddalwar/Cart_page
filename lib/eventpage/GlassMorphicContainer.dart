@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class GlassmorphicContainer extends StatelessWidget {
+class GlassmorphicContainer1 extends StatelessWidget {
   final Widget child;
   final double borderRadius;
   final double sigmaX;
   final double sigmaY;
-  const GlassmorphicContainer(
+  const GlassmorphicContainer1(
       {super.key,
         required this.child,
         required this.borderRadius,

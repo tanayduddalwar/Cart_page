@@ -20,6 +20,7 @@ class SwipeableContent extends StatefulWidget {
 
 class _SwipeableContentState extends State<SwipeableContent> {
   final CartController controller = Get.find();
+  late PageController _pageController;
   int currentIndex = 0;
 
   List<IconData> desIcon = [
@@ -28,6 +29,25 @@ class _SwipeableContentState extends State<SwipeableContent> {
     Icons.schedule,
     Icons.call,
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: currentIndex);
+    _pageController.addListener(_pageListener);
+
+  }
+  void _pageListener() {
+    setState(() {
+      currentIndex = _pageController.page!.round();
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +72,9 @@ class _SwipeableContentState extends State<SwipeableContent> {
                 setState(() {
                   currentIndex =
                       (currentIndex + 1) % 4; // Assuming there are 4 sections
+                  _pageController.animateToPage(currentIndex,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.ease);
                 });
               }
               // Swiped right
@@ -59,11 +82,14 @@ class _SwipeableContentState extends State<SwipeableContent> {
                 setState(() {
                   currentIndex = (currentIndex - 1) % 4;
                   if (currentIndex < 0) currentIndex = 3;
+                  _pageController.animateToPage(currentIndex,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.ease);
                 });
               }
             },
             child: Center(
-              child: GlassmorphicContainer(
+              child: GlassmorphicContainer1(
                 borderRadius: MediaQuery.of(context).size.height *
                     0.02, // 2% of screen height
                 child: Column(
@@ -81,6 +107,9 @@ class _SwipeableContentState extends State<SwipeableContent> {
                             onTap: () {
                               setState(() {
                                 currentIndex = index;
+                                _pageController.animateToPage(currentIndex,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.ease);
                               });
                             },
                             child: Text(
@@ -88,8 +117,9 @@ class _SwipeableContentState extends State<SwipeableContent> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'MaterialIcons',
-                                fontSize: MediaQuery.of(context).size.height *
-                                    0.03, // 3% of screen height
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.03,
+                                // 3% of screen height
                                 decoration: currentIndex == index
                                     ? TextDecoration.underline
                                     : null,
@@ -107,26 +137,32 @@ class _SwipeableContentState extends State<SwipeableContent> {
                       thickness: 1,
                     ),
                     Expanded(
-                      child: SingleChildScrollView(
-                        physics: const ScrollPhysics(),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.005,
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.05),
-                          // 0.5% of screen height and 5% of screen width
-                          child: Text(
-                            content[currentIndex],
-                            style: const TextStyle(
-                              fontFamily: "Bunaken",
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              height: 1.5,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: content.length,
+                        itemBuilder: (context, index) {
+                          return SingleChildScrollView(
+                            physics: const ScrollPhysics(),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height *
+                                      0.005,
+                                  horizontal:
+                                      MediaQuery.of(context).size.width * 0.05),
+                              // 0.5% of screen height and 5% of screen width
+                              child: Text(
+                                content[index],
+                                style: const TextStyle(
+                                  fontFamily: "Bunaken",
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  height: 1.5,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ),
                     const Divider(

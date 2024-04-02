@@ -1,8 +1,10 @@
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/eventpage/GlassMorphicContainer.dart';
+import 'package:cart_page/eventpage/specific_event%20(1).dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NonTechEventsPage extends StatefulWidget {
   @override
@@ -13,6 +15,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
   final PageController _pageController = PageController();
   Color _containerColor = Color.fromRGBO(7, 14, 71, 1);
   List<Widget> eventPages = []; // List to hold the event pages
+
   @override
   void initState() {
     super.initState();
@@ -36,25 +39,26 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
     });
   }
 
-  // Method to build event pages
-  // Method to build event pages
- void _buildEventPages() {
-  eventPages.clear(); // Clear existing pages
-  for (int i = 0; i < Event.events.length; i++) {
-    if (!Event.events[i].isTechnical) {
-      if (i % 2 == 0) {
-        eventPages.add(CombinedEventCard(event: Event.events[i]));
-      } else {
-        eventPages.add(revCombinedEventCard(event: Event.events[i]));
+  void _buildEventPages() {
+    eventPages.clear(); // Clear existing pages
+    int count = 0; // Track the number of added pages
+    for (int i = 0; i < Event.events.length; i++) {
+      if (!Event.events[i].isTechnical && count < 2) {
+        if (count % 2 == 0) {
+          eventPages.add(CombinedEventCard(event: Event.events[i]));
+        } else {
+          eventPages.add(revCombinedEventCard(event: Event.events[i]));
+        }
+        count++; // Increment count after adding a page
       }
     }
   }
-}
-
-
 
   @override
   Widget build(BuildContext context) {
+    // Call _buildEventPages method here if you want to rebuild event pages on each build
+    // _buildEventPages(); // Uncomment this line if you want to rebuild event pages on each build
+
     return Scaffold(
       body: Stack(
         children: [
@@ -69,6 +73,23 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
           Center(
             child: Column(
               children: [
+                Container(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.09,
+                  width: MediaQuery.of(context).size.height * 1,
+                  color: _containerColor,
+                  child: Center(
+                    child: Text(
+                      'Credenz',
+                      style: GoogleFonts.berkshireSwash(
+                        color: Colors.white,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   color: _containerColor,
                   width: MediaQuery.of(context).size.height * 1,
@@ -190,7 +211,7 @@ class CombinedEventCard extends StatelessWidget {
                   width: 120,
                   child: Center(
                     child: Text(
-                      "B-Plan",
+                      "${event.name}",
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.white,
@@ -337,7 +358,7 @@ class revCombinedEventCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SwipeableContent(event: event),
+            builder: (context) => SpecificPage(event: event),
           ),
         );
       },
@@ -371,12 +392,11 @@ class revCombinedEventCard extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // color: Colors.black,
                   height: 120,
                   width: 120,
                   child: Center(
                     child: Text(
-                      "Quiz",
+                      "${event.name}",
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.white,
@@ -520,7 +540,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
               }
             },
             child: Center(
-              child: GlassmorphicContainer(
+              child: GlassmorphicContainer1(
                 borderRadius: MediaQuery.of(context).size.height *
                     0.02, // 2% of screen height
                 child: Column(

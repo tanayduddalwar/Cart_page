@@ -145,6 +145,18 @@ class Event {
     contact: 'contact',
       // Set it as non-technical
     ),
+     Event(
+      name: 'Roboliga',
+      price: 20,
+      imageUrl: 'assets/webweaver.png',
+      duration: '30',
+      isTechnical: true,
+          description: 'Event Description',
+    schedule: 'schedule',
+    rules: 'rules',
+    contact: 'contact',
+      // Set it as non-technical
+    ),
   ];
   // static Event fromSnapshot(DocumentSnapshot snap) {
   //   Event event = Event(

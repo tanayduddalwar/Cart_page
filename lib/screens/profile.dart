@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cart_page/screens/nth.dart';
 import 'package:cart_page/screens/privacy_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,7 +78,7 @@ class AdminPage extends StatelessWidget {
                       ],
                       onSelected: (value) {
     if (value == "IEEE") {
-      Get.to(Nth());
+      
     }
      if (value == "PRIVACY POLICY") {
       Get.to(PrivacyPolicy());
@@ -160,12 +159,7 @@ class AdminPage extends StatelessWidget {
                           fontFamily: "Bunaken",
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          //MyHomePage(title: "Hi");
-                        },
-                        child: Text("Ticket"),
-                      ),
+            
                     ],
                   )
                 ],
