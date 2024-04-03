@@ -80,6 +80,10 @@ dependencies:
   shared_preferences: ^2.2.2
   fluttertoast: ^8.2.4
   http: ^1.2.1
+  hero_text: ^0.0.1
+  flutter_animate: ^4.5.0
+  awesome_dialog: ^3.2.0
+  flutter_expandable_fab: ^2.0.0
   
 
 

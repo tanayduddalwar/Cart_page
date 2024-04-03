@@ -6,6 +6,7 @@ import 'package:cart_page/screens/aboutus.dart';
 import 'package:cart_page/screens/payment.dart';
 import 'package:cart_page/screens/profile.dart';
 import 'package:cart_page/widgets/cart_total.dart';
+import 'package:cart_page/widgets/empty_cart.dart';
 import 'package:cart_page/widgets/event_product.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +29,13 @@ class EventProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.events.length == 0)
+                      return EmptyCart();
+    else
     return Scaffold(
+      
         body: Column(
+          
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
@@ -98,9 +104,8 @@ class EventProducts extends StatelessWidget {
                         ),
                       ],
                     ),
-                    if (controller.events.length == 0)
-                      Text("No item added to cart")
-                    else
+                    
+                    
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -135,7 +140,7 @@ class EventProducts extends StatelessWidget {
                               iconColor: Colors.red,
 
                               /// Text to be displayed inside the button.
-                              label: 'Go To Payment',
+                              label: 'Payment',
 
                               shadow: const BoxShadow(color: Colors.red),
 

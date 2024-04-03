@@ -9,7 +9,6 @@ import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import '../controllers/cart_controller.dart';
 import '../models/event_model.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class CatelogProducts extends StatelessWidget {
   const CatelogProducts({Key? key}) : super(key: key);

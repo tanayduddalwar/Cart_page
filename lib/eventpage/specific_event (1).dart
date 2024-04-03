@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +28,13 @@ class _SpecificPageState extends State<SpecificPage>
   late AnimationController _extensionAnimation;
   late Animation<double> _widthAnimation;
   bool _isExtended = false;
-
+  int _tapCount = 0;
   @override
   void initState() {
     super.initState();
     _extensionAnimation = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-    _widthAnimation = Tween<double>(begin: 60.0, end: 200.0).animate(
-      CurvedAnimation(
-        parent: _extensionAnimation,
-        curve: Curves.easeOut,
-      ),
+      duration: const Duration(seconds: 1),
     );
   }
 
@@ -47,15 +44,35 @@ class _SpecificPageState extends State<SpecificPage>
     super.dispose();
   }
 
-  void _toggleExtension() {
-    setState(() {
-      _isExtended = !_isExtended;
-      if (_isExtended) {
-        _extensionAnimation.forward();
-      } else {
-        _extensionAnimation.reverse();
-      }
-    });
+  void _handleTap() {
+    _tapCount++;
+
+    if (_tapCount == 3) {
+      print('Image tapped 3 times');
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.success,
+        borderSide: const BorderSide(
+          color: Colors.green,
+          width: 2,
+        ),
+        width: MediaQuery.of(context).size.width * 0.9,
+        buttonsBorderRadius: const BorderRadius.all(
+          Radius.circular(2),
+        ),
+        dismissOnTouchOutside: false,
+        dismissOnBackKeyPress: false,
+        headerAnimationLoop: false,
+        animType: AnimType.bottomSlide,
+        desc: widget.event.description,
+        showCloseIcon: true,
+      ).show();
+      _tapCount = 0;
+    } else {
+      Timer(Duration(seconds: 1), () {
+        _tapCount = 0;
+      });
+    }
   }
 
   @override
@@ -63,7 +80,6 @@ class _SpecificPageState extends State<SpecificPage>
     bool isPassAdded = false;
     final Event event = widget.event;
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -100,7 +116,7 @@ class _SpecificPageState extends State<SpecificPage>
               Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/background.jpeg"),
+                    image: AssetImage("assets/3.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -112,28 +128,36 @@ class _SpecificPageState extends State<SpecificPage>
                   children: [
                     Row(
                       children: [
-                        Hero(
-                          tag: 'event-img-${event.imageUrl}',
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            alignment: Alignment.topCenter,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(event.imageUrl),
+                        GestureDetector(
+                          onTap: () {
+                            _handleTap();
+                          },
+                          child: Hero(
+                            tag: event.imageUrl,
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              alignment: Alignment.topCenter,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(event.imageUrl),
+                                ),
                               ),
                             ),
                           ),
                         ),
                         Hero(
-                          tag: 'event-name${event.name}',
-                          child: Text(
-                            event.name,
-                            style: const TextStyle(
-                              fontFamily: 'Bunaken',
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                          tag: 'event-name-${event.name}',
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: Text(
+                              event.name,
+                              style: const TextStyle(
+                                fontFamily: 'Bunaken',
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -153,52 +177,47 @@ class _SpecificPageState extends State<SpecificPage>
       ),
       floatingActionButton: FabCircularMenuPlus(
         ringColor: Colors.transparent,
-        fabColor: Colors.purple,
+        fabColor: Colors.white,
         ringDiameter: 250,
         ringWidth: 70,
         children: [
-            FloatingActionButton(
-              onPressed: () {
-                final snackbar = SnackBar(
-                  duration: const Duration(seconds: 1),
-                  backgroundColor: Colors.transparent,
-                  content: AwesomeSnackbarContent(
-                    title: isPassAdded
-                        ? "Pass already added to cart" : "Added to cart",
-                    message: isPassAdded
-                        ? "The Pass has already been added to cart"
-                        : "The Pass has been added to cart",
-                    contentType: isPassAdded ? ContentType.failure : ContentType.success,
-                  ),
-                );
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(snackbar);
-                setState(() {
-                  isPassAdded = true;
-                });
-
-              },
-              child: const Icon(
-                color: Colors.purple,
-                Icons.card_giftcard_rounded,
-              ),
+          FloatingActionButton(
+            onPressed: () {
+              final snackbar = SnackBar(
+                duration: const Duration(seconds: 1),
+                backgroundColor: Colors.transparent,
+                content: AwesomeSnackbarContent(
+                  title: isPassAdded
+                      ? "Pass already added to cart"
+                      : "Added to cart",
+                  message: isPassAdded
+                      ? "The Pass has already been added to cart"
+                      : "The Pass has been added to cart",
+                  contentType:
+                      isPassAdded ? ContentType.failure : ContentType.success,
+                ),
+              );
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(snackbar);
+              setState(() {
+                isPassAdded = true;
+              });
+            },
+            child: const Icon(
+              Icons.card_giftcard_rounded,
             ),
+          ),
           // Unique tag for the second FloatingActionButton
           FloatingActionButton(
-          
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => EventProducts());
+            },
             child: const Icon(Icons.shopping_cart),
           ),
-          FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.egg)
-          )
         ],
       ),
-     // floatingActionButtonLocation: ExpandableFab.location,
-
+      // floatingActionButtonLocation: ExpandableFab.location,
     );
-
   }
 }

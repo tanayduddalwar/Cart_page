@@ -1,8 +1,10 @@
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/eventpage/GlassMorphicContainer.dart';
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
+import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,14 +15,14 @@ class NonTechEventsPage extends StatefulWidget {
 
 class _NonTechEventsPageState extends State<NonTechEventsPage> {
   final PageController _pageController = PageController();
-  Color _containerColor = Color.fromRGBO(7, 14, 71, 1);
-  List<Widget> eventPages = []; // List to hold the event pages
+  Color _containerColor = Color(0xff040829);
+  List<Widget> eventPages = [];
 
   @override
   void initState() {
     super.initState();
     _pageController.addListener(_onPageChanged);
-    _buildEventPages(); // Build event pages initially
+    _buildEventPages();
   }
 
   @override
@@ -40,33 +42,58 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
   }
 
   void _buildEventPages() {
-    eventPages.clear(); // Clear existing pages
-    int count = 0; // Track the number of added pages
+    eventPages.clear();
+    List<Event> displayedEvents = []; // Keep track of displayed events
     for (int i = 0; i < Event.events.length; i++) {
-      if (!Event.events[i].isTechnical && count < 2) {
-        if (count % 2 == 0) {
-          eventPages.add(CombinedEventCard(event: Event.events[i]));
+      Event currentEvent = Event.events[i];
+      // if ((i) == 2) {
+      //     eventPages.add(SizedBox(height: 1000));
+      //   }
+      if (!currentEvent.isTechnical &&
+          !displayedEvents.contains(currentEvent)) {
+        print(i);
+        displayedEvents.add(currentEvent);
+        if (eventPages.length % 2 == 0) {
+          eventPages.add(
+            CombinedEventCard(event: currentEvent),
+          );
+          if ((i) == 8) {
+            eventPages.add(SizedBox(height: 250));
+          }
         } else {
-          eventPages.add(revCombinedEventCard(event: Event.events[i]));
+          print(i);
+          eventPages.add(
+            revCombinedEventCard(event: currentEvent),
+          );
         }
-        count++; // Increment count after adding a page
+
+        // Check if i is a multiple of 3 and add SizedBox
+        // if ( (i)!=0 && (i) % 3 == 0) {
+        //   eventPages.add(SizedBox(height: 20)); // Adjust height as needed
+        // }
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Call _buildEventPages method here if you want to rebuild event pages on each build
-    // _buildEventPages(); // Uncomment this line if you want to rebuild event pages on each build
-
     return Scaffold(
+      backgroundColor: _containerColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+            onPressed: () {
+              Get.offAll(() => HomePage());
+            },
+            icon: Icon(Icons.arrow_back)),
+      ),
       body: Stack(
         children: [
           Container(
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "assets/images/background.jpeg",
+              "assets/7.gif",
               fit: BoxFit.cover,
             ),
           ),
@@ -82,10 +109,11 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
                   color: _containerColor,
                   child: Center(
                     child: Text(
-                      'Credenz',
+                      'Credenz\'24 ',
                       style: GoogleFonts.berkshireSwash(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -94,25 +122,25 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
                   color: _containerColor,
                   width: MediaQuery.of(context).size.height * 1,
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.1,
+                    top: MediaQuery.of(context).size.height * 0.05,
                   ),
                   child: Center(
                     child: Text(
                       "Non Tech Events",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontFamily: "berky",
+                        fontSize: 28,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  child: PageView(
-                    controller: _pageController,
-                    scrollDirection: Axis.vertical,
-                    children: eventPages, // Use the pre-built event pages
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: eventPages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return eventPages[index];
+                    },
                   ),
                 ),
               ],
@@ -140,21 +168,20 @@ class CombinedEventCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SwipeableContent(event: event),
+            builder: (context) => SpecificPage(event: event),
           ),
         );
       },
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/page2.gif"),
+            image: AssetImage("assets/new.gif"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.only(
-          top: MediaQuery.of(context).size.width * 0.2,
-          left: MediaQuery.of(context).size.width * 0.01,
-          right: MediaQuery.of(context).size.width * 0.01,
+        padding: EdgeInsets.symmetric(
+          // Adjust as needed
+          horizontal: 10.0, // Adjust as needed
         ),
         child: Column(
           children: [
@@ -162,81 +189,23 @@ class CombinedEventCard extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1),
-                  // color: Colors.black,
-                  height: 120,
-                  width: 120,
-                  child: Center(
-                    child: Text(
-                      "WallStreet",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.05,
-                    // right: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(4, 90, 171, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/wallstreet.png",
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.1,
-                    right: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(1, 93, 180, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/bplan.png",
-                  ),
-                ),
-                Container(
-                  // color: Colors.black,
                   height: 120,
                   width: 120,
                   child: Center(
-                    child: Text(
-                      "${event.name}",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1),
-                  // color: Colors.black,
-                  height: 120,
-                  width: 120,
-                  child: Center(
-                    child: Text(
-                      "Nth",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    child: Hero(
+                      tag: 'event-name-${event.name}',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          event.name, // Access event name from Event object
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -244,59 +213,22 @@ class CombinedEventCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
-                    // right: MediaQuery.of(context).size.width * 0.1,
                   ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(4, 90, 171, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/nth.png",
+                  child: Hero(
+                    tag: event.imageUrl, // Unique tag for the hero animation
+                    child: EventCard(
+                      color1: Color.fromRGBO(4, 90, 171, 0.7),
+                      color2: Color.fromRGBO(1, 37, 84, 0.7),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      eventimgsrc: event
+                          .imageUrl, // Access image source from Event object
+                    ),
                   ),
                 ),
               ],
             ),
           ],
         ),
-        // child: Column(
-        //   children: [
-        //     Container(
-        //       padding: EdgeInsets.only(
-        //         left: MediaQuery.of(context).size.width * 0.4,
-        //         right: MediaQuery.of(context).size.width * 0.1,
-        //       ),
-        //       child: EventCard(
-        //         color1: Color.fromRGBO(1, 93, 180, 0.7),
-        //         color2: Color.fromRGBO(1, 37, 84, 0.7),
-        //         width: MediaQuery.of(context).size.width * 0.4,
-        //         eventimgsrc: "assets/images/events/datawiz.png",
-        //       ),
-        //     ),
-        //     Container(
-        //       padding: EdgeInsets.only(
-        //         left: MediaQuery.of(context).size.width * 0.1,
-        //         right: MediaQuery.of(context).size.width * 0.45,
-        //       ),
-        //       child: EventCard(
-        //         color1: Color.fromRGBO(4, 90, 171, 0.7),
-        //         color2: Color.fromRGBO(1, 37, 84, 0.7),
-        //         width: MediaQuery.of(context).size.width * 0.4,
-        //         eventimgsrc: "assets/images/events/enigma.png",
-        //       ),
-        //     ),
-        //     Container(
-        //       padding: EdgeInsets.only(
-        //         left: MediaQuery.of(context).size.width * 0.4,
-        //         right: MediaQuery.of(context).size.width * 0.1,
-        //       ),
-        //       child: EventCard(
-        //         color1: Color.fromRGBO(2, 65, 125, 0.7),
-        //         color2: Color.fromRGBO(2, 28, 61, 0.7),
-        //         width: MediaQuery.of(context).size.width * 0.4,
-        //         eventimgsrc: "assets/images/events/web-weaver.png",
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
@@ -355,6 +287,8 @@ class revCombinedEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // Navigate to a new page or display a modal/dialog with swipeable content
+        // Example:
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -365,108 +299,52 @@ class revCombinedEventCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/page3.gif"),
+            image: AssetImage("assets/6.gif"),
             fit: BoxFit.cover,
           ),
         ),
-        height: 800,
-        padding: EdgeInsets.only(
-          top: MediaQuery.of(context).size.width * 0.2,
-          left: MediaQuery.of(context).size.width * 0.01,
-          right: MediaQuery.of(context).size.width * 0.01,
+        padding: EdgeInsets.symmetric(
+          // Adjust as needed
+          horizontal: 10.0, // Adjust as needed
         ),
         child: Column(
           children: [
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.1,
-                    right: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(1, 93, 180, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/quiz.png",
-                  ),
-                ),
-                Container(
-                  height: 120,
-                  width: 120,
-                  child: Center(
-                    child: Text(
-                      "${event.name}",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1),
-                  // color: Colors.black,
-                  height: 120,
-                  width: 120,
-                  child: Center(
-                    child: Text(
-                      "Enigma",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
-                    // right: MediaQuery.of(context).size.width * 0.1,
                   ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(4, 90, 171, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/enigma.png",
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.1,
-                    // right: MediaQuery.of(context).size.width * 0.45,
-                  ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(2, 65, 125, 0.7),
-                    color2: Color.fromRGBO(2, 28, 61, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc: "assets/cretronix.png",
+                  child: Hero(
+                    tag: event.imageUrl, // Unique tag for the hero animation
+                    child: EventCard(
+                      color1: Color.fromRGBO(4, 90, 171, 0.7),
+                      color2: Color.fromRGBO(1, 37, 84, 0.7),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      eventimgsrc: event
+                          .imageUrl, // Access image source from Event object
+                    ),
                   ),
                 ),
                 Container(
-                  // color: Colors.black,
                   margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1),
+                    left: MediaQuery.of(context).size.width * 0.1,
+                  ),
                   height: 120,
                   width: 120,
                   child: Center(
-                    child: Text(
-                      "Cretonix",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    child: Hero(
+                      tag: 'event-name-${event.name}',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          event.name, // Access event name from Event object
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
