@@ -301,14 +301,13 @@ Widget body() {
                     onTap: () => Get.to(() => PISB()),
                     child: Text(
                       "PISB",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.035,
+                height: screenHeight * 0.050,
               ),
               Row(
                 children: [
@@ -326,8 +325,7 @@ Widget body() {
                     onTap: () => Get.to(PingPage()),
                     child: Text(
                       "PING",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
@@ -358,8 +356,7 @@ Widget body() {
                     onTap: () => Get.to(VideosScreen()),
                     child: Text(
                       "Sponsors",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
@@ -381,20 +378,13 @@ Widget body() {
                     onTap: () => Get.offAll(Login()),
                     child: Text(
                       "Quiz",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
               ),
               SizedBox(height: screenHeight * 0.035),
-              Container(
-                  width: screenWidth * 0.8,
-                  child: Divider(
-                    thickness: screenWidth * 0.01,
-                    color: Colors.white60,
-                  )),
-              SizedBox(height: screenHeight * 0.035),
+            
               Row(
                 children: [
                   SizedBox(
@@ -411,12 +401,18 @@ Widget body() {
                     onTap: () => Get.to(AboutUs()),
                     child: Text(
                       "Developers",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                     style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: screenHeight * 0.035),
+                Container(
+                  width: screenWidth * 0.8,
+                  child: Divider(
+                    thickness: screenWidth * 0.01,
+                    color: Colors.white60,
+                  )),
               SizedBox(height: screenHeight * 0.035),
               Row(
                 children: [
@@ -434,8 +430,7 @@ Widget body() {
                     onTap: () => Get.to(PrivacyPolicy()),
                     child: Text(
                       "Privacy Policy",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                     style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
@@ -457,21 +452,22 @@ Widget body() {
                     onTap: () => Get.to(() => LoginPage()),
                     child: Text(
                       "Login",
-                      style: GoogleFonts.montserrat(
-                          fontSize: screenHeight * 0.019, color: Colors.white),
+                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.015,
+                height: screenHeight * 0.04,
               ),
               Container(
                   width: screenWidth * 0.6,
                   child: Divider(
                     thickness: screenWidth * 0.002,
                     color: Colors.white60,
-                  )),
+                  ),
+                  ),
+
             ],
           ),
         ),
@@ -504,14 +500,14 @@ Widget innerbody() {
             ),
           ),
           SizedBox(
-            height: screenHeight * 0.15,
+            height: screenHeight * 0.06,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: screenHeight * 0.25,
-                width: screenWidth * 0.4,
+                height: screenHeight * 0.3,
+                width: screenWidth * 0.47,
                 child: CardWidget(
                   logo: AssetImage('assets/images/monitor.png'),
                   eventName: 'Tech\nEvents',
@@ -524,8 +520,8 @@ Widget innerbody() {
               ),
               SizedBox(height: screenHeight * 0.02),
               Container(
-                height: screenHeight * 0.25,
-                width: screenWidth * 0.4,
+                height: screenHeight * 0.3,
+                width: screenWidth * 0.47,
                 child: CardWidget(
                   logo: AssetImage('assets/images/web.png'),
                   eventName: 'Non Tech\nEvents',
@@ -592,11 +588,12 @@ class CardWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
                 child: Text(
                   eventName,
-                  style: GoogleFonts.montserrat(
-                      fontSize: 18,
+                  style: TextStyle(fontSize: 23,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "berky"),
                   textAlign: TextAlign.center,
+                  
                 ),
               ),
             ],

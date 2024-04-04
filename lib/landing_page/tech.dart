@@ -113,13 +113,19 @@ class _TechEventsPageState extends State<TechEventsPage> {
                     top: MediaQuery.of(context).size.height * 0.05,
                   ),
                   child: Center(
-                    child: Text(
-                      "Tech Events",
-                      style: TextStyle(
-                        fontFamily: "berky",
-                        fontSize: 28,
-                        color: Colors.white,
-                       
+                    child: Hero(
+                      tag: "tech event",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          "Tech Events",
+                          style: TextStyle(
+                            fontFamily: "berky",
+                            fontSize: 28,
+                            color: Colors.white,
+                           
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -186,6 +192,7 @@ class CombinedEventCard extends StatelessWidget {
                     child: Text(
                       event.name, // Access event name from Event object
                       style: TextStyle(
+                        fontFamily: "berky",
                         fontSize: 30,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -313,6 +320,7 @@ class revCombinedEventCard extends StatelessWidget {
                     child: Text(
                       event.name, // Access event name from Event object
                       style: TextStyle(
+                        fontFamily: "berky",
                         fontSize: 30,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

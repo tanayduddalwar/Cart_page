@@ -1,3 +1,4 @@
+import 'package:cart_page/widgets/empty_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,23 @@ class CartController extends GetxController {
   RxMap get nonTechEvents => _nonTechEvents;
 
 void addProduct(BuildContext context, Event eventobj) {
+if (!_events.containsKey(eventobj)) {
+  final snackBar = SnackBar(
+    elevation: 5,
+    behavior: SnackBarBehavior.floating,
+    duration: Duration(seconds: 3),
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'Ready To Go !',
+      message: 'Event Added To Cart!',
+      contentType: ContentType.success,
+    ),
+  );
+
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
   // Determine if the event is technical or non-technical
   if (_events.containsKey(eventobj)) {
     final snackBar = SnackBar(
@@ -63,14 +81,18 @@ void removeProduct(BuildContext context, Event eventobj) {
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
     } else {
-      _events.remove(eventobj);
-
-      // Determine the type of event and remove it from the appropriate dictionary
       if (eventobj.isTechnical) {
         _techEvents.remove(eventobj);
       } else {
         _nonTechEvents.remove(eventobj);
       }
+      _events.remove(eventobj);
+       if (_events.isEmpty) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => EmptyCart()));
+      }
+
+      // Determine the type of event and remove it from the appropriate dictionary
+     
 
       final snackBar = SnackBar(
         elevation: 5,
@@ -88,7 +110,9 @@ void removeProduct(BuildContext context, Event eventobj) {
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
     }
-  } else {
+  }
+ 
+       else {
     Get.snackbar(
       'Event is already removed',
       '',

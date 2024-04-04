@@ -1,6 +1,7 @@
 import 'dart:async';
-
+import 'package:badges/badges.dart' as badges;
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ import 'package:get/get.dart';
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
+   final CartController controller = Get.find();
   final Event event;
 
-  const SpecificPage({Key? key, required this.event}) : super(key: key);
+   SpecificPage({Key? key, required this.event}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -83,32 +85,41 @@ class _SpecificPageState extends State<SpecificPage>
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back_rounded)),
-        backgroundColor: Colors.transparent,
-        elevation: 10,
-        //   title: Padding(
-        //     padding:
-        //         EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01),
-        //     child: Container(
-        //       //height: MediaQuery.of(context).size.height*0.5,
-        //       width: MediaQuery.of(context).size.width * 0.6,
-        //       child: TextLiquidFill(
-        //         text: "Reverse Coding",
-        //         waveColor: Colors.blueAccent,
-        //         //boxBackgroundColor: Colors.transparent,
-        //         boxBackgroundColor: const Color(0x0060B7),
-        //
-        //         boxHeight: 100.0,
-        //         boxWidth: MediaQuery.of(context).size.width * 6,
-        //       ),
-        //     ),
-        //   ),
-        // ),
+  centerTitle: true,
+  backgroundColor: Colors.transparent,
+  elevation: 0,
+  title: Text(
+    'Credenz\' 24',
+    style: TextStyle(
+      fontFamily: "berky",
+      fontSize: 30.0,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  actions: [
+    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Obx(
+        () => Row(
+          children: [
+            badges.Badge(
+              onTap: () => EventProducts(),
+              badgeContent: Text(
+                "${widget.controller.events.length}",
+                style: TextStyle(fontFamily: "Bunaken"),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () => {},
+              ),
+            ),
+          ],
+        ),
       ),
+    ),
+  ],
+),
+
       body: Builder(
         builder: (context) {
           return Stack(
@@ -183,23 +194,7 @@ class _SpecificPageState extends State<SpecificPage>
         children: [
           FloatingActionButton(
             onPressed: () {
-              final snackbar = SnackBar(
-                duration: const Duration(seconds: 1),
-                backgroundColor: Colors.transparent,
-                content: AwesomeSnackbarContent(
-                  title: isPassAdded
-                      ? "Pass already added to cart"
-                      : "Added to cart",
-                  message: isPassAdded
-                      ? "The Pass has already been added to cart"
-                      : "The Pass has been added to cart",
-                  contentType:
-                      isPassAdded ? ContentType.failure : ContentType.success,
-                ),
-              );
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(snackbar);
+              
               setState(() {
                 isPassAdded = true;
               });
