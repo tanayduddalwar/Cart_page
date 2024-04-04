@@ -1,10 +1,12 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/login/components/common/custom_font_button.dart';
 import 'package:cart_page/login/components/forget_password_page.dart';
 import 'package:cart_page/login/components/signup_page.dart';
 import 'package:cart_page/login/mygif.dart';
 import 'package:cart_page/login/services/networking.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +22,32 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final _loginFormKey = GlobalKey<FormState>();
 
+  // Future<void> _handleLoginUser() async {
+  //   String username = _usernameController.text.trim();
+  //   String password = _passwordController.text.trim();
+
+  //   if (username.isEmpty || password.isEmpty) {
+  //     FocusScope.of(context).unfocus();
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       elevation: 0,
+  //       behavior: SnackBarBehavior.floating,
+  //       backgroundColor: Colors.transparent,
+  //       content: AwesomeSnackbarContent(
+  //         title: 'Oops',
+  //       //  titleFamily: "berky",
+  //         message: 'Enter all fields correctly',
+  //         //messageFontSize: 20,
+  //         //messageFamily: "berky",
+  //         contentType: ContentType.failure,
+  //       ),
+  //     ));
+  //   } else {
+
+  //   }
+  //   database dt = database();
+  //   bool res = await dt.login(
+  //       username: _usernameController.text, password: _passwordController.text);
+  // }
   Future<void> _handleLoginUser() async {
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
@@ -31,14 +59,16 @@ class _LoginPageState extends State<LoginPage> {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(
-          title: 'Oops',
-        //  titleFamily: "berky",
-          message: 'Enter all fields correctly',
-          //messageFontSize: 20,
+          title: 'Ooch',
+          // titleFamily: "Walter",
+          message: 'Invalid Username or Password',
+          //messageFontSize: 25,
           //messageFamily: "berky",
           contentType: ContentType.failure,
         ),
       ));
+      // Show error message if username or password is empty
+      // ...
     } else {
       FocusScope.of(context).unfocus();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -47,17 +77,43 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(
           title: 'Submitting data',
-         // titleFamily: "Walter",
+          // titleFamily: "Walter",
           message: 'Please wait',
           //messageFontSize: 25,
           //messageFamily: "berky",
           contentType: ContentType.success,
         ),
       ));
+      // Show loading message
+      // ...
+
+      // Call login function
+      database dt = database();
+      bool loggedIn = await dt.login(username: username, password: password);
+      print(loggedIn.toString());
+      if (loggedIn) {
+        Get.offAll(() => HomePage()); 
+        // Navigate to next screen upon successful login
+        // ...
+      } else {
+        FocusScope.of(context).unfocus();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Unsuccessful',
+            // titleFamily: "Walter",
+            message: 'Error',
+            //messageFontSize: 25,
+            //messageFamily: "berky",
+            contentType: ContentType.failure,
+          ),
+        ));
+        // Show error message upon unsuccessful login
+        // ...
+      }
     }
-    database dt = database();
-    bool res = await dt.login(
-        username: _usernameController.text, password: _passwordController.text);
   }
 
   void _forgetpw() {

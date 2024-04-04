@@ -5,8 +5,10 @@ import 'package:cart_page/Sponsers/sponsers.dart';
 import 'package:cart_page/about/about.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/landing_page/nontech.dart';
+import 'package:cart_page/landing_page/splash_screen.dart';
 import 'package:cart_page/landing_page/tech.dart';
 import 'package:cart_page/login/components/login_page.dart';
+import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/ping_page/ping.dart';
 import 'package:cart_page/screens/aboutus.dart';
 import 'package:cart_page/screens/privacy_content.dart';
@@ -15,6 +17,7 @@ import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -299,10 +302,11 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(() => PISB()),
-                    child: Text(
-                      "PISB",
-                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("PISB",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
@@ -323,10 +327,11 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(PingPage()),
-                    child: Text(
-                      "PING",
-                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("PING",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
@@ -354,10 +359,11 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(VideosScreen()),
-                    child: Text(
-                      "Sponsors",
-                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("Sponsors",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
@@ -376,15 +382,15 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.offAll(Login()),
-                    child: Text(
-                      "Quiz",
-                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("Quiz",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
               SizedBox(height: screenHeight * 0.035),
-            
               Row(
                 children: [
                   SizedBox(
@@ -399,15 +405,16 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(AboutUs()),
-                    child: Text(
-                      "Developers",
-                     style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("Developers",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
               SizedBox(height: screenHeight * 0.035),
-                Container(
+              Container(
                   width: screenWidth * 0.8,
                   child: Divider(
                     thickness: screenWidth * 0.01,
@@ -428,10 +435,11 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(PrivacyPolicy()),
-                    child: Text(
-                      "Privacy Policy",
-                     style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
+                    child: Text("Privacy Policy",
+                        style: TextStyle(
+                            fontSize: screenHeight * 0.02,
+                            color: Colors.white,
+                            fontFamily: "berky")),
                   ),
                 ],
               ),
@@ -448,26 +456,55 @@ Widget body() {
                   SizedBox(
                     width: screenWidth * 0.07,
                   ),
-                  InkWell(
-                    onTap: () => Get.to(() => LoginPage()),
-                    child: Text(
-                      "Login",
-                      style: TextStyle( fontSize: screenHeight * 0.02, color: Colors.white,fontFamily: "berky")
-                    ),
-                  ),
+                  FutureBuilder<bool>(
+                    future: database().checkLoggedIn(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData && snapshot.data == true) {
+                          return InkWell(
+                            onTap: () async {
+                              database db = database();
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.clear();
+                              db.logout();
+                              Get.snackbar(
+                                  'Logged Out Successfully', 'Success');
+                              Get.offAll(() => SplashScreen());
+                            },
+                            child: Text("Logout",
+                                style: TextStyle(
+                                    fontSize: screenHeight * 0.02,
+                                    color: Colors.white,
+                                    fontFamily: "berky")),
+                          );
+                        } else {
+                          return InkWell(
+                            onTap: () => Get.to(() => LoginPage()),
+                            child: Text("Login",
+                                style: TextStyle(
+                                    fontSize: screenHeight * 0.02,
+                                    color: Colors.white,
+                                    fontFamily: "berky")),
+                          );
+                        }
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    },
+                  )
                 ],
               ),
               SizedBox(
                 height: screenHeight * 0.04,
               ),
               Container(
-                  width: screenWidth * 0.6,
-                  child: Divider(
-                    thickness: screenWidth * 0.002,
-                    color: Colors.white60,
-                  ),
-                  ),
-
+                width: screenWidth * 0.6,
+                child: Divider(
+                  thickness: screenWidth * 0.002,
+                  color: Colors.white60,
+                ),
+              ),
             ],
           ),
         ),
@@ -491,12 +528,15 @@ Widget innerbody() {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(height: screenHeight * 0.1),
-          Text(
-            'Credenz 24',
-            style: GoogleFonts.berkshireSwash(
-              color: Colors.white,
-              fontSize: screenWidth * 0.09,
-              fontWeight: FontWeight.bold,
+          Hero(
+            tag: 'event-name',
+            child: Text(
+              'Credenz 24',
+              style: GoogleFonts.berkshireSwash(
+                color: Colors.white,
+                fontSize: screenWidth * 0.09,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
@@ -586,14 +626,21 @@ class CardWidget extends StatelessWidget {
               SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  eventName,
-                  style: TextStyle(fontSize: 23,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "berky"),
-                  textAlign: TextAlign.center,
-                  
+                child: Hero(
+                  tag: eventName, // Adding hero tag to text
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: Text(
+                      eventName,
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "berky",
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
             ],

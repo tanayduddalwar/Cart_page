@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,22 +27,25 @@ class database {
     String headerString = '';
     final SharedPreferences prefs = await prefs_;
     try {
-      var url = Uri.https('');
+      var url = Uri.https('admin.credenz.in', '/api/register/');
 
       Map<String, dynamic> body = {
         "username": username,
         "email": email,
         "phone": phone,
-        "firstname": firstname,
-        "lastname": lastname,
+        "first_name": firstname,
+        "last_name": lastname,
         "password": password,
-        "college": college,
+        "institute": college,
+        "referralCode":"",
+        "senior":"True",
       };
-
+  print(body.toString());
       var response = await http.post(url, body: body);
 
-      //    print('Response status: ${response.statusCode}');
-      //     print('Response body: ${response.body}');
+          print('Response status: ${response.statusCode}');
+          print('Response body: ${response.body}');
+
 
       try {
         String token = jsonDecode(response.body)["access"];
@@ -51,8 +55,7 @@ class database {
         print(error);
         //      showSnackBar(context, error);
       }
-
-      if (response.statusCode != 200) {
+      if (response.statusCode != 201) {
         jsonDecode(response.body).forEach((key, value) {
           headerString += '$key:$value\n';
         });
@@ -61,9 +64,9 @@ class database {
       } else {
         login(username: username, password: password);
         headerString = 'Registration Successful';
-        Get.snackbar('Registered Successfully', 'Enjoy Credenz!!');
+       
         //      showSnackBar(context, headerString);
-        Get.offAll(() => Initial());
+        
         return true;
       }
     } catch (e) {
@@ -79,7 +82,8 @@ class database {
   }) async {
     String headerString = '';
     try {
-      var url = Uri.https('');
+      var url = Uri.https('admin.credenz.in', '/api/login/');
+
       final SharedPreferences prefs = await prefs_;
 
       Map<String, dynamic> body = {
@@ -89,8 +93,8 @@ class database {
 
       var response = await http.post(url, body: body);
 
-      //     print('Response status: ${response.statusCode}');
-      //    print('Response body: ${jsonDecode(response.body)["access"]}');
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${jsonDecode(response.body)["access"]}');
 
       prefs.setString("access", jsonDecode(response.body)["access"]);
 
@@ -99,14 +103,13 @@ class database {
           headerString += '$key:$value\n';
         });
         //      showSnackBar(context, headerString);
-        Get.snackbar('Invalid Username Or Password', 'Try Again');
         return false;
       } else {
         headerString = 'Login Successful';
         Get.snackbar('Login Successfull', 'Success');
         profile();
         //      showSnackBar(context, headerString);
-        Get.offAll(() => Initial());
+        
         return true;
       }
     } catch (e) {
@@ -142,7 +145,8 @@ class database {
   Future<bool> profile() async {
     String headerString = '';
     try {
-      var url = Uri.https('');
+      var url = Uri.https('admin.credenz.in', '/api/profile/');
+
 
       Map<String, String> headers = {
         "Authorization": "Bearer ${await getHeaders()}",

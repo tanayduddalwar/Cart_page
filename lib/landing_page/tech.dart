@@ -189,13 +189,19 @@ class CombinedEventCard extends StatelessWidget {
                   height: 120,
                   width: 120,
                   child: Center(
-                    child: Text(
-                      event.name, // Access event name from Event object
-                      style: TextStyle(
-                        fontFamily: "berky",
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    child: Hero(
+                      tag: 'eventname-${event.name}',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          event.name, // Access event name from Event object
+                          style: TextStyle(
+                            fontFamily: "berky",
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -204,12 +210,15 @@ class CombinedEventCard extends StatelessWidget {
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(4, 90, 171, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc:
-                        event.imageUrl, // Access image source from Event object
+                  child: Hero(
+                    tag: event.imageUrl,
+                    child: EventCard(
+                      color1: Color.fromRGBO(4, 90, 171, 0.7),
+                      color2: Color.fromRGBO(1, 37, 84, 0.7),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      eventimgsrc:
+                          event.imageUrl, // Access image source from Event object
+                    ),
                   ),
                 ),
               ],
@@ -302,12 +311,15 @@ class revCombinedEventCard extends StatelessWidget {
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  child: EventCard(
-                    color1: Color.fromRGBO(4, 90, 171, 0.7),
-                    color2: Color.fromRGBO(1, 37, 84, 0.7),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    eventimgsrc:
-                        event.imageUrl, // Access image source from Event object
+                  child: Hero(
+                    tag: event.imageUrl,
+                    child: EventCard(
+                      color1: Color.fromRGBO(4, 90, 171, 0.7),
+                      color2: Color.fromRGBO(1, 37, 84, 0.7),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      eventimgsrc:
+                          event.imageUrl, // Access image source from Event object
+                    ),
                   ),
                 ),
                 Container(
@@ -317,13 +329,19 @@ class revCombinedEventCard extends StatelessWidget {
                   height: 120,
                   width: 120,
                   child: Center(
-                    child: Text(
-                      event.name, // Access event name from Event object
-                      style: TextStyle(
-                        fontFamily: "berky",
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    child: Hero(
+                      tag: 'eventname-${event.name}',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(
+                          event.name, // Access event name from Event object
+                          style: TextStyle(
+                            fontFamily: "berky",
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),

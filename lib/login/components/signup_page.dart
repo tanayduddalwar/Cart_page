@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/login/components/common/custom_font_button.dart';
 import 'package:cart_page/login/components/login_page.dart';
 import 'package:cart_page/login/services/networking.dart';
@@ -276,14 +277,14 @@ class _SignupPageState extends State<SignupPage> {
       content: AwesomeSnackbarContent(
         title: 'Submitting data',
         // titleFamily: "Walter",
-         message: 'Please wait',
+        message: 'Please wait',
         // messageFontSize: 25,
         // messageFamily: "Walter",
         contentType: ContentType.success,
       ),
     ));
     database db = database();
-    db.register(
+    bool signedin = await db.register(
       username: _usernameController.text.trim(),
       email: _emailController.text.trim(),
       phone: _phoneController.text.trim(),
@@ -293,6 +294,10 @@ class _SignupPageState extends State<SignupPage> {
       college: _collegeNameController.text.trim(),
       confirmpassword: _confirmPasswordController.text.trim(),
     );
+    print(signedin);
+    if (signedin) {
+      Get.offAll(() => HomePage());
+    }
   }
 
   void toggle() {
