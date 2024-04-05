@@ -1,24 +1,18 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
+import 'package:cart_page/landing_page/home.dart';
+import 'package:cart_page/login/services/networking.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upi_payment_qrcode_generator/upi_payment_qrcode_generator.dart';
 
-class Payment extends StatefulWidget {
-  const Payment({Key? key}) : super(key: key);
-
-  @override
-  State<Payment> createState() => _PaymentState();
-}
-
-class _PaymentState extends State<Payment> {
+class Payment extends StatelessWidget {
   final CartController controller = Get.find();
-
   late double totalAmount;
+  final TextEditingController _transactionIdController =
+      TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
+  Payment() {
     totalAmount = double.parse(controller.total);
   }
 
@@ -106,7 +100,8 @@ class _PaymentState extends State<Payment> {
                       print('Button Pressed');
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black, backgroundColor: Colors.white, // Text color
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white, // Text color
                       padding: EdgeInsets.symmetric(
                         vertical: 16,
                         horizontal: 24,
@@ -133,6 +128,8 @@ class _PaymentState extends State<Payment> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: _transactionIdController,
                           cursorColor: Colors.red,
                           style: TextStyle(
                             fontSize: 18,
@@ -144,14 +141,16 @@ class _PaymentState extends State<Payment> {
                               horizontal: 10,
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                 color: Colors.amber,
                                 width: 2,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
                                 color: Colors.green,
                                 width: 2,
@@ -167,9 +166,48 @@ class _PaymentState extends State<Payment> {
                         ),
                         SizedBox(height: 10),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            String transactionId =
+                                _transactionIdController.text;
+                            if (transactionId.length != 12) {
+                              // Show error snackbar
+                              Get.snackbar(
+                                'Error',
+                                'Transaction ID should be 12 digits long',
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              // Proceed with submitting transaction ID
+                              print('Submitted Transaction ID: $transactionId');
+                              print(controller.EventIndex);
+                              print(totalAmount);
+                              database db = database();
+                              db.placeOrders(
+                                  eventList: controller.EventIndex,
+                                  transactionId: double.parse(transactionId),
+                                  amount: totalAmount.toInt());
+                              Get.snackbar(
+                                'Hurrah!!',
+                                'Order Placed Successfully',
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.green,
+                                colorText: Colors.white,
+                              );
+
+                              // controller.events.clear();
+                              // controller.techEvents.clear();
+                              // controller.nonTechEvents.clear();
+                              // controller.EventIndex.clear();
+                              //totalAmount = 0;
+                              //transactionId = "";
+                             // Get.offAll(() => HomePage());
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blue,
                             padding: EdgeInsets.symmetric(
                               vertical: 12,
                               horizontal: 24,

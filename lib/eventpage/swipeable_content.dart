@@ -35,8 +35,8 @@ class _SwipeableContentState extends State<SwipeableContent> {
     super.initState();
     _pageController = PageController(initialPage: currentIndex);
     _pageController.addListener(_pageListener);
-
   }
+
   void _pageListener() {
     setState(() {
       currentIndex = _pageController.page!.round();
@@ -50,28 +50,47 @@ class _SwipeableContentState extends State<SwipeableContent> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    Event event = widget.event;
-    List<String> content = [
-      event.description,
-      event.rules,
-      event.schedule,
-      event.contact,
-    ];
+Widget build(BuildContext context) {
+  Event event = widget.event;
+  Map<String, String> rules = event.rules;
+  Map<String, String> structure = event.structure;
+  List<dynamic> contactList = event.contact;
+
+  // Format rules map
+  String formattedRules = rules.entries.map((entry) => "${entry.key}: ${entry.value}\n ").join('\n');
+
+  // Format structure map
+  String formattedStructure = structure.entries.map((entry) => "${entry.key}: ${entry.value}\n").join('\n');
+
+  // Format contact list
+  String formattedContacts = contactList.map((contact) => "${contact['name']}: ${contact['phone']}\n").join('\n');
+
+  List<dynamic> content = [
+    event.body,
+    // Displaying rules
+    formattedRules,
+    formattedStructure,
+    // Displaying contact numbers
+    formattedContacts
+  ];
+  print(content);
+  // Now you can use this `content` list for displaying in your UI
+
+
+
 
     return Center(
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: MediaQuery.of(context).size.height / 2,
+          height: MediaQuery.of(context).size.height / 1.8,
           alignment: Alignment.bottomCenter,
           child: GestureDetector(
             onHorizontalDragEnd: (details) {
               // Swiped left
               if (details.velocity.pixelsPerSecond.dx < 0) {
                 setState(() {
-                  currentIndex =
-                      (currentIndex + 1) % 4; // Assuming there are 4 sections
+                  currentIndex = (currentIndex + 1) % 4;
                   _pageController.animateToPage(currentIndex,
                       duration: Duration(milliseconds: 500),
                       curve: Curves.ease);
@@ -90,15 +109,13 @@ class _SwipeableContentState extends State<SwipeableContent> {
             },
             child: Center(
               child: GlassmorphicContainer1(
-                borderRadius: MediaQuery.of(context).size.height *
-                    0.02, // 2% of screen height
+                borderRadius: MediaQuery.of(context).size.height * 0.02,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height *
-                              0.01), // 1% of screen height
+                          vertical: MediaQuery.of(context).size.height * 0.01),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
@@ -119,7 +136,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
                                 fontFamily: 'MaterialIcons',
                                 fontSize:
                                     MediaQuery.of(context).size.height * 0.03,
-                                // 3% of screen height
                                 decoration: currentIndex == index
                                     ? TextDecoration.underline
                                     : null,
@@ -141,6 +157,8 @@ class _SwipeableContentState extends State<SwipeableContent> {
                         controller: _pageController,
                         itemCount: content.length,
                         itemBuilder: (context, index) {
+                          print(content[index]);
+                          print(content.length);
                           return SingleChildScrollView(
                             physics: const ScrollPhysics(),
                             child: Padding(
@@ -149,11 +167,10 @@ class _SwipeableContentState extends State<SwipeableContent> {
                                       0.005,
                                   horizontal:
                                       MediaQuery.of(context).size.width * 0.05),
-                              // 0.5% of screen height and 5% of screen width
                               child: Text(
                                 content[index],
                                 style: const TextStyle(
-                                  fontFamily: "Bunaken",
+                                  fontFamily: "berky",
                                   fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
@@ -177,11 +194,11 @@ class _SwipeableContentState extends State<SwipeableContent> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            "Price\tRs.50/-",
+                          Text(
+                            "Price : ${event.price}",
                             style: TextStyle(
-                              fontFamily: 'Bunaken',
-                              fontSize: 18,
+                              fontFamily: 'berky',
+                              fontSize: 24,
                               fontWeight: FontWeight.normal,
                               color: Colors.white,
                               height: 1.5,
@@ -189,10 +206,8 @@ class _SwipeableContentState extends State<SwipeableContent> {
                           ),
                           const Spacer(),
                           Container(
-                            width: MediaQuery.of(context).size.height *
-                                0.1, // 10% of screen height
-                            height: MediaQuery.of(context).size.height *
-                                0.06, // 10% of screen height
+                            width: MediaQuery.of(context).size.height * 0.1,
+                            height: MediaQuery.of(context).size.height * 0.06,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.blue.withOpacity(0.8),
@@ -203,7 +218,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
                               },
                               icon: const Icon(
                                 Icons.add_shopping_cart_rounded,
-                                color: Colors.black,
+                                color: Colors.amber,
                                 size: 19,
                               ),
                             ),

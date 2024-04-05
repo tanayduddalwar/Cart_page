@@ -20,25 +20,17 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
 
   @override
   void initState() {
-    super.initState();
-    _pageController.addListener(_onPageChanged);
+    // _pageController.addListener(_onPageChanged);
+
     _buildEventPages();
+
+    super.initState();
   }
 
   @override
   void dispose() {
-    _pageController.removeListener(_onPageChanged);
     _pageController.dispose();
     super.dispose();
-  }
-
-  void _onPageChanged() {
-    setState(() {
-      int currentPage = _pageController.page?.round() ?? 0;
-      _containerColor = currentPage % 2 == 0
-          ? Color.fromRGBO(7, 14, 71, 1)
-          : Color.fromRGBO(5, 10, 52, 1);
-    });
   }
 
   void _buildEventPages() {
@@ -51,17 +43,18 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
       //   }
       if (!currentEvent.isTechnical &&
           !displayedEvents.contains(currentEvent)) {
-        print(i);
         displayedEvents.add(currentEvent);
         if (eventPages.length % 2 == 0) {
+          print(i);
+
           eventPages.add(
             CombinedEventCard(event: currentEvent),
           );
-          if ((i) == 8) {
-            eventPages.add(SizedBox(height: 250));
+
+          if ((i) == 8 || i == 11) {
+            eventPages.add(SizedBox(height: 120));
           }
         } else {
-          print(i);
           eventPages.add(
             revCombinedEventCard(event: currentEvent),
           );
@@ -80,12 +73,32 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
     return Scaffold(
       backgroundColor: _containerColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-            onPressed: () {
-              Get.offAll(() => HomePage());
-            },
-            icon: Icon(Icons.arrow_back)),
+          onPressed: () {
+            Get.offAll(() => HomePage());
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
+        title: Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.width * 0.12,
+            ),
+            child: Text(
+              'Credenz\'24',
+              style: GoogleFonts.berkshireSwash(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Stack(
         children: [
@@ -93,35 +106,19 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "assets/7.gif",
+              "assets/77.gif",
               fit: BoxFit.cover,
             ),
           ),
           Center(
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.09,
-                  width: MediaQuery.of(context).size.height * 1,
-                  color: _containerColor,
-                  child: Center(
-                    child: Text(
-                      'Credenz\'24 ',
-                      style: GoogleFonts.berkshireSwash(
-                        color: Colors.white,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+                // Container removed here
                 Container(
                   color: _containerColor,
                   width: MediaQuery.of(context).size.height * 1,
                   padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height * 0.05,
                     top: MediaQuery.of(context).size.height * 0.05,
                   ),
                   child: Center(
@@ -300,7 +297,7 @@ class revCombinedEventCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/6.gif"),
+            image: AssetImage("assets/new.gif"),
             fit: BoxFit.cover,
           ),
         ),
@@ -389,10 +386,10 @@ class _SwipeableContentState extends State<SwipeableContent> {
   @override
   Widget build(BuildContext context) {
     Event event = widget.event;
-    List<String> content = [
+    List<dynamic> content = [
       event.description,
       event.rules,
-      event.schedule,
+      
       event.contact,
     ];
 

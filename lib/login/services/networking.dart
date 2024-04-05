@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
 class database {
   Future<SharedPreferences> prefs_ = SharedPreferences.getInstance();
 
@@ -37,15 +38,14 @@ class database {
         "last_name": lastname,
         "password": password,
         "institute": college,
-        "referralCode":"",
-        "senior":"True",
+        "referralCode": "",
+        "senior": "True",
       };
-  print(body.toString());
+      print(body.toString());
       var response = await http.post(url, body: body);
 
-          print('Response status: ${response.statusCode}');
-          print('Response body: ${response.body}');
-
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
 
       try {
         String token = jsonDecode(response.body)["access"];
@@ -64,9 +64,9 @@ class database {
       } else {
         login(username: username, password: password);
         headerString = 'Registration Successful';
-       
+
         //      showSnackBar(context, headerString);
-        
+
         return true;
       }
     } catch (e) {
@@ -76,6 +76,39 @@ class database {
     }
   }
 
+ Future<void> placeOrders({
+  required List<int> eventList,
+  required double transactionId,
+  required int amount,
+}) async {
+  try {
+    var url = Uri.https('admin.credenz.in', '/api/placeorder/');
+
+    Map<String, dynamic> data = {
+      "event_list": eventList,
+      "transaction_id": transactionId,
+      "amount": amount,
+    };
+
+    String body = jsonEncode(data); // Convert data to JSON string
+
+    print(await getHeaders());
+
+    Map<String, String> headers = {
+      "Authorization": "Bearer ${await getHeaders()}",
+      'Content-type': 'application/json'
+    };
+
+    var response = await http.post(url, body: body, headers: headers);
+
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  } catch (e) {
+    print("error: ${e.toString()}");
+    // showSnackBar(context, e.toString());
+    // return false;
+  }
+}
   Future<bool> login({
     required String username,
     required String password,
@@ -93,8 +126,8 @@ class database {
 
       var response = await http.post(url, body: body);
 
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${jsonDecode(response.body)["access"]}');
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${jsonDecode(response.body)["access"]}');
 
       prefs.setString("access", jsonDecode(response.body)["access"]);
 
@@ -109,7 +142,7 @@ class database {
         Get.snackbar('Login Successfull', 'Success');
         profile();
         //      showSnackBar(context, headerString);
-        
+
         return true;
       }
     } catch (e) {
@@ -146,7 +179,6 @@ class database {
     String headerString = '';
     try {
       var url = Uri.https('admin.credenz.in', '/api/profile/');
-
 
       Map<String, String> headers = {
         "Authorization": "Bearer ${await getHeaders()}",

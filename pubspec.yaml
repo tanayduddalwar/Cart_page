@@ -85,6 +85,7 @@ dependencies:
   awesome_dialog: ^3.2.0
   flutter_expandable_fab: ^2.0.0
   lottie: ^3.1.0
+  card_swiper: ^3.0.1
   
 
 

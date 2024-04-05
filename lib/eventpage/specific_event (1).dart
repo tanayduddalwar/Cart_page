@@ -106,7 +106,7 @@ class _SpecificPageState extends State<SpecificPage>
               onTap: () => EventProducts(),
               badgeContent: Text(
                 "${widget.controller.events.length}",
-                style: TextStyle(fontFamily: "Bunaken"),
+                style: TextStyle(fontFamily: "berky"),
               ),
               child: IconButton(
                 icon: Icon(Icons.shopping_cart),
@@ -146,8 +146,8 @@ class _SpecificPageState extends State<SpecificPage>
                           child: Hero(
                             tag: event.imageUrl,
                             child: Container(
-                              height: 200,
-                              width: 200,
+                              height: MediaQuery.of(context).size.height*0.23,
+                              width: MediaQuery.of(context).size.width*0.7,
                               alignment: Alignment.topCenter,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -164,7 +164,7 @@ class _SpecificPageState extends State<SpecificPage>
                             child: Text(
                               event.name,
                               style: const TextStyle(
-                                fontFamily: 'Bunaken',
+                                fontFamily: 'berky',
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -174,7 +174,7 @@ class _SpecificPageState extends State<SpecificPage>
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 05),
                     SwipeableContent(
                       event: event,
                     ),
@@ -187,6 +187,7 @@ class _SpecificPageState extends State<SpecificPage>
         },
       ),
       floatingActionButton: FabCircularMenuPlus(
+        fabSize: 45,
         ringColor: Colors.transparent,
         fabColor: Colors.white,
         ringDiameter: 250,

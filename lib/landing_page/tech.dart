@@ -1,6 +1,7 @@
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/eventpage/GlassMorphicContainer.dart';
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
+import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,30 +15,22 @@ class TechEventsPage extends StatefulWidget {
 
 class _TechEventsPageState extends State<TechEventsPage> {
   final PageController _pageController = PageController();
-  Color _containerColor = Color.fromRGBO(7, 14, 71, 1);
+  Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
 
   @override
   void initState() {
-    super.initState();
-    _pageController.addListener(_onPageChanged);
+    // _pageController.addListener(_onPageChanged);
+
     _buildEventPages();
+
+    super.initState();
   }
 
   @override
   void dispose() {
-    _pageController.removeListener(_onPageChanged);
     _pageController.dispose();
     super.dispose();
-  }
-
-  void _onPageChanged() {
-    setState(() {
-      int currentPage = _pageController.page?.round() ?? 0;
-      _containerColor = currentPage % 2 == 0
-          ? Color.fromRGBO(7, 14, 71, 1)
-          : Color.fromRGBO(5, 10, 52, 1);
-    });
   }
 
   void _buildEventPages() {
@@ -52,11 +45,14 @@ class _TechEventsPageState extends State<TechEventsPage> {
           !displayedEvents.contains(currentEvent)) {
         displayedEvents.add(currentEvent);
         if (eventPages.length % 2 == 0) {
+          print(i);
+
           eventPages.add(
             CombinedEventCard(event: currentEvent),
           );
-          if ((i) == 2) {
-            eventPages.add(SizedBox(height: 1000));
+
+          if ((i) == 2 || i == 5) {
+            eventPages.add(SizedBox(height: 120));
           }
         } else {
           eventPages.add(
@@ -75,57 +71,63 @@ class _TechEventsPageState extends State<TechEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _containerColor,
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Get.offAll(() => HomePage());
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
+        title: Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.width * 0.12,
+            ),
+            child: Text(
+              'Credenz\'24',
+              style: GoogleFonts.berkshireSwash(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "assets/images/background.jpeg",
+              "assets/77.gif",
               fit: BoxFit.cover,
             ),
           ),
           Center(
             child: Column(
               children: [
+                // Container removed here
                 Container(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.09,
+                  color: _containerColor,
                   width: MediaQuery.of(context).size.height * 1,
-                  color: _containerColor,
-                  child: Center(
-                    child: Text(
-                      'Credenz\'24',
-                      style: GoogleFonts.berkshireSwash(
-                        color: Colors.white,
-                        fontSize: 35,
-                         fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: _containerColor,
-                 width: MediaQuery.of(context).size.height * 1,
                   padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height * 0.05,
                     top: MediaQuery.of(context).size.height * 0.05,
                   ),
                   child: Center(
-                    child: Hero(
-                      tag: "tech event",
-                      child: Material(
-                        type: MaterialType.transparency,
-                        child: Text(
-                          "Tech Events",
-                          style: TextStyle(
-                            fontFamily: "berky",
-                            fontSize: 28,
-                            color: Colors.white,
-                           
-                          ),
-                        ),
+                    child: Text(
+                      "Tech Events",
+                      style: TextStyle(
+                        fontFamily: "berky",
+                        fontSize: 28,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -170,7 +172,7 @@ class CombinedEventCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/page2.gif"),
+            image: AssetImage("assets/new.gif"),
             fit: BoxFit.cover,
           ),
         ),
@@ -190,7 +192,7 @@ class CombinedEventCard extends StatelessWidget {
                   width: 120,
                   child: Center(
                     child: Hero(
-                      tag: 'eventname-${event.name}',
+                      tag: 'event-name-${event.name}',
                       child: Material(
                         type: MaterialType.transparency,
                         child: Text(
@@ -211,13 +213,13 @@ class CombinedEventCard extends StatelessWidget {
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
                   child: Hero(
-                    tag: event.imageUrl,
+                    tag: event.imageUrl, // Unique tag for the hero animation
                     child: EventCard(
                       color1: Color.fromRGBO(4, 90, 171, 0.7),
                       color2: Color.fromRGBO(1, 37, 84, 0.7),
                       width: MediaQuery.of(context).size.width * 0.4,
-                      eventimgsrc:
-                          event.imageUrl, // Access image source from Event object
+                      eventimgsrc: event
+                          .imageUrl, // Access image source from Event object
                     ),
                   ),
                 ),
@@ -295,7 +297,7 @@ class revCombinedEventCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/page2.gif"),
+            image: AssetImage("assets/new.gif"),
             fit: BoxFit.cover,
           ),
         ),
@@ -312,13 +314,13 @@ class revCombinedEventCard extends StatelessWidget {
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
                   child: Hero(
-                    tag: event.imageUrl,
+                    tag: event.imageUrl, // Unique tag for the hero animation
                     child: EventCard(
                       color1: Color.fromRGBO(4, 90, 171, 0.7),
                       color2: Color.fromRGBO(1, 37, 84, 0.7),
                       width: MediaQuery.of(context).size.width * 0.4,
-                      eventimgsrc:
-                          event.imageUrl, // Access image source from Event object
+                      eventimgsrc: event
+                          .imageUrl, // Access image source from Event object
                     ),
                   ),
                 ),
@@ -330,7 +332,7 @@ class revCombinedEventCard extends StatelessWidget {
                   width: 120,
                   child: Center(
                     child: Hero(
-                      tag: 'eventname-${event.name}',
+                      tag: 'event-name-${event.name}',
                       child: Material(
                         type: MaterialType.transparency,
                         child: Text(
@@ -384,10 +386,10 @@ class _SwipeableContentState extends State<SwipeableContent> {
   @override
   Widget build(BuildContext context) {
     Event event = widget.event;
-    List<String> content = [
+    List<dynamic> content = [
       event.description,
       event.rules,
-      event.schedule,
+      
       event.contact,
     ];
 
