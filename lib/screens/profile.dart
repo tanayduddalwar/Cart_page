@@ -23,7 +23,7 @@ class AdminPage extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/common.jpeg"),
+              image: AssetImage("assets/credenz24.jpeg"),
               fit: BoxFit.cover,
             ),
           ),

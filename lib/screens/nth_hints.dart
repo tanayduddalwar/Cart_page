@@ -34,7 +34,7 @@ class _OceanThemedPageState extends State<OceanThemedPage> with SingleTickerProv
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/ocean_background.jpg"),
+            image: AssetImage("assets/credenz24.jpeg"),
             fit: BoxFit.cover,
           ),
         ),

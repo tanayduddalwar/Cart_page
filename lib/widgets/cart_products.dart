@@ -35,7 +35,7 @@ class EventProducts extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/common.jpeg"),
+                  image: AssetImage("assets/credenz24.jpeg"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(15),
