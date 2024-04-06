@@ -59,7 +59,7 @@ class _VideosScreenState extends State<VideosScreen> {
               Get.off(() => HomePage());
             },
             icon: Icon(Icons.arrow_back)),
-        backgroundColor: Color.fromARGB(34, 15, 40, 52),
+        backgroundColor: Colors.transparent,
         title: const Text(
           'SPONSORS',
           style: TextStyle(
@@ -78,7 +78,7 @@ class _VideosScreenState extends State<VideosScreen> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/7.png'),
+                image: AssetImage('assets/bgimg/7.png'),
                 fit: BoxFit.cover,
               ),
             ),

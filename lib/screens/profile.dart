@@ -47,7 +47,7 @@ class _AdminPageState extends State<AdminPage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/common.jpeg"),
+                      image: AssetImage("assets/bgimg/4.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -56,18 +56,26 @@ class _AdminPageState extends State<AdminPage> {
                       //SizedBox(height: 40),
                       AppBar(
                         centerTitle: true,
-                        title: TextLiquidFill(
-                          text: 'PROFILE',
-                          waveColor: Colors.blueAccent,
-                          boxBackgroundColor:
-                              const Color.fromARGB(255, 48, 197, 230),
-                          textStyle: TextStyle(
-                            fontFamily: "Ulove",
-                            fontSize: 30.0,
+                        title: Text(
+                          "PROFILE",
+                          style: TextStyle(
+                            fontFamily: "berky",
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
-                          boxHeight: 300.0,
                         ),
+                        // TextLiquidFill(
+                        //   text: 'PROFILE',
+                        //   waveColor: Colors.blueAccent,
+                        //   boxBackgroundColor:
+                        //       const Color.fromARGB(255, 48, 197, 230),
+                        //   textStyle: TextStyle(
+                        //     fontFamily: "Ulove",
+                        //     fontSize: 30.0,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        //   boxHeight: 300.0,
+                        // ),
 
                         //   " PROFILE ",
                         //   style: TextStyle(

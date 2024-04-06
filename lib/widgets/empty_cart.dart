@@ -16,7 +16,7 @@ class EmptyCart extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/common.jpeg"),
+                image: AssetImage("assets/bgimg/5.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -32,32 +32,33 @@ class EmptyCart extends StatelessWidget {
               title: Text(
                 'CART',
                 style: TextStyle(
-                  fontFamily: "Ulove",
+                  fontFamily: "berky",
+                  color: Colors.white,
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 7.0),
-                  child: Obx(
-                    () => Row(
-                      children: [
-                        badges.Badge(
-                          badgeContent: Text(
-                            "${controller.events.length}",
-                            style: TextStyle(fontFamily: "Bunaken"),
-                          ),
-                          child: IconButton(
-                            icon: Icon(Icons.shopping_cart),
-                            onPressed: () => {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              // actions: [
+              //   Padding(
+              //     padding: const EdgeInsets.symmetric(vertical: 7.0),
+              //     child: Obx(
+              //       () => Row(
+              //         children: [
+              //           badges.Badge(
+              //             badgeContent: Text(
+              //               "${controller.events.length}",
+              //               style: TextStyle(fontFamily: "Bunaken"),
+              //             ),
+              //             child: IconButton(
+              //               icon: Icon(Icons.shopping_cart),
+              //               onPressed: () => {},
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ],
             ),
           ),
           Center(

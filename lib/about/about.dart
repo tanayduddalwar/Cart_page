@@ -59,13 +59,12 @@ class PISB extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height*0.08,
                       ),
-                      
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
+                          padding: const EdgeInsets.only(bottom: 10),
                           child: Container(
                             height: mediaQuery.size.height * 0.55,
                             width: mediaQuery.size.width * 1,

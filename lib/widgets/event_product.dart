@@ -46,6 +46,7 @@ class CatelogProductCard extends StatelessWidget {
   final int index;
 
   CatelogProductCard({Key? key, required this.index}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,10 +65,9 @@ class CatelogProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: InkWell(
-           onTap: () {
-  Get.to(SwipeableContent(event: Event.events[index]));
-}
-,
+            onTap: () {
+              Get.to(SwipeableContent(event: Event.events[index]));
+            },
             child: Card(
               color: Colors.white38,
               elevation: 5, // Adding elevation for a shadow effect
@@ -125,7 +125,6 @@ class CatelogProductCard extends StatelessWidget {
                         onPress: () {
                           player.play(AssetSource(
                               "waves-149581-[AudioTrimmer.com].mp3"));
-                         
                         },
                         text: 'ADD',
                         isReverse: true,

@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
             icon: Icon(Icons.arrow_back)),
         title: Text(
           "QUIZ",
-          style: TextStyle(fontFamily: "Ulove"),
+          style: TextStyle(fontFamily: "berky"),
         ),
       ),
       body: Center(

@@ -50,34 +50,37 @@ class _SwipeableContentState extends State<SwipeableContent> {
   }
 
   @override
-Widget build(BuildContext context) {
-  Event event = widget.event;
-  Map<String, String> rules = event.rules;
-  Map<String, String> structure = event.structure;
-  List<dynamic> contactList = event.contact;
+  Widget build(BuildContext context) {
+    Event event = widget.event;
+    Map<String, String> rules = event.rules;
+    Map<String, String> structure = event.structure;
+    List<dynamic> contactList = event.contact;
 
-  // Format rules map
-  String formattedRules = rules.entries.map((entry) => "${entry.key}: ${entry.value}\n ").join('\n');
+    // Format rules map
+    String formattedRules = rules.entries
+        .map((entry) => "${entry.key}: ${entry.value}\n ")
+        .join('\n');
 
-  // Format structure map
-  String formattedStructure = structure.entries.map((entry) => "${entry.key}: ${entry.value}\n").join('\n');
+    // Format structure map
+    String formattedStructure = structure.entries
+        .map((entry) => "${entry.key}: ${entry.value}\n")
+        .join('\n');
 
-  // Format contact list
-  String formattedContacts = contactList.map((contact) => "${contact['name']}: ${contact['phone']}\n").join('\n');
+    // Format contact list
+    String formattedContacts = contactList
+        .map((contact) => "${contact['name']}: ${contact['phone']}\n")
+        .join('\n');
 
-  List<dynamic> content = [
-    event.body,
-    // Displaying rules
-    formattedRules,
-    formattedStructure,
-    // Displaying contact numbers
-    formattedContacts
-  ];
-  print(content);
-  // Now you can use this `content` list for displaying in your UI
-
-
-
+    List<dynamic> content = [
+      event.body,
+      // Displaying rules
+      formattedRules,
+      formattedStructure,
+      // Displaying contact numbers
+      formattedContacts
+    ];
+    print(content);
+    // Now you can use this `content` list for displaying in your UI
 
     return Center(
       child: Align(
@@ -215,21 +218,23 @@ Widget build(BuildContext context) {
                             child: IconButton(
                               onPressed: () {
                                 controller.addProduct(context, event);
-                               final snackBar = SnackBar(
-        elevation: 5,
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: 'Ready To Go !',
-          message: 'Event Added To Cart!',
-          contentType: ContentType.success,
-        ),
-      );
+                               // Get.snackbar
+                                final snackBar =
+                                SnackBar(
+                                  elevation: 5,
+                                  behavior: SnackBarBehavior.fixed,
+                                  duration: Duration(seconds: 3),
+                                  backgroundColor: Colors.transparent,
+                                  content: AwesomeSnackbarContent(
+                                    title: 'Ready To Go !',
+                                    message: 'Event Added To Cart!',
+                                    contentType: ContentType.success,
+                                  ),
+                                );
 
-     // ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
+                                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
                               },
                               icon: const Icon(
                                 Icons.add_shopping_cart_rounded,
