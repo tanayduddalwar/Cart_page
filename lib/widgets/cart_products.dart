@@ -142,7 +142,7 @@ class EventProducts extends StatelessWidget {
 
                             /// Accepts function, default is null, this property is required.
                             action: () {
-                              Get.to(Payment());
+                              Get.to(()=>Payment());
                             },
 
                             child: const Icon(Icons.arrow_forward_ios),

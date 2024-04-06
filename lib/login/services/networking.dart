@@ -76,13 +76,13 @@ class database {
     }
   }
 
-  Future<void> placeOrders({
+  Future<bool> placeOrders({
     required List<int> eventList,
-    required double transactionId,
+    required int transactionId,
     required int amount,
   }) async {
     try {
-      var url = Uri.https('admin.credenz.in', '/api/placeorder/');
+      var url = Uri.parse('https://admin.credenz.in/api/placeorder/');
 
       Map<String, dynamic> data = {
         "event_list": eventList,
@@ -90,23 +90,31 @@ class database {
         "amount": amount,
       };
 
-      String body = jsonEncode(data); // Convert data to JSON string
-
-      print(await getHeaders());
+      String body = jsonEncode(data);
 
       Map<String, String> headers = {
+        'Content-type': 'application/json',
         "Authorization": "Bearer ${await getHeaders()}",
-        'Content-type': 'application/json'
       };
 
       var response = await http.post(url, body: body, headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
+
+      if (response.statusCode == 201) {
+        print(response.body);
+        return true;
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        print('Error message: ${response.reasonPhrase}');
+        return false;
+      }
     } catch (e) {
-      print("error: ${e.toString()}");
-      // showSnackBar(context, e.toString());
-      // return false;
+      
+      print("Error: $e");
+      return false;
+      
     }
   }
 

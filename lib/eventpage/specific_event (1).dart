@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:badges/badges.dart' as badges;
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
+import 'package:cart_page/login/components/login_page.dart';
+import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +16,10 @@ import 'package:get/get.dart';
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
-   final CartController controller = Get.find();
+  final CartController controller = Get.find();
   final Event event;
 
-   SpecificPage({Key? key, required this.event}) : super(key: key);
+  SpecificPage({Key? key, required this.event}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -81,44 +83,46 @@ class _SpecificPageState extends State<SpecificPage>
   Widget build(BuildContext context) {
     bool isPassAdded = false;
     final Event event = widget.event;
+    database db = database();
+
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-  centerTitle: true,
-  backgroundColor: Colors.transparent,
-  elevation: 0,
-  title: Text(
-    'Credenz\' 24',
-    style: TextStyle(
-      fontFamily: "berky",
-      fontSize: 30.0,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-  actions: [
-    Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Obx(
-        () => Row(
-          children: [
-            badges.Badge(
-              onTap: () => EventProducts(),
-              badgeContent: Text(
-                "${widget.controller.events.length}",
-                style: TextStyle(fontFamily: "berky"),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () => {},
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          'Credenz\' 24',
+          style: TextStyle(
+            fontFamily: "berky",
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Obx(
+              () => Row(
+                children: [
+                  badges.Badge(
+                    onTap: () => EventProducts(),
+                    badgeContent: Text(
+                      "${widget.controller.events.length}",
+                      style: TextStyle(fontFamily: "berky"),
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.shopping_cart),
+                      onPressed: () => {},
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    ),
-  ],
-),
 
       body: Builder(
         builder: (context) {
@@ -146,8 +150,8 @@ class _SpecificPageState extends State<SpecificPage>
                           child: Hero(
                             tag: event.imageUrl,
                             child: Container(
-                              height: MediaQuery.of(context).size.height*0.23,
-                              width: MediaQuery.of(context).size.width*0.7,
+                              height: MediaQuery.of(context).size.height * 0.23,
+                              width: MediaQuery.of(context).size.width * 0.7,
                               alignment: Alignment.topCenter,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -186,6 +190,7 @@ class _SpecificPageState extends State<SpecificPage>
           );
         },
       ),
+
       floatingActionButton: FabCircularMenuPlus(
         fabSize: 45,
         ringColor: Colors.transparent,
@@ -195,7 +200,6 @@ class _SpecificPageState extends State<SpecificPage>
         children: [
           FloatingActionButton(
             onPressed: () {
-              
               setState(() {
                 isPassAdded = true;
               });
@@ -204,10 +208,18 @@ class _SpecificPageState extends State<SpecificPage>
               Icons.card_giftcard_rounded,
             ),
           ),
+
           // Unique tag for the second FloatingActionButton
           FloatingActionButton(
-            onPressed: () {
-              Get.to(() => EventProducts());
+            onPressed: () async {
+        if (await db.checkLoggedIn()) {
+  Get.to(EventProducts());
+} else {
+  Get.to(() => LoginPage());
+}
+
+
+              
             },
             child: const Icon(Icons.shopping_cart),
           ),

@@ -166,10 +166,10 @@ class Payment extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         ElevatedButton(
-                          onPressed: () {
-                            String transactionId =
-                                _transactionIdController.text;
-                            if (transactionId.length != 12) {
+                          onPressed: () async {
+                           
+                                
+                            if (_transactionIdController.text.length != 12) {
                               // Show error snackbar
                               Get.snackbar(
                                 'Error',
@@ -180,28 +180,47 @@ class Payment extends StatelessWidget {
                               );
                             } else {
                               // Proceed with submitting transaction ID
-                              print('Submitted Transaction ID: $transactionId');
+                              print('Submitted Transaction ID: $_transactionIdController.text');
                               print(controller.EventIndex);
                               print(totalAmount);
                               database db = database();
-                              db.placeOrders(
+                              bool check= await db.placeOrders(
                                   eventList: controller.EventIndex,
-                                  transactionId: double.parse(transactionId),
+                                  transactionId:int.parse( _transactionIdController.text),
                                   amount: totalAmount.toInt());
-                              Get.snackbar(
+                              
+                              if(check){
+                                Get.snackbar(
                                 'Hurrah!!',
                                 'Order Placed Successfully',
                                 snackPosition: SnackPosition.BOTTOM,
                                 backgroundColor: Colors.green,
                                 colorText: Colors.white,
                               );
+                              controller.events.clear();
+                              controller.techEvents.clear();
+                              controller.nonTechEvents.clear();
+                              controller.EventIndex.clear();
+                              totalAmount = 0;
+                              Get.offAll(() => HomePage());
+                              }
+                              else{
+                                Get.snackbar(
+                                'Unsuccessful',
+                                'Some Error Occured',
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+
+                              }
 
                               // controller.events.clear();
                               // controller.techEvents.clear();
                               // controller.nonTechEvents.clear();
                               // controller.EventIndex.clear();
-                              //totalAmount = 0;
-                              //transactionId = "";
+                              // totalAmount = 0;
+                              // transactionId = "";
                              // Get.offAll(() => HomePage());
                             }
                           },

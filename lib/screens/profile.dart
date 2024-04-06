@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cart_page/about/about.dart';
 import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/user_model.dart';
+import 'package:cart_page/ping_page/ping.dart';
 import 'package:cart_page/screens/privacy_content.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +21,36 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   final CartController controller = Get.find();
   Map<dynamic, dynamic> profiledata = {};
+  List<String> technicalEventNames = [
+    "Clash",
+    "REVERSE CODING",
+    "Cretonix",
+    "Datawiz",
+    "Webweaver",
+    "Roboliga"
+  ];
+  List<dynamic> isTechnical = [];
+  List<dynamic> isNonTechnical = [];
   Future<void> loaddata() async {
     database db = database();
     profiledata = await db.profile();
+
+    List<dynamic> orders = profiledata['orders'];
+
+    // Iterate through orders
+    orders.forEach((order) {
+      // Access event name
+      String eventName = order['event']['event_name'];
+
+      // Check if the event name is in the technical event names list
+      if (technicalEventNames.contains(eventName)) {
+        isTechnical.add(order['event']);
+      } else {
+        isNonTechnical.add(order['event']);
+      }
+      print(isTechnical);
+      print(isNonTechnical);
+    });
   }
 
   Widget build(BuildContext context) {
@@ -43,8 +72,9 @@ class _AdminPageState extends State<AdminPage> {
                 );
               } else {
                 return Container(
-                  height: double.infinity,
-                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height *
+                      0.9, // Adjust the height as needed
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/common.jpeg"),
@@ -62,7 +92,7 @@ class _AdminPageState extends State<AdminPage> {
                           boxBackgroundColor:
                               const Color.fromARGB(255, 48, 197, 230),
                           textStyle: TextStyle(
-                            fontFamily: "Ulove",
+                            fontFamily: "berky",
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -95,13 +125,14 @@ class _AdminPageState extends State<AdminPage> {
                                   child: Text("PRIVACY POLICY"),
                                   value: "PRIVACY POLICY",
                                 ),
-                                PopupMenuItem(
-                                  child: Text("NTH"),
-                                  value: "NTH",
-                                ),
                               ],
                               onSelected: (value) {
-                                if (value == "IEEE") {}
+                                if (value == "PING") {
+                                  Get.to(() => PingPage());
+                                }
+                                if (value == "IEEE") {
+                                  Get.to(() => PISB());
+                                }
                                 if (value == "PRIVACY POLICY") {
                                   Get.to(PrivacyPolicy());
                                 }
@@ -116,15 +147,12 @@ class _AdminPageState extends State<AdminPage> {
                           SizedBox(width: 20),
                           InkWell(
                             child: CircularProfileAvatar(
-                              '',
+                              AutofillHints.transactionAmount,
+                            
                               radius: 50,
                               backgroundColor: Colors.tealAccent,
                               borderWidth: 6,
-                              initialsText: Text(
-                                "Tanay",
-                                style: TextStyle(
-                                    fontFamily: "Bunaken", fontSize: 25),
-                              ),
+                              
                               borderColor: Colors.yellowAccent,
                               elevation: 30.0,
                               foregroundColor: Colors.brown.withOpacity(0.5),
@@ -137,10 +165,17 @@ class _AdminPageState extends State<AdminPage> {
                             width: 25,
                           ),
                           Icon(Icons.person_pin_circle_sharp, size: 50),
-                          Text(
-                            "Tanay Duddalwar",
-                            style:
-                                TextStyle(fontSize: 25, fontFamily: "Bunaken"),
+                          Column(
+                            children: [
+                              Text(
+                                "${profiledata['full_name']}",
+                                style: TextStyle(fontSize: 18, fontFamily: "berky"),
+                              ),
+                              Text(
+                                "${profiledata['username']}",
+                                style: TextStyle(fontSize: 18, fontFamily: "berky"),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -156,11 +191,11 @@ class _AdminPageState extends State<AdminPage> {
                           SizedBox(width: 10),
                           InkWell(
                             child: Text(
-                              "tanay2duddalwar@gmail.com",
+                              "${profiledata['email']}",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 25,
-                                  fontFamily: "Bunaken"),
+                                  fontSize: 18,
+                                  fontFamily: "berky"),
                             ),
                           ),
                         ],
@@ -178,11 +213,11 @@ class _AdminPageState extends State<AdminPage> {
                           Row(
                             children: [
                               Text(
-                                "9309558432",
+                                "${profiledata['phone']}",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 25,
-                                  fontFamily: "Bunaken",
+                                  fontFamily: "berky",
                                 ),
                               ),
                             ],
@@ -209,12 +244,12 @@ class _AdminPageState extends State<AdminPage> {
                                   horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.amber.withOpacity(0.1),
+                                color: Colors.amber.withOpacity(0.3),
                               ),
                               child: Text(
-                                "Tech Events",
+                                "Tech",
                                 style: TextStyle(
-                                    fontSize: 19, fontFamily: "Bunaken"),
+                                    fontSize: 19, fontFamily: "berky"),
                               ),
                             ),
                           ),
@@ -229,7 +264,7 @@ class _AdminPageState extends State<AdminPage> {
                               child: Text(
                                 "Non Tech Events",
                                 style: TextStyle(
-                                    fontSize: 19, fontFamily: "Bunaken"),
+                                    fontSize: 19, fontFamily: "berky"),
                               ),
                             ),
                           ),
@@ -238,18 +273,20 @@ class _AdminPageState extends State<AdminPage> {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            controller.techEvents.isEmpty
+                            isTechnical.isEmpty
                                 ? Center(
                                     child: Text(
-                                    "No Tech Events",
+                                    "No Tech",
                                     style: TextStyle(
                                         fontSize: 22,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: "Bunaken"),
+                                        fontFamily: "berky"),
                                   ))
-                                : TechEventsPage(),
-                            controller.nonTechEvents.isEmpty
+                                : TechEventsPage(
+                                    isTechnical: isTechnical,
+                                  ),
+                            isNonTechnical.isEmpty
                                 ? Center(
                                     child: Text(
                                     "No Non Tech Events",
@@ -257,9 +294,10 @@ class _AdminPageState extends State<AdminPage> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 22,
-                                        fontFamily: "Bunaken"),
+                                        fontFamily: "berky"),
                                   ))
-                                : NonTechEventsPage(),
+                                : NonTechEventsPage(
+                                    isNonTechnical: isNonTechnical),
                           ],
                         ),
                       ),

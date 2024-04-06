@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   final Color navigationBarColor = Colors.white;
   int selectedIndex = 0;
   late PageController pageController;
+  database db = database();
   double value = 0;
   final CartController cartController = Get.put(CartController());
   bool nav = true;
@@ -121,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                   waterDropColor: Color(0xFF024083),
                   bottomPadding: 12.0,
                   iconSize: 30,
-                  onItemSelected: (index) {
+                  onItemSelected: (index) async {
                     setState(() {
                       selectedIndex = index;
                     });
@@ -142,7 +143,12 @@ class _HomePageState extends State<HomePage> {
                         break;
 
                       case 4:
-                        Get.to(AdminPage());
+                        if (await db.checkLoggedIn()) {
+                          Get.to(() => AdminPage());
+                        } else {
+                          Get.to(() => LoginPage());
+                        }
+
                         break;
                       // Add cases for other items as needed
                     }
