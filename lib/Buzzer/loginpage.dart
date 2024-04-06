@@ -21,7 +21,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Get.offAll(() => HomePage());
@@ -32,61 +36,70 @@ class _LoginState extends State<Login> {
           style: TextStyle(fontFamily: "berky"),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Enter the Name of your team",
-              style: TextStyle(fontFamily: "berky", fontSize: 25),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: TextField(
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(),
-                controller: buzzerController.teamcontroller,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF043160), Color(0x8b3b97f1)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Enter the Name of your team",
+                style: TextStyle(fontFamily: "berky", fontSize: 25),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-            ),
-            Text(
-              "Enter the PIN to start QUIZ",
-              style: TextStyle(fontFamily: "berky", fontSize: 25),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-            ),
-            OTPTextField(
-              width: MediaQuery.of(context).size.width * 0.8,
-              fieldWidth: MediaQuery.of(context).size.width * 0.1,
-              length: 4,
-              onCompleted: (text) {
-                if (text == '4797') {
-                  if (regex.hasMatch(text)) {
-                    print("GOOD");
-                    Get.to(() => BuzzerScreen());
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(),
+                  controller: buzzerController.teamcontroller,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Text(
+                "Enter the PIN to start QUIZ",
+                style: TextStyle(fontFamily: "berky", fontSize: 25),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              OTPTextField(
+                width: MediaQuery.of(context).size.width * 0.8,
+                fieldWidth: MediaQuery.of(context).size.width * 0.1,
+                length: 4,
+                onCompleted: (text) {
+                  if (text == '4797') {
+                    if (regex.hasMatch(text)) {
+                      print("GOOD");
+                      Get.to(() => BuzzerScreen());
+                    }
+                  } else {
+                    Get.snackbar("Invalid Code", "Error");
+                    setState(() {
+                      enteredPin = '';
+                    });
                   }
-                } else {
-                  Get.snackbar("Invalid Code", "Error");
+                },
+                onChanged: (text) {
                   setState(() {
-                    enteredPin = '';
+                    enteredPin = text;
                   });
-                }
-              },
-              onChanged: (text) {
-                setState(() {
-                  enteredPin = text;
-                });
-              },
-              otpFieldStyle: OtpFieldStyle(
-                  backgroundColor: Colors.transparent,
-                  focusBorderColor: Colors.green,
-                  enabledBorderColor: Colors.green),
-              fieldStyle: FieldStyle.underline,
-            ),
-          ],
+                },
+                otpFieldStyle: OtpFieldStyle(
+                    backgroundColor: Colors.transparent,
+                    focusBorderColor: Colors.green,
+                    enabledBorderColor: Colors.green),
+                fieldStyle: FieldStyle.underline,
+              ),
+            ],
+          ),
         ),
       ),
     );

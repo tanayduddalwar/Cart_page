@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   double value = 0;
   final CartController cartController = Get.put(CartController());
   bool nav = true;
+
   @override
   void initState() {
     super.initState();
@@ -249,11 +250,15 @@ Widget body() {
     children: [
       Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0x006B19), Color(0x003877)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+          image: DecorationImage(
+            image: AssetImage("assets/bgimg/5.png"),
+            fit: BoxFit.fitHeight,
           ),
+          // gradient: LinearGradient(
+          //   colors: [Color(0xff091c99), Color(0xE2334BD5)],
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          // ),
         ),
         child: Center(
           child: Column(
