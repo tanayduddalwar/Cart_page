@@ -201,13 +201,13 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: MediaQuery.of(context).size.height * 0.13,
               ),
               Text(
                 "Team : ${buzzerController.teamcontroller.text}",
                 style: const TextStyle(fontSize: 22, fontFamily: "berky"),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.003),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -286,7 +286,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: MediaQuery.of(context).size.height * 0.004,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -318,10 +318,11 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 "Results : ",
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.white,
+                  fontFamily: 'berky',
+                  color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               DataTable(
                 columns: [
                   const DataColumn(
@@ -329,8 +330,8 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                     'Team Name',
                     style: TextStyle(
                       fontFamily: "berky",
-                      fontSize: 15,
-                      color: Colors.white,
+                      fontSize: 17,
+                      color: Colors.black,
                     ),
                   )),
                   const DataColumn(
@@ -338,16 +339,28 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                     'Time Difference',
                     style: TextStyle(
                       fontFamily: "berky",
-                      fontSize: 15,
-                      color: Colors.white,
+                      fontSize: 17,
+                      color: Colors.black,
                     ),
                   )),
                 ],
                 rows: results.map((result) {
                   return DataRow(
                     cells: [
-                      DataCell(Text(result['teamName'])),
-                      DataCell(Text('${result['timeDifference'] / 1000} s')),
+                      DataCell(
+                        Text(
+                          result['teamName'],
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      DataCell(
+                        Text(
+                          '${result['timeDifference'] / 1000} s',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ],
                   );
                 }).toList(),
