@@ -35,7 +35,7 @@ class Event {
   static List<Event> events = [
     Event(
       id: 102,
-      name: 'REVERSE\nCODING',
+      name: 'Reverse\nCoding',
       price: 50,
       imageUrl: 'assets/RC.png',
       duration: '30',
@@ -267,7 +267,7 @@ class Event {
         ]),
     Event(
         id: 101,
-        name: 'CLASH',
+        name: 'Clash',
         price: 50,
         imageUrl: 'assets/Clash.png',
         duration: '30',

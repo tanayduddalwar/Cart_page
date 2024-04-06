@@ -21,7 +21,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/bgimg/10.jpeg'), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage('assets/bgimg/11.png'), fit: BoxFit.cover),
         ),
         child: ListView.builder(
           itemCount: widget.isNonTechnical.length,
@@ -36,7 +36,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.teal],
+                    colors: [Color(0xff015db4), Color(0xff012554)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -60,10 +60,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
                       ),
                     ],
                   ),
-                  trailing: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                  ),
+                 
                 ),
               ),
             );

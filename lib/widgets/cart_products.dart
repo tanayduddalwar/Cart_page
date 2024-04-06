@@ -31,130 +31,104 @@ class EventProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.events.length == 0)
-      return EmptyCart();
-    else
-      return Scaffold(
+    return Obx(() {
+      if (controller.events.length == 0) {
+        return EmptyCart();
+      } else {
+        return Scaffold(
           body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/bgimg/5.png"),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/bgimg/5.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
                     children: [
-                      SizedBox(
-                        height: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Expanded(
+                            child: AppBar(
+                              centerTitle: true,
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              title: Text(
+                                "CART",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "berky",
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Expanded(
-                        child: AppBar(
-                          centerTitle: true,
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          title: Text(
-                            "CART",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "berky",
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: ListView.builder(
+                            itemCount: controller.events.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Container(
+                              margin: EdgeInsets.symmetric(vertical: 3.0),
+                              padding: const EdgeInsets.all(8.0),
+                              child: EventProductCard(
+                                controller: controller,
+                                eventobj:
+                                    controller.events.keys.toList()[index],
+                                index: index,
+                              ),
                             ),
                           ),
-                         
                         ),
                       ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Obx(
-                        () => ListView.builder(
-                          itemCount: controller.events.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              Container(
-                            margin: EdgeInsets.symmetric(vertical: 3.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: EventProductCard(
-                              controller: controller,
-                              eventobj: controller.events.keys.toList()[index],
-                              index: index,
+                            child: SlidingWidget(
+                              width: 260,
+                              height: 58,
+                              backgroundColor: Colors.blue,
+                              foregroundColor: Colors.white,
+                              iconColor: Colors.red,
+                              label: 'Payment',
+                              shadow: const BoxShadow(color: Colors.red),
+                              action: () {
+                                Get.to(() => Payment());
+                              },
+                              child: const Icon(Icons.arrow_forward_ios),
+                              stickToEnd: false,
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SlidingWidget(
-                            width: 260,
-                            height: 58,
-                            backgroundColor: Colors.blue,
-                            foregroundColor: Colors.white,
-                            iconColor: Colors.red,
-
-                            /// Text to be displayed inside the button.
-                            label: 'Payment',
-
-                            shadow: const BoxShadow(color: Colors.red),
-
-                            /// Accepts function, default is null, this property is required.
-                            action: () {
-                              Get.to(()=>Payment());
-                            },
-
-                            child: const Icon(Icons.arrow_forward_ios),
-
-                            /// Whether the icon to be fixed at the end.
-                            stickToEnd: false,
-                          )
-                          // child: ElevatedLayerButton(
-                          //   onClick: () {
-                          //     Get.to(Payment());
-                          //   },
-                          //   buttonHeight: 60,
-                          //   buttonWidth: 270,
-                          //   animationDuration: const Duration(milliseconds: 200),
-                          //   animationCurve: Curves.ease,
-                          //   topDecoration: BoxDecoration(
-                          //     color: Colors.amber,
-                          //     border: Border.all(),
-                          //   ),
-                          //   topLayerChild: Text(
-                          //     "GO TO PAYMENT",
-                          //     style: TextStyle(fontWeight: FontWeight.bold),
-                          //   ),
-                          //   baseDecoration: BoxDecoration(
-                          //     color: Colors.green,
-                          //     border: Border.all(),
-                          //   ),
-                          // ),
-                          ),
+                      SizedBox(height: 10),
+                      CartTotal(),
                     ],
                   ),
-                  SizedBox(height: 10),
-                  CartTotal(),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ));
+        );
+      }
+    });
   }
 }
+
 
 class EventProductCard extends StatelessWidget {
   final player = AudioPlayer();
@@ -243,14 +217,17 @@ class EventProductCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      IconButton(
-                        color: Colors.white,
-                        onPressed: () async {
-                          player.play(AssetSource("water-drop-85731.mp3"));
-                          controller.removeProduct(context, eventobj);
-                        },
-                        icon: Icon(Icons.remove_circle_outline_rounded),
-                      ),
+                     IconButton(
+  color: Colors.white,
+  onPressed: () async {
+    controller.removeProduct(context, eventobj);
+    if (controller.events.length == 0) {
+      Get.off(() => EmptyCart());
+    }
+  },
+  icon: Icon(Icons.remove_circle_outline_rounded),
+)
+
                     ],
                   ),
                 ),

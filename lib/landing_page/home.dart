@@ -28,7 +28,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Color navigationBarColor = Colors.white;
-  int selectedIndex = 0;
+  int selectedIndex = 2;
   late PageController pageController;
   database db = database();
   double value = 0;
@@ -45,140 +45,151 @@ class _HomePageState extends State<HomePage> {
     final screenWidth = Get.width;
     final screenHeight = Get.height;
     return value == 0
-        ? Scaffold(
-            body: PageView(
-              controller: pageController,
-              children: [
-                Stack(
+        ? WillPopScope(
+            onWillPop: () async {
+      setState(() {
+        selectedIndex = 2;
+        pageController.animateToPage(selectedIndex,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeOutQuad);
+      });
+      return false; // Prevent the default back button behavior
+    },
+            child: Scaffold(
+                body: PageView(
+                  controller: pageController,
                   children: [
-                    SafeArea(child: body()),
-                    TweenAnimationBuilder(
-                        tween: Tween<double>(begin: 0, end: value),
-                        duration: Duration(milliseconds: 275),
-                        curve: Curves.easeInOut,
-                        builder: (_, double val, __) {
-                          return (Transform(
-                            alignment: Alignment.center,
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.001)
-                              ..setEntry(0, 3, 200 * val)
-                              ..setEntry(1, 3, 80 * val)
-                              ..rotateY((pi / 10) * val)
-                              ..scale(1 - val * 0.35),
-                            child: Center(
-                              child: Stack(
-                                children: [
-                                  innerbody(),
-                                  Positioned(
-                                    top: Get.height * 0.055,
-                                    left: Get.height * 0.015,
-                                    child: Builder(
-                                        builder: (BuildContext context) {
-                                      return value == 0
-                                          ? IconButton(
-                                              icon: ImageIcon(
-                                                AssetImage(
-                                                    'assets/icons/menu.png'),
-                                                color: Colors.white,
-                                                size: Get.height * 0.0352,
-                                              ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  value == 0
-                                                      ? value = 1
-                                                      : value = 0;
-                                                });
-                                              },
-                                            )
-                                          : IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  value == 1
-                                                      ? value = 0
-                                                      : value = 1;
-                                                });
-                                              },
-                                              icon: Icon(Icons.close));
-                                    }),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ));
-                        }),
+                    Stack(
+                      children: [
+                        SafeArea(child: body()),
+                        TweenAnimationBuilder(
+                            tween: Tween<double>(begin: 0, end: value),
+                            duration: Duration(milliseconds: 275),
+                            curve: Curves.easeInOut,
+                            builder: (_, double val, __) {
+                              return (Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.identity()
+                                  ..setEntry(3, 2, 0.001)
+                                  ..setEntry(0, 3, 200 * val)
+                                  ..setEntry(1, 3, 80 * val)
+                                  ..rotateY((pi / 10) * val)
+                                  ..scale(1 - val * 0.35),
+                                child: Center(
+                                  child: Stack(
+                                    children: [
+                                      innerbody(),
+                                      Positioned(
+                                        top: Get.height * 0.055,
+                                        left: Get.height * 0.015,
+                                        child: Builder(
+                                            builder: (BuildContext context) {
+                                          return value == 0
+                                              ? IconButton(
+                                                  icon: ImageIcon(
+                                                    AssetImage(
+                                                        'assets/icons/menu.png'),
+                                                    color: Colors.white,
+                                                    size: Get.height * 0.0352,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      value == 0
+                                                          ? value = 1
+                                                          : value = 0;
+                                                    });
+                                                  },
+                                                )
+                                              : IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      value == 1
+                                                          ? value = 0
+                                                          : value = 1;
+                                                    });
+                                                  },
+                                                  icon: Icon(Icons.close));
+                                        }),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ));
+                            }),
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-                child: WaterDropNavBar(
-                  backgroundColor: Color.fromRGBO(0, 7, 29, 1.0),
-                  waterDropColor: Color(0xFF024083),
-                  bottomPadding: 12.0,
-                  iconSize: 30,
-                  onItemSelected: (index) async {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                    pageController.animateToPage(selectedIndex,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeOutQuad);
-                    switch (index) {
-                      case 0:
-                        // Handle the first item
-                        break;
-                      case 1:
-                        // Handle the second item
-                        break;
-                      case 2:
-                        break;
-                      case 3:
-                        Get.to(EventProducts());
-                        break;
-                      case 4:
-                        if (await db.checkLoggedIn()) {
-                          Get.to(() => AdminPage());
-                        } else {
-                          Get.to(() => LoginPage());
-                        }
+                bottomNavigationBar: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                    child: WaterDropNavBar(
+                      backgroundColor: Color.fromRGBO(0, 7, 29, 1.0),
+                      waterDropColor: Color(0xFF024083),
+                      bottomPadding: 12.0,
+                      iconSize: 30,
+                      onItemSelected: (index) async {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                        pageController.animateToPage(selectedIndex,
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeOutQuad);
+                        switch (index) {
+                          case 0:
+                            // Handle the first item
+                            break;
+                          case 1:
+                            // Handle the second item
+                            break;
+                          case 2:
+                            break;
+                          case 3:
+                            Get.to(EventProducts());
+                            break;
+                          case 4:
+                            if (await db.checkLoggedIn()) {
+                              Get.to(() => AdminPage());
+                            } else {
+                              Get.to(() => LoginPage());
+                            }
 
-                        break;
-                      // Add cases for other items as needed
-                    }
-                  },
-                  selectedIndex: selectedIndex,
-                  barItems: [
-                    BarItem(
-                        filledIcon: Icons.account_box,
-                        outlinedIcon: Icons.account_box_outlined),
-                    // BarItem(
-                    //   filledIcon: Icons.calendar_today,
-                    //   outlinedIcon: Icons.calendar_today_outlined,
-                    // ),
-                    BarItem(
-                        filledIcon: Icons.account_box,
-                        outlinedIcon: Icons.account_box_outlined),
-                    BarItem(
-                        filledIcon: Icons.home_rounded,
-                        outlinedIcon: Icons.home_outlined),
-                    BarItem(
-                        filledIcon: Icons.info,
-                        outlinedIcon: Icons.info_outline_rounded),
-                        
-                    BarItem(
-                        filledIcon: Icons.account_box,
-                        outlinedIcon: Icons.account_box_outlined),
-                  ],
-                ),
-              ),
-            ))
+                            break;
+                          // Add cases for other items as needed
+                        }
+                      },
+                      selectedIndex: selectedIndex,
+                      barItems: [
+                        BarItem(
+                            filledIcon: Icons.account_box,
+                            outlinedIcon: Icons.account_box_outlined),
+                        // BarItem(
+                        //   filledIcon: Icons.calendar_today,
+                        //   outlinedIcon: Icons.calendar_today_outlined,
+                        // ),
+                        BarItem(
+                            filledIcon: Icons.account_box,
+                            outlinedIcon: Icons.account_box_outlined),
+                        BarItem(
+                            filledIcon: Icons.home_rounded,
+                            outlinedIcon: Icons.home_outlined),
+                        BarItem(
+                            filledIcon: Icons.info,
+                            outlinedIcon: Icons.info_outline_rounded),
+
+                        BarItem(
+                            filledIcon: Icons.account_box,
+                            outlinedIcon: Icons.account_box_outlined),
+                      ],
+                    ),
+                  ),
+                )),
+          )
         : Scaffold(
             body: PageView(
               controller: pageController,
@@ -257,14 +268,14 @@ Widget body() {
   final screenWidth = Get.width;
   return Stack(
     children: [
-      Container(
-        decoration: BoxDecoration(image: DecorationImage(
+     Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
             image: AssetImage("assets/bgimg/5.png"),
             fit: BoxFit.cover,
           ),
-
           // gradient: LinearGradient(
-          //   colors: [Color(0x006B19), Color(0x003877)],
+          //   colors: [Color(0xff091c99), Color(0xE2334BD5)],
           //   begin: Alignment.topCenter,
           //   end: Alignment.bottomCenter,
           // ),

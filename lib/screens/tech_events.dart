@@ -21,7 +21,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage( image: AssetImage ('assets/bgimg/10.jpeg'), fit: BoxFit.cover),
+          image: DecorationImage( image: AssetImage ('assets/bgimg/11.png'), fit: BoxFit.cover),
         ),
         child: ListView.builder(
         itemCount: widget.isTechnical.length, // Access isTechnical from widget
@@ -38,7 +38,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
               decoration: BoxDecoration(
                 //image: DecorationImage( image: AssetImage ('assets/bgimg/9.png'), fit: BoxFit.cover),
                 gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.teal], // Adjust colors as needed
+                  colors: [Color(0xff015db4), Color(0xff012554)], // Adjust colors as needed
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -63,10 +63,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
                     ),
                   ],
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                ),
+               
               ),
             ),
           );

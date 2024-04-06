@@ -76,7 +76,7 @@ class _AdminPageState extends State<AdminPage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/bgimg/4.png"),
+                      image: AssetImage("assets/bgimg/11.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -90,6 +90,7 @@ class _AdminPageState extends State<AdminPage> {
                           style: TextStyle(
                             fontFamily: "berky",
                             fontSize: 30,
+                            color: Colors.white
                            // fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -118,7 +119,10 @@ class _AdminPageState extends State<AdminPage> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: PopupMenuButton(
-                              color: Colors.white70,
+                              iconColor: Colors.white,
+
+                              shadowColor: Colors.white,
+                              color: Colors.white,
                               itemBuilder: (context) => [
                                 PopupMenuItem(
                                   child: Text("PING"),
@@ -160,7 +164,7 @@ class _AdminPageState extends State<AdminPage> {
                               shape: BoxShape.circle,
                               color: Colors.tealAccent,
                               border:
-                                  Border.all(color: Colors.yellowAccent, width: 6),
+                                  Border.all(color: Colors.yellowAccent, width: 2),
                             ),
                             child: CircleAvatar(
                               radius: 45,
@@ -171,7 +175,7 @@ class _AdminPageState extends State<AdminPage> {
                         SizedBox(
                           width: 25,
                         ),
-                        Icon(Icons.person_pin_circle_sharp, size: 50),
+                        Icon(Icons.person_pin_circle_sharp, size: 50,color: Colors.white,),
                         Column(
                           children: [
                             Text(
@@ -236,7 +240,7 @@ class _AdminPageState extends State<AdminPage> {
                       isScrollable: true,
                       dividerColor: Colors.amber,
                       automaticIndicatorColorAdjustment: true,
-                      dividerHeight: 5,
+                      dividerHeight: 3,
                       enableFeedback: true,
                       labelColor: Colors.amber,
                       labelPadding: EdgeInsets.all(10),
@@ -253,7 +257,7 @@ class _AdminPageState extends State<AdminPage> {
                                 horizontal: 50, vertical: 10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.amber.withOpacity(0.3),
+                              color: Colors.amber.withOpacity(0.05),
                             ),
                             child: Text(
                               "Tech",
@@ -268,7 +272,7 @@ class _AdminPageState extends State<AdminPage> {
                                 horizontal: 40, vertical: 10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.amber.withOpacity(0.3),
+                              color: Colors.amber.withOpacity(0.05),
                             ),
                             child: Text(
                               "Non Tech",

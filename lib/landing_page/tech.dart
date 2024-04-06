@@ -1,3 +1,5 @@
+
+
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/eventpage/GlassMorphicContainer.dart';
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
@@ -22,7 +24,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
   void initState() {
     // _pageController.addListener(_onPageChanged);
 
-    _buildEventPages();
+    
 
     super.initState();
   }
@@ -33,7 +35,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
     super.dispose();
   }
 
-  void _buildEventPages() {
+  void _buildEventPages(BuildContext context) {
     eventPages.clear();
     List<Event> displayedEvents = []; // Keep track of displayed events
     for (int i = 0; i < Event.events.length; i++) {
@@ -52,7 +54,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
           );
 
           if ((i) == 2 || i == 5) {
-            eventPages.add(SizedBox(height: 120));
+            eventPages.add(SizedBox(height: MediaQuery.of(context).size.height*0.15));
           }
         } else {
           eventPages.add(
@@ -70,6 +72,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
 
   @override
   Widget build(BuildContext context) {
+    _buildEventPages(context);
     return Scaffold(
       backgroundColor: _containerColor,
       appBar: AppBar(
@@ -188,8 +191,8 @@ class CombinedEventCard extends StatelessWidget {
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.1,
                   ),
-                  height: 120,
-                  width: 120,
+                  height:  MediaQuery.of(context).size.width * 0.27,
+                  width:  MediaQuery.of(context).size.width * 0.27,
                   child: Center(
                     child: Hero(
                       tag: 'event-name-${event.name}',
@@ -199,7 +202,7 @@ class CombinedEventCard extends StatelessWidget {
                           event.name, // Access event name from Event object
                           style: TextStyle(
                             fontFamily: "berky",
-                            fontSize: 30,
+                            fontSize: 25,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -295,6 +298,8 @@ class revCombinedEventCard extends StatelessWidget {
         );
       },
       child: Container(
+       //  height:  MediaQuery.of(context).size.width * 0.27,
+          //        width:  MediaQuery.of(context).size.width * 0.27,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/new.gif"),
@@ -310,6 +315,7 @@ class revCombinedEventCard extends StatelessWidget {
             Row(
               children: [
                 Container(
+                  
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
