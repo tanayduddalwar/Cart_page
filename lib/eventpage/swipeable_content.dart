@@ -215,6 +215,21 @@ Widget build(BuildContext context) {
                             child: IconButton(
                               onPressed: () {
                                 controller.addProduct(context, event);
+                               final snackBar = SnackBar(
+        elevation: 5,
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Ready To Go !',
+          message: 'Event Added To Cart!',
+          contentType: ContentType.success,
+        ),
+      );
+
+     // ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                               },
                               icon: const Icon(
                                 Icons.add_shopping_cart_rounded,

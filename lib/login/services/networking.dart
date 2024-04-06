@@ -76,39 +76,40 @@ class database {
     }
   }
 
- Future<void> placeOrders({
-  required List<int> eventList,
-  required double transactionId,
-  required int amount,
-}) async {
-  try {
-    var url = Uri.https('admin.credenz.in', '/api/placeorder/');
+  Future<void> placeOrders({
+    required List<int> eventList,
+    required double transactionId,
+    required int amount,
+  }) async {
+    try {
+      var url = Uri.https('admin.credenz.in', '/api/placeorder/');
 
-    Map<String, dynamic> data = {
-      "event_list": eventList,
-      "transaction_id": transactionId,
-      "amount": amount,
-    };
+      Map<String, dynamic> data = {
+        "event_list": eventList,
+        "transaction_id": transactionId,
+        "amount": amount,
+      };
 
-    String body = jsonEncode(data); // Convert data to JSON string
+      String body = jsonEncode(data); // Convert data to JSON string
 
-    print(await getHeaders());
+      print(await getHeaders());
 
-    Map<String, String> headers = {
-      "Authorization": "Bearer ${await getHeaders()}",
-      'Content-type': 'application/json'
-    };
+      Map<String, String> headers = {
+        "Authorization": "Bearer ${await getHeaders()}",
+        'Content-type': 'application/json'
+      };
 
-    var response = await http.post(url, body: body, headers: headers);
+      var response = await http.post(url, body: body, headers: headers);
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-  } catch (e) {
-    print("error: ${e.toString()}");
-    // showSnackBar(context, e.toString());
-    // return false;
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+    } catch (e) {
+      print("error: ${e.toString()}");
+      // showSnackBar(context, e.toString());
+      // return false;
+    }
   }
-}
+
   Future<bool> login({
     required String username,
     required String password,
@@ -175,7 +176,7 @@ class database {
     }
   }
 
-  Future<bool> profile() async {
+  Future<Map<dynamic, dynamic>> profile() async {
     String headerString = '';
     try {
       var url = Uri.https('admin.credenz.in', '/api/profile/');
@@ -200,16 +201,17 @@ class database {
           headerString += '$key:$value\n';
         });
         //      showSnackBar(context, headerString);
-        return false;
+        return {};
       } else {
+        print(jsonDecode(response.body));
         headerString = 'Got Profile Details';
         //       showSnackBar(context, headerString);
-        return true;
+        return temp;
       }
     } catch (e) {
       print("error: ${e.toString()}");
       //    showSnackBar(context, e.toString());
-      return false;
+      return {};
     }
   }
 

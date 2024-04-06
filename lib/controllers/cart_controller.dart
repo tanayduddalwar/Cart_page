@@ -21,20 +21,20 @@ class CartController extends GetxController {
       int eventId = eventobj.id;
       print(eventId); // Accessing the id property of eventobj
       EventIndex.add(eventId);
-      final snackBar = SnackBar(
-        elevation: 5,
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: 'Ready To Go !',
-          message: 'Event Added To Cart!',
-          contentType: ContentType.success,
-        ),
-      );
+      // final snackBar = SnackBar(
+      //   elevation: 5,
+      //   behavior: SnackBarBehavior.floating,
+      //   duration: Duration(seconds: 3),
+      //   backgroundColor: Colors.transparent,
+      //   content: AwesomeSnackbarContent(
+      //     title: 'Ready To Go !',
+      //     message: 'Event Added To Cart!',
+      //     contentType: ContentType.success,
+      //   ),
+      // );
 
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      // ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
     // Determine if the event is technical or non-technical
