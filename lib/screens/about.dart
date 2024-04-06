@@ -9,7 +9,7 @@ class BannerListTileExample extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/OIG.jpg"), fit: BoxFit.cover)
+                image: AssetImage("assets/credenz24.jpeg"), fit: BoxFit.cover)
 
             // gradient: LinearGradient(
             //   begin: Alignment.topCenter,
