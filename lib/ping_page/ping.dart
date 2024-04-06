@@ -33,26 +33,35 @@ class _PingPageState extends State<PingPage> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Padding(
-            padding: EdgeInsets.only(left: screenWidth * 0.18),
+            padding: EdgeInsets.only(left: screenWidth * 0.14,top: 20),
             child: SizedBox(
-              width: 100,
-              child: TextLiquidFill(
-                text: 'P.I.N.G',
-                waveColor: Colors.blueAccent,
-                boxBackgroundColor: const Color.fromARGB(255, 48, 197, 230),
-                textStyle: const TextStyle(
-                  fontSize: 35.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                boxHeight: 100.0,
-              ),
+              width: 200,
+               child: Text(
+                 "P.I.N.G",
+                 style: TextStyle(
+                   fontFamily: "berky",
+                   fontSize: 30,
+                   color: Colors.white,
+                   fontWeight: FontWeight.bold,
+                 ),
+               ),
+              // TextLiquidFill(
+              //   text: 'P.I.N.G',
+              //   waveColor: Colors.blueAccent,
+              //   boxBackgroundColor: const Color.fromARGB(255, 48, 197, 230),
+              //   textStyle: const TextStyle(
+              //     fontSize: 35.0,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              //   boxHeight: 100.0,
+              // ),
             ),
           ),
         ),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/3.png'),
+              image: AssetImage('assets/bgimg/5.png'),
               opacity: 1,
               fit: BoxFit.cover,
             ),
@@ -107,8 +116,8 @@ class _PingPageState extends State<PingPage> {
                             'their perception to contemporary ideas of modernisation. ',
                             textAlign: TextAlign.justify,
                             style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.black,
+                                fontSize: 20,
+                                color: Colors.white70,
                                 fontFamily: 'berky'),
                           ),
                         ),

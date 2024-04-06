@@ -8,6 +8,7 @@ import 'package:cart_page/models/event_model.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
 // import 'package:credenz/widgets/circularfab.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart'; // Assuming you have an Event model
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
@@ -33,6 +34,7 @@ class _SpecificPageState extends State<SpecificPage>
   late Animation<double> _widthAnimation;
   bool _isExtended = false;
   int _tapCount = 0;
+
   @override
   void initState() {
     super.initState();
@@ -86,146 +88,143 @@ class _SpecificPageState extends State<SpecificPage>
     database db = database();
 
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          'Credenz\' 24',
-          style: TextStyle(
-            fontFamily: "berky",
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Obx(
-              () => Row(
-                children: [
-                  badges.Badge(
-                    onTap: () => EventProducts(),
-                    badgeContent: Text(
-                      "${widget.controller.events.length}",
-                      style: TextStyle(fontFamily: "berky"),
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.shopping_cart),
-                      onPressed: () => {},
-                    ),
-                  ),
-                ],
-              ),
+    return ScaffoldMessenger(
+      child: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            'Credenz\' 24',
+            style: TextStyle(
+              fontFamily: "berky",
+              color: Colors.white,
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ],
-      ),
-
-      body: Builder(
-        builder: (context) {
-          return Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/3.png"),
-                    fit: BoxFit.cover,
-                  ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Obx(
+                () => Row(
+                  children: [
+                    badges.Badge(
+                      onTap: () => EventProducts(),
+                      badgeContent: Text(
+                        "${widget.controller.events.length}",
+                        style: TextStyle(fontFamily: "berky"),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.shopping_cart),
+                        onPressed: () => {},
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Positioned.fill(
-                top: kToolbarHeight + 20,
-                // Adjust top position to fit under the app bar
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _handleTap();
-                          },
-                          child: Hero(
-                            tag: event.imageUrl,
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.23,
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              alignment: Alignment.topCenter,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(event.imageUrl),
+            ),
+          ],
+        ),
+        body: Builder(
+          builder: (context) {
+            return Stack(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/bgimg/6.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  top: kToolbarHeight + 20,
+                  // Adjust top position to fit under the app bar
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              _handleTap();
+                            },
+                            child: Hero(
+                              tag: event.imageUrl,
+                              child: Container(
+                                height: MediaQuery.of(context).size.height * 0.23,
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                alignment: Alignment.topCenter,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(event.imageUrl),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Hero(
-                          tag: 'event-name-${event.name}',
-                          child: Material(
-                            type: MaterialType.transparency,
-                            child: Text(
-                              event.name,
-                              style: const TextStyle(
-                                fontFamily: 'berky',
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                          Hero(
+                            tag: 'event-name-${event.name}',
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: Text(
+                                event.name,
+                                style: const TextStyle(
+                                  fontFamily: 'berky',
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 05),
-                    SwipeableContent(
-                      event: event,
-                    ),
-                    // Adjust vertical spacing
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: 05),
+                      SwipeableContent(
+                        event: event,
+                      ),
+                      // Adjust vertical spacing
+                    ],
+                  ),
                 ),
+              ],
+            );
+          },
+        ),
+        floatingActionButton: FabCircularMenuPlus(
+          fabSize: 45,
+          ringColor: Colors.transparent,
+          fabColor: Colors.white,
+          ringDiameter: 250,
+          ringWidth: 70,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  isPassAdded = true;
+                });
+              },
+              child: const Icon(
+                Icons.card_giftcard_rounded,
               ),
-            ],
-          );
-        },
-      ),
-
-      floatingActionButton: FabCircularMenuPlus(
-        fabSize: 45,
-        ringColor: Colors.transparent,
-        fabColor: Colors.white,
-        ringDiameter: 250,
-        ringWidth: 70,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                isPassAdded = true;
-              });
-            },
-            child: const Icon(
-              Icons.card_giftcard_rounded,
             ),
-          ),
-
-          // Unique tag for the second FloatingActionButton
-          FloatingActionButton(
-            onPressed: () async {
-        if (await db.checkLoggedIn()) {
-  Get.to(EventProducts());
-} else {
-  Get.to(() => LoginPage());
-}
-
-
-              
-            },
-            child: const Icon(Icons.shopping_cart),
-          ),
-        ],
+            // Unique tag for the second FloatingActionButton
+            FloatingActionButton(
+              onPressed: () async {
+                if (await db.checkLoggedIn()) {
+                  Get.to(EventProducts());
+                } else {
+                  Get.to(() => LoginPage());
+                }
+              },
+              child: const Icon(Icons.shopping_cart),
+            ),
+          ],
+        ),
       ),
-      // floatingActionButtonLocation: ExpandableFab.location,
     );
   }
 }

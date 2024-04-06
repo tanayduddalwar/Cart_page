@@ -1,34 +1,43 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'my_flutter_app_icons.dart';
 
 class ui extends StatelessWidget {
   final devimages = <String>[
-    'assets/images/head.jpeg',
-    'assets/images/dev4.jpeg',
-    'assets/images/dev7.jpeg',
-    'assets/images/dev6.jpg',
-    'assets/images/dev5.jpeg',
-    'assets/images/dev1.jpg',
-    'assets/images/dev2.jpg',
-    'assets/images/dev3.jpg',
-    'assets/images/dev9.jpg',
+    'assets/developers/ameya.jpeg',
+    'assets/developers/tanay.jpeg',
+    'assets/developers/yuvraj.jpeg',
+    'assets/developers/shreyas.jpeg',
+    'assets/developers/ketan.jpeg',
+    'assets/developers/siddhi.jpeg',
+    'assets/developers/shreya.jpeg',
+    'assets/developers/ved.jpeg',
+    'assets/developers/vedant.jpeg',
+    'assets/developers/utkarsh.jpeg',
+    //'assets/developers/ved.jpeg',
   ];
+
   static List<String> names = [
-    'Tanmay Thanvi',
-    'Omkar Wagholikar',
     'Ameya Surana',
-    'Chinmay Dixit',
-    'Niraj Zargad',
-    'Aarya Patil',
-    'Swapnil Adsul',
-    'Dhruv Goplani',
-    'Ritanshu Koul',
+    'Tanay Duddalwar',
+    'Yuvraj Patil',
+    'Shreyas Shirwadkar',
+    'Ketan Bajaj',
+    'Siddhi Bodake',
+    'Shreya Pillai',
+    'Ved Pingle',
+    'Vedant Ghumre',
+    'Utkharsh Brahmankar'
   ];
+
+
   static List<String> description = [
-    'Technical Head',
+    'App Head',
+    'App Team',
     'App Team',
     'App Team',
     'App Team',
@@ -38,6 +47,30 @@ class ui extends StatelessWidget {
     'App Team',
     'App Team',
   ];
+
+
+  final List<String> urlLinkedin = [
+    'https://www.linkedin.com/in/ameyasurana/',
+    'https://www.linkedin.com/in/tanay-duddalwar-075a79286/',
+    'https://www.linkedin.com/in/yuvraj-patil-04a2a5260/',
+    'https://www.linkedin.com/in/shreyas-shirwadkar/',
+    'https://www.linkedin.com/in/ketan-bajaj-653006299/',
+    'https://www.linkedin.com/in/siddhi-bodake-3b494129a/',
+    'https://www.linkedin.com/in/shreya-pillai-08b63a25a/',
+    'https://www.linkedin.com/in/ved-pingle-233028258/',
+  ];
+
+  final List<String> urlGit = [
+    'https://github.com/FireFeast7',
+    'https://github.com/tanayduddalwar',
+    'https://github.com/Yuvraj3006',
+    'https://github.com/shreyasshirwadkar',
+    'https://github.com/Ketanb08/',
+    'https://github.com/sidbod23',
+    'https://github.com/shreyapillai819',
+    'https://github.com/vedpingle',
+  ];
+
   ui({Key? key}) : super(key: key);
 
   @override
@@ -46,11 +79,13 @@ class ui extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 200),
+          const SizedBox(height: 150),
           SizedBox(
-              height: 450,
+              height: 500,
               child: Swiper(
-                itemCount: 9,
+                scrollDirection: Axis.horizontal,
+                autoplay: true,
+                itemCount: 8,
                 pagination: const SwiperPagination(
                   builder: DotSwiperPaginationBuilder(
                       color: Colors.white24,
@@ -121,44 +156,83 @@ class ui extends StatelessWidget {
                             letterSpacing: 2,
                           ),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                              onTap: () async{
 
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     IconButton(
-                        //       onPressed: () async {
-                        //         const url = '';
-                        //         final uri = Uri.parse(url);
-                        //         if (await canLaunchUrl(uri)) {
-                        //           await launchUrl(uri);
-                        //         } else {
-                        //           throw 'Could not launch $url';
-                        //         }
-                        //       },
-                        //       icon: const Icon(
-                        //         MyFlutterApp.linkedin,
-                        //         color: Colors.purple,
-                        //         size: 45,
-                        //       ),
-                        //     ),
-                        //     IconButton(
-                        //       onPressed: () async {
-                        //         const url = '';
-                        //         final uri = Uri.parse(url);
-                        //         if (await canLaunchUrl(uri)) {
-                        //           await launchUrl(uri);
-                        //         } else {
-                        //           throw 'Could not launch $url';
-                        //         }
-                        //       },
-                        //       icon: const Icon(
-                        //         MyFlutterApp.github,
-                        //         color: Colors.purple,
-                        //         size: 45,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+                                  final Uri uri = Uri.parse(urlLinkedin[index]);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri);
+                                  } else {
+                                    throw 'Could not launch url';
+                                  }
+
+                              },
+                              child: SvgPicture.asset(
+                                'assets/linkedin2.svg',
+                                width: 35,
+                                height: 35,
+                              ),
+                            ),
+
+                            GestureDetector(
+                              onTap: () async {
+                                  final Uri uri = Uri.parse(urlGit[index]);
+                                  if (await canLaunchUrl(uri)) {
+                                    print("Launched url");
+                                await launchUrl(uri);
+                                } else {
+                                print("did not Launched url");
+                                throw 'Could not launch url';
+                                }
+                              },
+
+                              child: SvgPicture.asset(
+                                'assets/github.svg',
+                                width: 35,
+                                height: 35,
+                                color: Colors.black,
+                              ),
+                            ),
+                            // IconButton(
+                            //   onPressed: () async {
+                            //     const url = 'https://www.linkedin.com/in/yuvraj-patil-04a2a5260';
+                            //     final uri = Uri.parse(url);
+                            //     if (await canLaunchUrl(uri)) {
+                            //       await launchUrl(uri);
+                            //     } else {
+                            //       throw 'Could not launch $url';
+                            //     }
+                            //   },
+                            //   icon: const Icon(
+                            //     MyFlutterApp.linkedin,
+                            //     color: Colors.purple,
+                            //     size: 45,
+                            //   ),
+                            // ),
+                            // IconButton(
+                            //   onPressed: () async {
+                            //     const url = '';
+                            //     final uri = Uri.parse(url);
+                            //     if (await canLaunchUrl(uri)) {
+                            //       await launchUrl(uri);
+                            //     } else {
+                            //       throw 'Could not launch $url';
+                            //     }
+                            //   },
+                            //   icon: const Icon(
+                            //     MyFlutterApp.github,
+                            //     color: Colors.purple,
+                            //     size: 45,
+                            //   ),
+                            // ),
+                          ],
+                        ),
                       ],
                     ),
                   );

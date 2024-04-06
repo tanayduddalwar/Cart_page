@@ -17,15 +17,21 @@ class _HomeState extends State<DevelopersPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const RandomTextReveal(
-          text: "DEVELOPERS",
-          duration: Duration(seconds: 2),
-          style: TextStyle(
-            fontFamily: 'Mars',
-            fontSize: 25,
-            letterSpacing: 2,
-          ),
-        ),
+        title: Text("Developers" ,style: TextStyle(
+          fontFamily: "berky",
+          fontWeight: FontWeight.bold,
+          fontSize: 30,
+          color: Colors.white,
+        ),),
+        // const RandomTextReveal(
+        //   text: "DEVELOPERS",
+        //   duration: Duration(seconds: 2),
+        //   style: TextStyle(
+        //     fontFamily: 'Mars',
+        //     fontSize: 25,
+        //     letterSpacing: 2,
+        //   ),
+        // ),
         centerTitle: true,
       ),
       extendBodyBehindAppBar: true,
@@ -35,7 +41,7 @@ class _HomeState extends State<DevelopersPage> {
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/ufo.jpg"),
+                image: AssetImage("assets/bgimg/4.png"),
                 fit: BoxFit.cover,
               ),
             ),

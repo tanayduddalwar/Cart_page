@@ -25,7 +25,7 @@ class EventsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -44,25 +44,32 @@ class EventsScreen extends StatelessWidget {
                   centerTitle: true,
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  title:
-                    TextLiquidFill(
-    text: 'CATELOG',
-    waveColor: Colors.blueAccent,
-    boxBackgroundColor: Colors.redAccent,
-    textStyle: TextStyle(
-      fontFamily: "Ulove",
-      fontSize: 30.0,
-      fontWeight: FontWeight.bold,
-    ),
-    boxHeight: 300.0,
-  ),
-                    // "Events Catalog",
-                    // style: TextStyle(
-                    //   fontSize: screenWidth * 0.06,
-                    //   fontWeight: FontWeight.bold,
-                    //   fontFamily: "Ulove",
-                    // ),
-                  
+                  title: Text(
+                    "CATALOG",
+                    style: TextStyle(
+                      fontFamily: "berky",
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // TextLiquidFill(
+                  //   text: 'CATELOG',
+                  //   waveColor: Colors.blueAccent,
+                  //   boxBackgroundColor: Colors.redAccent,
+                  //   textStyle: TextStyle(
+                  //     fontFamily: "Ulove",
+                  //     fontSize: 30.0,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  //   boxHeight: 300.0,
+                  // ),
+                  // "Events Catalog",
+                  // style: TextStyle(
+                  //   fontSize: screenWidth * 0.06,
+                  //   fontWeight: FontWeight.bold,
+                  //   fontFamily: "Ulove",
+                  // ),
+
                   actions: [
                     Obx(
                       () => Row(
@@ -133,8 +140,7 @@ class EventsScreen extends StatelessWidget {
             extras: {"label": "conference"},
           ),
         ],
-         onChange: _handleNavigationChange1,
-
+        onChange: _handleNavigationChange1,
         style: FluidNavBarStyle(
           iconUnselectedForegroundColor: Colors.black,
           iconSelectedForegroundColor: Colors.black,

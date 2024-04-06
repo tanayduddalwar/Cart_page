@@ -42,7 +42,7 @@ class EventProducts extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/common.jpeg"),
+                  image: AssetImage("assets/bgimg/5.png"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(15),
@@ -60,45 +60,16 @@ class EventProducts extends StatelessWidget {
                           centerTitle: true,
                           backgroundColor: Colors.transparent,
                           elevation: 0,
-                          title: Container(
-                            width: 270,
-                            child: TextLiquidFill(
-                              boxWidth: 220,
-                              text: 'CART',
-                              waveColor: Colors.blue,
-                              boxBackgroundColor:
-                                  const Color.fromARGB(255, 48, 197, 230),
-                              textStyle: TextStyle(
-                                fontFamily: "Ulove",
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              boxHeight: 300.0,
+                          title: Text(
+                            "CART",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "berky",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          actions: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Obx(
-                                () => Row(
-                                  children: [
-                                    badges.Badge(
-                                      onTap: () => EventProducts(),
-                                      badgeContent: Text(
-                                        "${controller.events.length}",
-                                        style: TextStyle(fontFamily: "Bunaken"),
-                                      ),
-                                      child: IconButton(
-                                        icon: Icon(Icons.shopping_cart),
-                                        onPressed: () => {},
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                         
                         ),
                       ),
                     ],
@@ -210,8 +181,8 @@ class EventProductCard extends StatelessWidget {
                 Get.to(SpecificPage(event: eventobj));
               },
               child: Container(
-                height: 120,
-                width: 250,
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.width * 0.6,
                 decoration: BoxDecoration(
                   color: Colors.white38,
                   borderRadius: BorderRadius.circular(15),
@@ -256,9 +227,9 @@ class EventProductCard extends StatelessWidget {
                             eventobj.name,
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 26,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              fontFamily: "Bunaken",
+                              fontFamily: "berky",
                             ),
                           ),
                           Text(
@@ -266,7 +237,7 @@ class EventProductCard extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
-                              fontFamily: "Bunaken",
+                              fontFamily: "berky",
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -295,8 +266,8 @@ class EventProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white38,
                   ),
-                  height: 120,
-                  width: 91,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.25,
                   child: Card(
                     elevation: 0,
                     color: Colors.transparent,
@@ -308,8 +279,8 @@ class EventProductCard extends StatelessWidget {
                       children: [
                         SizedBox(height: 12),
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 55,
+                          height: 55,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             gradient: LinearGradient(

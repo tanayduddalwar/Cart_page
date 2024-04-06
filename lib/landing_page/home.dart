@@ -4,6 +4,7 @@ import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:cart_page/Sponsers/sponsers.dart';
 import 'package:cart_page/about/about.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
+import 'package:cart_page/developers/homeScreen.dart';
 import 'package:cart_page/landing_page/nontech.dart';
 import 'package:cart_page/landing_page/splash_screen.dart';
 import 'package:cart_page/landing_page/tech.dart';
@@ -141,7 +142,6 @@ class _HomePageState extends State<HomePage> {
                       case 3:
                         Get.to(EventProducts());
                         break;
-
                       case 4:
                         if (await db.checkLoggedIn()) {
                           Get.to(() => AdminPage());
@@ -156,9 +156,12 @@ class _HomePageState extends State<HomePage> {
                   selectedIndex: selectedIndex,
                   barItems: [
                     BarItem(
-                      filledIcon: Icons.calendar_today,
-                      outlinedIcon: Icons.calendar_today_outlined,
-                    ),
+                        filledIcon: Icons.account_box,
+                        outlinedIcon: Icons.account_box_outlined),
+                    // BarItem(
+                    //   filledIcon: Icons.calendar_today,
+                    //   outlinedIcon: Icons.calendar_today_outlined,
+                    // ),
                     BarItem(
                         filledIcon: Icons.account_box,
                         outlinedIcon: Icons.account_box_outlined),
@@ -168,6 +171,7 @@ class _HomePageState extends State<HomePage> {
                     BarItem(
                         filledIcon: Icons.info,
                         outlinedIcon: Icons.info_outline_rounded),
+                        
                     BarItem(
                         filledIcon: Icons.account_box,
                         outlinedIcon: Icons.account_box_outlined),
@@ -254,12 +258,16 @@ Widget body() {
   return Stack(
     children: [
       Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF045AAB), Color(0xFF131321)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+        decoration: BoxDecoration(image: DecorationImage(
+            image: AssetImage("assets/bgimg/5.png"),
+            fit: BoxFit.cover,
           ),
+
+          // gradient: LinearGradient(
+          //   colors: [Color(0x006B19), Color(0x003877)],
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          // ),
         ),
         child: Center(
           child: Column(
@@ -410,7 +418,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(AboutUs()),
+                    onTap: () => Get.to(DevelopersPage()),
                     child: Text("Developers",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,

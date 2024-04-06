@@ -60,74 +60,93 @@ class _AdminPageState extends State<AdminPage> {
       length: 2,
       child: Scaffold(
         body: FutureBuilder(
-          future: loaddata(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('${snapshot.error}'),
-              );
-            } else {
-              return Container(
-                height: MediaQuery.of(context).size.height *
-                    0.9, // Adjust the height as needed
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/common.jpeg"),
-                    fit: BoxFit.cover,
+            future: loaddata(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('${snapshot.error}'),
+                );
+              } else {
+                return Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/bgimg/4.png"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    //SizedBox(height: 40),
-                    AppBar(
-                      centerTitle: true,
-                      title: Text(
-                        'PROFILE',
-                        style: TextStyle(
-                          fontFamily: "berky",
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      backgroundColor: Colors.transparent,
-                      actions: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: PopupMenuButton(
-                            color: Colors.white70,
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: Text("PING"),
-                                value: "PING",
-                              ),
-                              PopupMenuItem(
-                                child: Text("IEEE"),
-                                value: "IEEE",
-                              ),
-                              PopupMenuItem(
-                                child: Text("PRIVACY POLICY"),
-                                value: "PRIVACY POLICY",
-                              ),
-                            ],
-                            onSelected: (value) {
-                              if (value == "PING") {
-                                Get.to(() => PingPage());
-                              }
-                              if (value == "IEEE") {
-                                Get.to(() => PISB());
-                              }
-                              if (value == "PRIVACY POLICY") {
-                                Get.to(PrivacyPolicy());
-                              }
-                            },
+                  child: Column(
+                    children: [
+                      //SizedBox(height: 40),
+                      AppBar(
+                        centerTitle: true,
+                        title: Text(
+                          "Profile",
+                          style: TextStyle(
+                            fontFamily: "berky",
+                            fontSize: 30,
+                           // fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
+                        // TextLiquidFill(
+                        //   text: 'PROFILE',
+                        //   waveColor: Colors.blueAccent,
+                        //   boxBackgroundColor:
+                        //       const Color.fromARGB(255, 48, 197, 230),
+                        //   textStyle: TextStyle(
+                        //     fontFamily: "Ulove",
+                        //     fontSize: 30.0,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        //   boxHeight: 300.0,
+                        // ),
+
+                        //   " PROFILE ",
+                        //   style: TextStyle(
+                        //     fontSize: 25,
+                        //     fontWeight: FontWeight.bold,
+                        //     fontFamily: "Ulove",
+                        //   ),
+                        // ),
+                        backgroundColor: Colors.transparent,
+                        actions: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: PopupMenuButton(
+                              color: Colors.white70,
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: Text("PING"),
+                                  value: "PING",
+                                ),
+                                PopupMenuItem(
+                                  child: Text("IEEE"),
+                                  value: "IEEE",
+                                ),
+                                PopupMenuItem(
+                                  child: Text("PRIVACY POLICY"),
+                                  value: "PRIVACY POLICY",
+                                ),
+                                PopupMenuItem(
+                                  child: Text("NTH"),
+                                  value: "NTH",
+                                ),
+                              ],
+                              onSelected: (value) {
+                                if (value == "IEEE") {}
+                                if (value == "PRIVACY POLICY") {
+                                  Get.to(PrivacyPolicy());
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      
                     ),
                     SizedBox(height: 15),
                     Row(
@@ -227,10 +246,11 @@ class _AdminPageState extends State<AdminPage> {
                       ),
                       tabs: [
                         Tab(
+
                           iconMargin: EdgeInsets.all(50),
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
+                                horizontal: 50, vertical: 10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.amber.withOpacity(0.3),
@@ -245,7 +265,7 @@ class _AdminPageState extends State<AdminPage> {
                         Tab(
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                                horizontal: 40, vertical: 10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.amber.withOpacity(0.3),
@@ -266,7 +286,7 @@ class _AdminPageState extends State<AdminPage> {
                           isTechnical.isEmpty
                               ? Center(
                                   child: Text(
-                                  "No Tech",
+                                  "No Tech Events Added",
                                   style: TextStyle(
                                       fontSize: 22,
                                       color: Colors.white,
@@ -279,7 +299,7 @@ class _AdminPageState extends State<AdminPage> {
                           isNonTechnical.isEmpty
                               ? Center(
                                   child: Text(
-                                  "No Non Tech Events",
+                                  "No Non Tech Events Added",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,

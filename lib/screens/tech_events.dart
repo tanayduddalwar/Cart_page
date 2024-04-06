@@ -19,7 +19,11 @@ class _TechEventsPageState extends State<TechEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage( image: AssetImage ('assets/bgimg/10.jpeg'), fit: BoxFit.cover),
+        ),
+        child: ListView.builder(
         itemCount: widget.isTechnical.length, // Access isTechnical from widget
         itemBuilder: (context, index) {
           final startDate = DateTime.parse(widget.isTechnical[index]['event_start']);
@@ -30,7 +34,9 @@ class _TechEventsPageState extends State<TechEventsPage> {
           return Card(
             margin: EdgeInsets.all(8.0),
             child: Container(
+              
               decoration: BoxDecoration(
+                //image: DecorationImage( image: AssetImage ('assets/bgimg/9.png'), fit: BoxFit.cover),
                 gradient: LinearGradient(
                   colors: [Colors.blue, Colors.teal], // Adjust colors as needed
                   begin: Alignment.topLeft,
@@ -66,6 +72,6 @@ class _TechEventsPageState extends State<TechEventsPage> {
           );
         },
       ),
-    );
+    ),);
   }
 }

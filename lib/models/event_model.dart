@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
 class Event {
   final String name;
@@ -35,7 +35,7 @@ class Event {
   static List<Event> events = [
     Event(
       id: 102,
-      name: 'RC',
+      name: 'REVERSE\nCODING',
       price: 50,
       imageUrl: 'assets/RC.png',
       duration: '30',
@@ -61,15 +61,14 @@ class Event {
         "2":
             "Round-2(Decipher and code Round): A 2 hour long round where each team or individuals have to solve 6 core code based questions with increasing difficulty and without the help of any Lifelines. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
       },
-      description:
-          'A coding competition to test your conceptual understanding of algorithms and programming languages. Combine logic and agility to decipher given patterns and code to decode these sequences to find the final answer.',
+      description: 'Event Description',
       contact: [
         {"name": "Harsh Khandelwal", "phone": "9529993590"},
         {"name": "Omkar Wagholikar", "phone": "9604779804"}
       ],
       prizes: [
-        {"1": "Sr. First Prize: Rs. 10000", "2": "Sr. Second Prize: Rs. 6000"},
-        {"1": "Jr. First Prize: Rs. 10000", "2": "Jr. Second Prize: Rs. 6000"}
+        {"1": "Sr. First Prize: Rs. 5000", "2": "Sr. Second Prize: Rs. 3000"},
+        {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
       ],
       datetime: [
         "Round 1 (Slot 1): 12th April 2024, 04:00 PM onwards",
@@ -122,8 +121,8 @@ class Event {
 
         // Set it as technical
         ),
-         Event(
-        name: 'WebWeaver',
+    Event(
+        name: 'Web\nWeaver',
         body:
             "Ever wondered how GSOC and other Open-Source programs work? Register now for web-weaver to get a taste!",
         price: 75,
@@ -162,11 +161,11 @@ class Event {
           "Round 2: 13th April 2023, 10:00 AM to 6:00 PM (Offline)"
         ] // Set it as non-technical
         ),
-        Event(
+    Event(
         name: 'Cretonix',
         body:
             "Battle it out on the breadboard! Challenge your brains to clear a test where you demonstrate your knowledge in the field of core electronics, physics, logical ability and building a circuit by interpreting the hints provided.",
-        price: 30,
+        price: 50,
         imageUrl: 'assets/cretronix.png',
         duration: '320',
         isTechnical: true,
@@ -200,7 +199,7 @@ class Event {
           "Round 2: 13th April 2024, 10:00 AM to 02:00 PM"
         ] // Set it as technical
         ),
-         Event(
+    Event(
         id: 111,
         name: 'Roboliga',
         price: 200,
@@ -250,6 +249,10 @@ class Event {
               "Teams can also register at the registration desk on the day of the event, at least an hour prior to the event.",
           "8":
               "All the participants should bring valid I-cards while coming for the contest. No one without I-card will be allowed for the contest and the team will be disqualified. The participants should carry the same at all times.",
+          "9":
+              "\n   Robot Limitations: \n\t\t\t\t\n1. Maximum robot dimensions: 30cm x 30 cm x 30 cm.\n\t\t\t\t\n2. Maximum weight 3.5 kg.\n\t\t\t\t\n3. Power specifications: Max Voltage: 12V (Normal Operation). Participating teams have to bring their own batteries sufficiently enough to play all day.\n\t\t\t\t\n4. The robot cannot split into two independent parts.\n\t\t\t\t\n5. Robot should be manually controlled(wireless connection) or automatic.\n\t\t\t\t\n6. No weapons (blades, spikes) of any kind are to be attached onto the robot.\n\t\t\t\t\n7. The participants are allowed to use any number of actuators.\n\t\t\t\t\n8. One robot can't be shared between two teams for any reason.\n\t\t\t",
+          "10":
+              "\n Judging Criteria: \n\t\t\t\t\n1. A yellow card will be flashed on each hand touch after the first one. A maximum of three such cards will add up to a red card i.e. Disqualification.\n\t\t\t\t\n2. Organizers have the authority to disqualify any team for misconduct or disorderly behaviour. This team would not be allowed to re-register.\n\t\t\t\t\n3. Organizers reserve the rights to make changes to the field design at any time without prior notification. Participants are requested to refer to the website regularly for any such changes.\n\t\t\t\t\n4. Organizers' decisions will be final and binding to all.\n\t\t\t"
         },
         contact: [
           {"name": "Chinmay Dixit", "phone": "8605288723"},
@@ -261,13 +264,11 @@ class Event {
         datetime: [
           "All matches: 12th April 2024, 11:00 AM to 6:00 PM",
           "Semi-finals and Finals: 13th April 2024, 3:00 PM to 6:00 PM"
-        ]
-        // Set it as non-technical
-        ),
+        ]),
     Event(
         id: 101,
         name: 'CLASH',
-        price: 40,
+        price: 50,
         imageUrl: 'assets/Clash.png',
         duration: '30',
         isTechnical: true,
@@ -289,18 +290,14 @@ class Event {
           "2":
               "Round-2: A 2 hour long round where each team or individuals have to solve 6-8 core competitive coding questions. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Languges allowed to code are C/C++, Java and Python. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
         },
-        description:
-            'A coding competition to test your conceptual understanding of algorithms and programming languages. Combine logic and agility to decipher given patterns and code to decode these sequences to find the final answer.',
+        description: 'Event Description',
         contact: [
           {"name": "Prasad Khatake", "phone": "8767039196"},
           {"name": "Animesh Jain", "phone": "7385170022"}
         ],
         prizes: [
-          {
-            "1": "Sr. First Prize: Rs. 10000",
-            "2": "Sr. Second Prize: Rs. 6000"
-          },
-          {"1": "Jr. First Prize: Rs. 10000", "2": "Jr. Second Prize: Rs. 6000"}
+          {"1": "Sr. First Prize: Rs. 5000", "2": "Sr. Second Prize: Rs. 3000"},
+          {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
         ],
         datetime: [
           "Round 1 (Slot 1): 12th April 2024, 4:00 PM onwards",
@@ -341,22 +338,21 @@ class Event {
           "1":
               "Channel your inner Wednesday Addams to solve this great mystery of PISB's very own Nevermore Academy"
         },
-        description:
-            'A coding competition to test your conceptual understanding of algorithms and programming languages. Combine logic and agility to decipher given patterns and code to decode these sequences to find the final answer.',
+        description: 'Event Description',
         contact: [
           {"name": "Karan Mundhada", "phone": "8080792381"},
           {"name": "Kshitij Dhapse", "phone": "9145299114"}
         ],
         prizes: [
-          {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
+          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
         ],
         datetime: [
-          "Start Time: 30th March 21:00 IST",
-          "End Time: 6th May 21:00 IST"
+          "Start Time: 13th April 21:00 IST",
+          "End Time: 14th April 21:00 IST"
         ]),
     Event(
-        name: 'Wall Street',
-        price: 60,
+        name: 'Wall\nStreet',
+        price: 50,
         imageUrl: "assets/wallstreet.png",
         duration: '2:00',
         isTechnical: false,
@@ -402,7 +398,7 @@ class Event {
         // Set it as technical
         ),
     Event(
-      id: 0,
+      id: 105,
       name: 'B-Plan',
       price: 70,
       imageUrl: 'assets/bplan.png',
@@ -413,7 +409,8 @@ class Event {
         "1":
             "Participants are not allowed to use Smart Gadgets and Mobile Phones during the event.",
         "2":
-            "Participants should report 20 minutes earlier than the given time."
+            "Participants should report 20 minutes earlier than the given time.",
+        "3": "Any Malpractices can direct lead to disqualification."
       },
       structure: {
         "1":
@@ -464,108 +461,98 @@ class Event {
         isTechnical: false,
         description: 'Event Description',
         contact: [
-          {"name": "Renuka Dad", "phone": "9975910877"},
-          {"name": "Pratik Walale", "phone": "9422622709"}
+          {"name": "Renuka Dad", "phone": "+91 99759 10877"},
+          {"name": "Pratik Walale", "phone": "+91 94226 22709"},
+          {"name": "Ansh Bhutada", "phone": "+91 81490 76503"}
         ],
         prizes: [
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-          "Round 1 (Slot 1): 12th May 2023, 12:00 PM to 12:30 PM",
-          "Round 1 (Slot 2): 12th May 2023, 05:00 PM to 05:30 PM",
-          "Round 2: 13th May 2023, 05:00 PM to 07:00 PM"
+          "Round 1 (Slot 1): 12th April 2024, 4:30 PM to 06:00 PM",
+          "Round 2: 13th April 2024, 05:00 PM to 07:00 PM"
         ]
 // Set it as non-technical
         ),
-    
     Event(
         id: 108,
         body:
-            "Brainstorm on the questions ranging from Greek mythology to world politics, from Shakespeare to business gurus. Set out on a voyage through mind-boggling questions captained by a witty quiz master. Flex your IQ in a set of three quizzes, designed to be a battle of wits. MELA Quiz",
-        name: 'Quiz',
+            "Dive into a whirlwind of knowledge with Quizillionaire! It is a completely offline event ! Journey through eclectic questions spanning bollywood/hollywood to sports, from Shakespeare to business gurus. Led by a charismatic quiz master, embark on three rounds of mind-bending quizzes, from general knowledge to current affairs, sports, memes, movies, and entertainment.The grand finale awaits with a Kaun Banega Crorepati format round ! Flex your IQ and compete for glory !",
+        name: 'Quizillionaire',
         price: 50,
-        imageUrl: 'assets/webweaver.png',
+        imageUrl: 'assets/quizillionaire.png',
         duration: '30',
         isTechnical: false,
         description: 'Event Description',
         structure: {
-          "1":
-              "General Quiz: It includes everything from robotics to politics. Test your GK!",
-          "2":
-              "MELA Quiz: Movies Entertainment Literature and Arts (MELA) is all set to test your knowledge of literature, arts and entertainment. If you are an entertainment lover, this is for you!",
-          "3":
-              "BizTech Quiz: If you are passionate about marketing, economics and Business, then BizTech is the ultimate questionnaire you need to answer."
+          "1": "Round 1: Menti meter round",
+          "2": "Round 2:n•Buzzer round",
+          "3": "Round 3: KBC(Kaun Banega Crorepati Round)"
         },
         rules: {
           "1":
-              "Candidate pursuing an undergraduate program at any institute is allowed to participate. Participants are encouraged to maintain a copy of their ID card",
+              "Candidate pursuing an undergraduate program at any institute is allowed to participate.",
           "2":
+              " Participants are encouraged to maintain a copy of their ID card.",
+          "3":
               "Participants can register online on the official Credenz website.",
-          "3": "Each team will have a maximum of one participant.",
-          "4":
-              "Marking scheme and other rules will be announced on the day of the event itself."
+          "4": "Each team will have a maximum of two participants.",
+          "5":
+              "Marking scheme and other rules will be announced on the day of the event itself.",
+          "6":
+              "Enjoy the Journey: Embrace the competition, learn from the experience, and relish the opportunity to collaborate with others."
         },
         contact: [
-          {"name": "Aryan Mahajan", "phone": "9518327965"},
-          {"name": "Samir Hendre", "phone": "9819261702"}
+          {"name": "Jeeya Shah", "phone": "+91 98340 56254"},
+          {"name": "Mitra Barve", "phone": "+91 94223 14442"}
         ],
         prizes: [
-          {
-            "1": "First Prize: Rs. 2000 (For each Category)",
-            "2": "Second prize: Rs. 1000 (For each Category)"
-          }
+          {"1": "To Be Declared"}
         ],
         datetime: [
-          "Round 1 : 12th April 2024, 5:00 PM to 6:30 PM",
-          "Round 2 : 13th April 2024, 5:00 PM to 6:30 PM"
+          "Start Time: 12th April 2024",
+          "End Time: 14th April 2024"
+        ]),
+    Event(
+        id: 112,
+        name: 'Xodia',
+        structure: {
+          "1":
+              "It would be a single-round competition and matches will be held in a single-elimination format."
+        },
+        body:
+            "Dive into the realm of bot development where participants craft bots, leveraging reinforcement learning techniques or algorithms, to compete head to head in an exhilarating gaming environment. Let the games begin!!",
+        price: 50,
+        imageUrl: 'assets/xodia.png',
+        duration: '50',
+        isTechnical: false,
+        description: 'Event Description',
+        rules: {
+          "1":
+              "The game environment for the competition would be 'Pocket Tanks'.",
+          "2":
+              "The details of the game environment will be released on the 12th April.",
+          "3":
+              "Participants have to build bots capable of competing against other bots in the provided game environment and submit them before the given deadline.",
+          "4":
+              "Participants can submit both RL (Reinforcement Learning) based as well as algorithmic bots.",
+          "5":
+              "The standard format of bot submission would be conveyed to participants.",
+          "6":
+              "The matches between bots will be conducted and streamed on the 14th April"
+        },
+        contact: [
+          {"name": "Prem Gaikwad", "phone": "9823392274"},
+          {"name": "Maheshwar Bhosale", "phone": "9067507393"}
+        ],
+        prizes: [
+          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
+        ],
+        datetime: [
+          "Environment Release: 12th April",
+          "Bot Submission: 12th and 13th April",
+          "Matches: 14th April"
         ] // Set it as non-technical
         ),
-    
-   
-   
-    Event(
-      id: 112,
-      name: 'Xodia',
-      structure: {
-        "1":
-            "It would be a single-round competition and matches will be held in a single-elimination format."
-      },
-      body:
-          "Dive into the realm of bot development where participants craft bots, leveraging reinforcement learning techniques or algorithms, to compete head to head in an exhilarating gaming environment. Let the games begin!!",
-      price: 50,
-      imageUrl: 'assets/xodia.png',
-      duration: '50',
-      isTechnical: false,
-      description: 'Event Description',
-       rules: {
-      "1": "The game environment for the competition would be 'Pocket Tanks'.",
-      "2": "The details of the game environment will be released on the 12th April.",
-      "3": "Participants have to build bots capable of competing against other bots in the provided game environment and submit them before the given deadline.",
-      "4": "Participants can submit both RL (Reinforcement Learning) based as well as algorithmic bots.",
-      "5": "The standard format of bot submission would be conveyed to participants.",
-      "6": "The matches between bots will be conducted and streamed on the 14th April"
-    },
-    contact: [
-      {
-        "name": "Prem Gaikwad",
-        "phone": "9823392274"
-      },
-      {
-        "name": "Maheshwar Bhosale",
-        "phone": "9067507393"
-      }
-    ],
-    prizes: [
-      {
-        "1": "First Prize: Rs. 5000",
-        "2": "Second Prize: Rs. 3000"
-      }
-    ],
-     datetime: [
-      "Environment Release: 12th April",
-      "Bot Submission: 12th and 13th April",
-      "Matches: 14th April"
-    ]// Set it as non-technical
-    ),
   ];
 }
