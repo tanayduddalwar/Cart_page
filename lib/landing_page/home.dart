@@ -252,7 +252,7 @@ Widget body() {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/bgimg/5.png"),
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
           ),
           // gradient: LinearGradient(
           //   colors: [Color(0xff091c99), Color(0xE2334BD5)],

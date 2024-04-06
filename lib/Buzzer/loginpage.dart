@@ -33,15 +33,16 @@ class _LoginState extends State<Login> {
             icon: Icon(Icons.arrow_back)),
         title: Text(
           "QUIZ",
-          style: TextStyle(fontFamily: "berky"),
+          style: TextStyle(fontFamily: "berky",color: Colors.white,fontSize: 30),
         ),
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF043160), Color(0x8b3b97f1)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(
+              'assets/bgimg/12.png',
+            ),
           ),
         ),
         child: Center(
@@ -50,7 +51,7 @@ class _LoginState extends State<Login> {
             children: [
               Text(
                 "Enter the Name of your team",
-                style: TextStyle(fontFamily: "berky", fontSize: 25),
+                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.7,
@@ -65,7 +66,7 @@ class _LoginState extends State<Login> {
               ),
               Text(
                 "Enter the PIN to start QUIZ",
-                style: TextStyle(fontFamily: "berky", fontSize: 25),
+                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
@@ -94,7 +95,7 @@ class _LoginState extends State<Login> {
                 },
                 otpFieldStyle: OtpFieldStyle(
                     backgroundColor: Colors.transparent,
-                    focusBorderColor: Colors.green,
+                    focusBorderColor: Colors.white,
                     enabledBorderColor: Colors.green),
                 fieldStyle: FieldStyle.underline,
               ),
