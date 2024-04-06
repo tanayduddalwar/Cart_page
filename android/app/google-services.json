@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "347561737536",
-    "project_id": "cart-page-credenz",
-    "storage_bucket": "cart-page-credenz.appspot.com"
+    "project_number": "846221841297",
+    "project_id": "quizapp-d1727",
+    "storage_bucket": "quizapp-d1727.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347561737536:android:17024123dce7933b878ea5",
+        "mobilesdk_app_id": "1:846221841297:android:72e15a3d46b19efad28030",
         "android_client_info": {
-          "package_name": "com.example.cart_page"
+          "package_name": "com.example.quizapp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD-amGZ6iAC5yN9_jqNqYiyeCLiljJetkE"
+          "current_key": "AIzaSyBpxAoBZj04VPWd0sj9t-QnFpxpUIWrDb0"
         }
       ],
       "services": {

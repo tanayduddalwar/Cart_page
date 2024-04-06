@@ -18,19 +18,33 @@ class CartTotal extends StatelessWidget {
         child: Container(
           //margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-          
-            borderRadius: BorderRadius.circular(50), // Set the border radius here
+            borderRadius:
+                BorderRadius.circular(50), // Set the border radius here
           ),
           child: Container(
-             decoration: BoxDecoration(
-          
-            borderRadius: BorderRadius.circular(50), // Set the border radius here
-          ),
+            decoration: BoxDecoration(
+              borderRadius:
+                  BorderRadius.circular(50), // Set the border radius here
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Total', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "Bunaken")),
-                Text('\Rs:${controller.total}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "Bunaken")),
+                Text(
+                  'Total',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: "berky",
+                  ),
+                ),
+                Text(
+                  '\Rs:${controller.total}',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'berky',
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
               ],
             ),
           ),

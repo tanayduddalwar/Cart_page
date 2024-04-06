@@ -10,14 +10,14 @@ class AboutUs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white60,
-        title: Text("About Us"),
+        title: Text("Developers"),
         centerTitle: true,
         elevation: 0,
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/OIG.jpg"),
+            image: AssetImage("assets/4.png"),
             fit: BoxFit.cover,
           ),
         ),
