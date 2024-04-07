@@ -131,9 +131,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ));
                           }),
-                    ],
+                   ],
                   ),
-                  DevelopersPage(),
+                  Login(),
                   //   AdminPage()
                   // Placeholder for AdminPage()
                 ],
@@ -348,7 +348,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PingPage()),
+                    onTap: () => Get.to(() => PingPage()),
                     child: Text("PING",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -380,7 +380,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(VideosScreen()),
+                    onTap: () => Get.to(() => VideosScreen()),
                     child: Text("Sponsors",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -403,7 +403,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(Login()),
+                    onTap: () => Get.to(() => Login()),
                     child: Text("Quiz",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -456,7 +456,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PrivacyPolicy()),
+                    onTap: () => Get.to(() => PrivacyPolicy()),
                     child: Text("Privacy Policy",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,

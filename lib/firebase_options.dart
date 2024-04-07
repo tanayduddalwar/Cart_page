@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,38 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDNgSVaLxP-VQFyMNtJLAvlFgQPqZkjoJE',
-    appId: '1:347561737536:web:8b5d2cee1758e66e878ea5',
-    messagingSenderId: '347561737536',
-    projectId: 'cart-page-credenz',
-    authDomain: 'cart-page-credenz.firebaseapp.com',
-    storageBucket: 'cart-page-credenz.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD-amGZ6iAC5yN9_jqNqYiyeCLiljJetkE',
-    appId: '1:347561737536:android:17024123dce7933b878ea5',
-    messagingSenderId: '347561737536',
-    projectId: 'cart-page-credenz',
-    storageBucket: 'cart-page-credenz.appspot.com',
+    apiKey: 'AIzaSyBpxAoBZj04VPWd0sj9t-QnFpxpUIWrDb0',
+    appId: '1:846221841297:android:72e15a3d46b19efad28030',
+    messagingSenderId: '846221841297',
+    projectId: 'quizapp-d1727',
+    storageBucket: 'quizapp-d1727.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA2bcGnL2gVAhXMYVo9N51xXR5nBnSsSsc',
-    appId: '1:347561737536:ios:5b00dbae0c4c9d0c878ea5',
-    messagingSenderId: '347561737536',
-    projectId: 'cart-page-credenz',
-    storageBucket: 'cart-page-credenz.appspot.com',
-    iosBundleId: 'com.example.cartPage',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA2bcGnL2gVAhXMYVo9N51xXR5nBnSsSsc',
-    appId: '1:347561737536:ios:71cc724d13d4b89e878ea5',
-    messagingSenderId: '347561737536',
-    projectId: 'cart-page-credenz',
-    storageBucket: 'cart-page-credenz.appspot.com',
-    iosBundleId: 'com.example.cartPage.RunnerTests',
+    apiKey: 'AIzaSyBrxalFEuGtPxbH-Fowe7pQsVBT_YlMq_M',
+    appId: '1:846221841297:ios:9f336fa6920ed5ccd28030',
+    messagingSenderId: '846221841297',
+    projectId: 'quizapp-d1727',
+    storageBucket: 'quizapp-d1727.appspot.com',
+    iosBundleId: 'com.example.quizapp',
   );
 }

@@ -61,7 +61,7 @@ class _AdminPageState extends State<AdminPage> {
       length: 2,
       child: WillPopScope(
         onWillPop: () async {
-          Get.offAll(() => HomePage());
+          Get.off(() => HomePage());
           return false;
         },
         child: Scaffold(
@@ -96,7 +96,7 @@ class _AdminPageState extends State<AdminPage> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            Get.offAll(() => HomePage());
+                            Get.off(() => HomePage());
                           },
                         ),
                         centerTitle: true,

@@ -33,7 +33,8 @@ class _LoginState extends State<Login> {
             icon: Icon(Icons.arrow_back)),
         title: Text(
           "QUIZ",
-          style: TextStyle(fontFamily: "berky",color: Colors.white,fontSize: 30),
+          style:
+              TextStyle(fontFamily: "berky", color: Colors.white, fontSize: 30),
         ),
       ),
       body: Container(
@@ -51,11 +52,13 @@ class _LoginState extends State<Login> {
             children: [
               Text(
                 "Enter the Name of your team",
-                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
+                style: TextStyle(
+                    fontFamily: "berky", fontSize: 25, color: Colors.white),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(),
                   controller: buzzerController.teamcontroller,
@@ -66,12 +69,14 @@ class _LoginState extends State<Login> {
               ),
               Text(
                 "Enter the PIN to start QUIZ",
-                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
+                style: TextStyle(
+                    fontFamily: "berky", fontSize: 25, color: Colors.white),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               OTPTextField(
+                style: TextStyle(color: Colors.white),
                 width: MediaQuery.of(context).size.width * 0.8,
                 fieldWidth: MediaQuery.of(context).size.width * 0.1,
                 length: 4,

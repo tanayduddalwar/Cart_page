@@ -61,7 +61,7 @@ class Event {
         "2":
             "Round-2(Decipher and code Round): A 2 hour long round where each team or individuals have to solve 6 core code based questions with increasing difficulty and without the help of any Lifelines. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
       },
-      description: 'Event Description',
+      description: 'Wrong Event Tapped',
       contact: [
         {"name": "Harsh Khandelwal", "phone": "9529993590"},
         {"name": "Omkar Wagholikar", "phone": "9604779804"}
@@ -105,7 +105,7 @@ class Event {
             "DataWiz is an exhilarating event designed to test participants' proficiency in data analysis, machine learning, and artificial intelligence. It serves as a platform where participants are challenged to showcase their skills in handling real-world datasets and developing robust AI/ML models to derive meaningful insights.",
         duration: '230',
         isTechnical: true,
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         id: 104,
         contact: [
           {"name": "Prem Gaikwad", "phone": "9823392274"},
@@ -147,7 +147,7 @@ class Event {
           "4":
               "People opting for backend are supposed to build at least a minimalistic frontend to showcase their work."
         },
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         contact: [
           {"name": "Sarthak Phadnis", "phone": "9930611330"},
           {"name": "Shreya Bansod", "phone": "7972616766"}
@@ -169,7 +169,7 @@ class Event {
         imageUrl: 'assets/cretronix.png',
         duration: '320',
         isTechnical: true,
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         structure: {
           "1": "There are 2 groups- Senior and junior",
           "2": "FE & SE - junior and TE & BE - senior",
@@ -206,7 +206,7 @@ class Event {
         imageUrl: 'assets/roboliga.png',
         duration: '30',
         isTechnical: true,
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         structure: {
           "1": "Match :",
           "2":
@@ -290,7 +290,7 @@ class Event {
           "2":
               "Round-2: A 2 hour long round where each team or individuals have to solve 6-8 core competitive coding questions. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Languges allowed to code are C/C++, Java and Python. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
         },
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         contact: [
           {"name": "Prasad Khatake", "phone": "8767039196"},
           {"name": "Animesh Jain", "phone": "7385170022"}
@@ -338,7 +338,7 @@ class Event {
           "1":
               "Channel your inner Wednesday Addams to solve this great mystery of PISB's very own Nevermore Academy"
         },
-        description: 'Event Description',
+        description: '19',
         contact: [
           {"name": "Karan Mundhada", "phone": "8080792381"},
           {"name": "Kshitij Dhapse", "phone": "9145299114"}
@@ -356,7 +356,7 @@ class Event {
         imageUrl: "assets/wallstreet.png",
         duration: '2:00',
         isTechnical: false,
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         body:
             "'The stock market is a device for transferring money from the impatient to the patient.' - Warren Buffett Interested in learning about the stock market and improving your investment skills? Well you are in luck, as we bring you, 'Wall Street'",
         structure: {
@@ -404,7 +404,7 @@ class Event {
       imageUrl: 'assets/bplan.png',
       duration: '30',
       isTechnical: false,
-      description: 'Event Description',
+      description: 'Wrong Event Tapped',
       rules: {
         "1":
             "Participants are not allowed to use Smart Gadgets and Mobile Phones during the event.",
@@ -459,7 +459,7 @@ class Event {
         imageUrl: 'assets/enigma.png',
         duration: '130',
         isTechnical: false,
-        description: 'Event Description',
+       description: 'Wrong Event Tapped',
         contact: [
           {"name": "Renuka Dad", "phone": "+91 99759 10877"},
           {"name": "Pratik Walale", "phone": "+91 94226 22709"},
@@ -483,7 +483,7 @@ class Event {
         imageUrl: 'assets/quizillionaire.png',
         duration: '30',
         isTechnical: false,
-        description: 'Event Description',
+       description: 'Wrong Event Tapped',
         structure: {
           "1": "Round 1: Menti meter round",
           "2": "Round 2:n•Buzzer round",
@@ -526,7 +526,7 @@ class Event {
         imageUrl: 'assets/xodia.png',
         duration: '50',
         isTechnical: false,
-        description: 'Event Description',
+        description: 'Wrong Event Tapped',
         rules: {
           "1":
               "The game environment for the competition would be 'Pocket Tanks'.",

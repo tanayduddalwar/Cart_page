@@ -16,12 +16,6 @@ class PISB extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Get.offAll(() => HomePage());
-            },
-            icon: Icon(Icons.arrow_back),
-          ),
           backgroundColor: Color.fromARGB(20, 2, 71, 100),
           title: const Text(
             'PISB',

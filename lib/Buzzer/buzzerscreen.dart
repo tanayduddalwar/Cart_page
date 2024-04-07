@@ -1,4 +1,5 @@
 import 'package:cart_page/Buzzer/controllers/BuzzerController.dart';
+import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -183,6 +184,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
           IconButton(
             onPressed: () {
               deleteDocumentsByTeamName(buzzerController.teamcontroller.text);
+              Get.to(() => Login());
             },
             icon: const Icon(Icons.logout),
           ),

@@ -18,23 +18,20 @@ class _PingPageState extends State<PingPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final websteUri = Uri.parse('https://issuu.com/p.i.n.g./docs/2-5');
+    final websteUri =
+        Uri.parse('https://issuu.com/p.i.n.g./docs/p.i.n.g._issue_17.11');
 
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Get.offAll(() => HomePage());
-              },
-              icon: const Icon(Icons.arrow_back_rounded)),
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Padding(
             padding: EdgeInsets.only(left: screenWidth * 0.14, top: 20),
             child: SizedBox(
-              width: 200,
+              width: MediaQuery.of(context).size.width * 0.5,
               child: Text(
                 "P.I.N.G",
                 style: TextStyle(
@@ -66,14 +63,25 @@ class _PingPageState extends State<PingPage> {
             ),
           ),
           child: Center(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(
+                  height: screenHeight * 0.1,
+                ),
+                // Image container outside of ListView
                 Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.232),
-                    height: screenWidth * 0.66,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: screenWidth * 0.232),
+                  height: screenWidth * 0.66,
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (await canLaunchUrl(websteUri)) {
+                        await launchUrl(websteUri);
+                      } else {
+                        throw 'Could not launch url';
+                      }
+                    },
                     child: Container(
                       color: const Color(0xFFE9E9E9),
                       child: Center(
@@ -84,28 +92,25 @@ class _PingPageState extends State<PingPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                    )),
-                const SizedBox(height: 25.0),
-                Container(
-                  height: screenHeight * 0.56,
-                  width: screenWidth * 0.7,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.center,
-                        colors: [Colors.white30, Colors.white30]),
-                    borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: const Center(
+                ),
+                const SizedBox(height: 25.0),
+                // Text container inside ListView with bouncing scroll physics
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.center,
+                          colors: [Colors.white30, Colors.white30]),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Container(
+                        child: Center(
                           child: Text(
                             'P.I.N.G (PICT IEEE Newsletter Group is the official technical magazine of PICT published'
                             'twice a year .PING server as a platform for individuals to portray their technical ingenuity.It highlight '
@@ -121,13 +126,7 @@ class _PingPageState extends State<PingPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      // const SizedBox(
-                      //   height: 50,
-                      // ),
-                    ],
+                    ),
                   ),
                 ),
               ],
