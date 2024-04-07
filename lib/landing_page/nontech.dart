@@ -2,6 +2,7 @@ import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/eventpage/GlassMorphicContainer.dart';
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
 import 'package:cart_page/landing_page/home.dart';
+import 'package:cart_page/landing_page/tech.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -133,7 +134,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.only(bottom: 20.0),
-              child: ArrowAnimation(),
+              child: ArrowAnimation1(),
             ),
           ),
         ],
@@ -532,12 +533,12 @@ class _SwipeableContentState extends State<SwipeableContent> {
   }
 }
 
-class ArrowAnimation extends StatefulWidget {
+class ArrowAnimation1 extends StatefulWidget {
   @override
-  _ArrowAnimationState createState() => _ArrowAnimationState();
+  _ArrowAnimation1State createState() => _ArrowAnimation1State();
 }
 
-class _ArrowAnimationState extends State<ArrowAnimation>
+class _ArrowAnimation1State extends State<ArrowAnimation1>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -547,15 +548,12 @@ class _ArrowAnimationState extends State<ArrowAnimation>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-
-    _animation = Tween<double>(begin: 0, end: 30).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    _controller.repeat(reverse: true);
+      duration: Duration(seconds: 1),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(
+      begin: -10, // Change the initial position to the top
+      end: 10, // Change the final position to the bottom
+    ).animate(_controller);
   }
 
   @override
@@ -564,11 +562,15 @@ class _ArrowAnimationState extends State<ArrowAnimation>
       animation: _animation,
       builder: (context, child) {
         return Transform.translate(
-          offset: Offset(_animation.value, 0),
-          child: Icon(
-            Icons.arrow_downward,
-            color: Colors.white,
-            size: 30,
+          offset: Offset(0, _animation.value), // Animate the y-axis
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 20), // Adjust padding if needed
+            child: Icon(
+              Icons.arrow_downward,
+              color: Colors.white,
+              size: 40,
+            ),
           ),
         );
       },

@@ -111,10 +111,8 @@ class database {
         return false;
       }
     } catch (e) {
-      
       print("Error: $e");
       return false;
-      
     }
   }
 
@@ -148,7 +146,6 @@ class database {
         return false;
       } else {
         headerString = 'Login Successful';
-        Get.snackbar('Login Successfull', 'Success');
         profile();
         //      showSnackBar(context, headerString);
 

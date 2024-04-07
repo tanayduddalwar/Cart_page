@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                       SafeArea(child: body()),
                       TweenAnimationBuilder(
                           tween: Tween<double>(begin: 0, end: value),
-                          duration: Duration(milliseconds: 500),
+                          duration: Duration(milliseconds: 275),
                           curve: Curves.easeInOut,
                           builder: (_, double val, __) {
                             return (Transform(
@@ -131,9 +131,8 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   PingPage(),
-                  AdminPage()
+                  //   AdminPage()
                   // Placeholder for AdminPage()
-                  //         Container(),
                 ],
               ),
               bottomNavigationBar: Container(
@@ -195,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                     SafeArea(child: body()),
                     TweenAnimationBuilder(
                         tween: Tween<double>(begin: 0, end: value),
-                        duration: Duration(milliseconds: 500),
+                        duration: Duration(milliseconds: 275),
                         curve: Curves.easeInOut,
                         builder: (_, double val, __) {
                           return (Transform(
@@ -488,9 +487,8 @@ Widget body() {
                                   await SharedPreferences.getInstance();
                               prefs.clear();
                               db.logout();
-                              Get.snackbar(
-                                  'Logged Out Successfully', 'Success');
-                              Get.offAll(() => SplashScreen());
+
+                              Get.offAll(() => HomePage());
                             },
                             child: Text("Logout",
                                 style: TextStyle(

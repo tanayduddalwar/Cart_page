@@ -124,9 +124,9 @@ class _PingPageState extends State<PingPage> {
                       const SizedBox(
                         height: 25,
                       ),
-                      const SizedBox(
-                        height: 50,
-                      ),
+                      // const SizedBox(
+                      //   height: 50,
+                      // ),
                     ],
                   ),
                 ),

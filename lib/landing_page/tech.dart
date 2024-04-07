@@ -36,8 +36,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
     List<Event> displayedEvents = []; // Keep track of displayed events
     for (int i = 0; i < Event.events.length; i++) {
       Event currentEvent = Event.events[i];
-      if (currentEvent.isTechnical &&
-          !displayedEvents.contains(currentEvent)) {
+      if (currentEvent.isTechnical && !displayedEvents.contains(currentEvent)) {
         displayedEvents.add(currentEvent);
         if (eventPages.length % 2 == 0) {
           eventPages.add(
@@ -45,7 +44,8 @@ class _TechEventsPageState extends State<TechEventsPage> {
           );
 
           if ((i) == 2 || i == 5) {
-            eventPages.add(SizedBox(height: MediaQuery.of(context).size.height * 0.2));
+            eventPages.add(
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2));
           }
         } else {
           eventPages.add(
@@ -162,8 +162,8 @@ class _ArrowAnimationState extends State<ArrowAnimation>
       duration: Duration(seconds: 1),
     )..repeat(reverse: true);
     _animation = Tween<double>(
-      begin: -10,
-      end: 10,
+      begin: -10, // Change the initial position to the top
+      end: 10, // Change the final position to the bottom
     ).animate(_controller);
   }
 
@@ -173,11 +173,15 @@ class _ArrowAnimationState extends State<ArrowAnimation>
       animation: _animation,
       builder: (context, child) {
         return Transform.translate(
-          offset: Offset(_animation.value, 0),
-          child: Icon(
-            Icons.arrow_downward,
-            color: Colors.white,
-            size: 30,
+          offset: Offset(0, _animation.value), // Animate the y-axis
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 20), // Adjust padding if needed
+            child: Icon(
+              Icons.arrow_downward,
+              color: Colors.white,
+              size: 40,
+            ),
           ),
         );
       },
@@ -230,8 +234,8 @@ class CombinedEventCard extends StatelessWidget {
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.1,
                   ),
-                  height:  MediaQuery.of(context).size.width * 0.27,
-                  width:  MediaQuery.of(context).size.width * 0.27,
+                  height: MediaQuery.of(context).size.width * 0.27,
+                  width: MediaQuery.of(context).size.width * 0.27,
                   child: Center(
                     child: Hero(
                       tag: 'event-name-${event.name}',
@@ -337,8 +341,8 @@ class revCombinedEventCard extends StatelessWidget {
         );
       },
       child: Container(
-       //  height:  MediaQuery.of(context).size.width * 0.27,
-          //        width:  MediaQuery.of(context).size.width * 0.27,
+        //  height:  MediaQuery.of(context).size.width * 0.27,
+        //        width:  MediaQuery.of(context).size.width * 0.27,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/new.gif"),
@@ -354,7 +358,6 @@ class revCombinedEventCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  
                   margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
@@ -434,7 +437,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
     List<dynamic> content = [
       event.description,
       event.rules,
-      
       event.contact,
     ];
 
