@@ -218,7 +218,7 @@ class _SpecificPageState extends State<SpecificPage>
             FloatingActionButton(
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
-                  Get.to(EventProducts());
+                  Get.to(() => EventProducts());
                 } else {
                   Get.to(() => LoginPage());
                 }

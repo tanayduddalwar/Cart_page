@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:cart_page/Sponsers/sponsers.dart';
 import 'package:cart_page/about/about.dart';
+import 'package:cart_page/bottom_nav_bar/bar_item.dart';
+import 'package:cart_page/bottom_nav_bar/build_nav_bar.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/developers/homeScreen.dart';
 import 'package:cart_page/landing_page/nontech.dart';
@@ -18,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -588,7 +589,7 @@ Widget innerbody() {
                   color1: Color.fromRGBO(1, 93, 180, 0.2),
                   color2: Color.fromRGBO(1, 10, 23, 1),
                   onTap: () {
-                    Get.to(NonTechEventsPage());
+                    Get.to(() => NonTechEventsPage());
                   },
                 ),
               ),

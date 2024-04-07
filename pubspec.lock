@@ -850,14 +850,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "13.0.0"
-  water_drop_nav_bar:
-    dependency: "direct main"
-    description:
-      name: water_drop_nav_bar
-      sha256: "856c4f9ea013066b3f703f068e094701d484423b7b5869adecec4fbcaf7047f1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.1"
   web:
     dependency: transitive
     description:

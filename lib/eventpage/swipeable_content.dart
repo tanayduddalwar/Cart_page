@@ -78,7 +78,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
       // Displaying contact numbers
       formattedContacts
     ];
-    print(content);
+
     // Now you can use this `content` list for displaying in your UI
 
     return Center(
@@ -159,8 +159,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
                         controller: _pageController,
                         itemCount: content.length,
                         itemBuilder: (context, index) {
-                          print(content[index]);
-                          print(content.length);
                           return SingleChildScrollView(
                             physics: const ScrollPhysics(),
                             child: Padding(

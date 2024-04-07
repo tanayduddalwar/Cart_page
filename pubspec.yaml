@@ -2,7 +2,7 @@ name: cart_page
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,14 +31,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^2.24.2
   get: ^4.6.5
   url_launcher: ^6.2.5
-  
+
   badges: ^3.1.2
   popup_banner: ^1.0.0
   widget_circular_animator: ^1.0.0
@@ -62,16 +61,12 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   super_banners: ^0.0.1
   flutter_animated_button: ^2.0.3
-  water_drop_nav_bar: ^2.2.1
-
-  
-
 
 #   url_launcher: ^6.2.4
 #   fluid_bottom_nav_bar: ^1.4.0
 # =======
 # >>>>>>> e4a4eb98ed3d279eb42afbf529f0a69dbefdd823
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,11 +77,11 @@ dev_dependencies:
 #       ios: true
 #       image_path: "assets/logo2.jpeg"
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+# The "flutter_lints" package below contains a set of recommended lints to
+# encourage good coding practices. The lint set provided by the package is
+# activated in the `analysis_options.yaml` file located at the root of your
+# package. See that file for information about deactivating specific lint
+# rules and activating additional ones.
 flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
@@ -94,7 +89,6 @@ flutter_lints: ^2.0.0
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -122,8 +116,8 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+    #       - asset: fonts/Schyler-Italic.ttf
+    #         style: italic
     - family: Bunaken
       fonts:
         - asset: assets/Bunaken_Underwater.ttf
@@ -131,7 +125,7 @@ flutter:
     - family: berky
       fonts:
         - asset: assets/berky.ttf
-     
+
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
