@@ -86,13 +86,13 @@ class Payment extends StatelessWidget {
                   ),
                   UPIPaymentQRCode(
                     upiDetails: UPIDetails(
-                      upiID: "td2345@ibl",
-                      payeeName: "Tanay",
+                      upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
+                      payeeName: "PICT_IEEE_PISB",
                       amount: totalAmount,
                       transactionNote: "IEEE",
                     ),
-                    size: 120,
-                    upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.low,
+                    size: 180,
+                    upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                   ),
                   Text(
                     "Scan QR to Pay",

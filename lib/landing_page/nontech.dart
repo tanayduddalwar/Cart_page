@@ -20,8 +20,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
 
   @override
   void initState() {
-    // _pageController.addListener(_onPageChanged);
-
     _buildEventPages();
 
     super.initState();
@@ -35,22 +33,15 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
 
   void _buildEventPages() {
     eventPages.clear();
-    List<Event> displayedEvents = []; // Keep track of displayed events
+    List<Event> displayedEvents = [];
     for (int i = 0; i < Event.events.length; i++) {
       Event currentEvent = Event.events[i];
-      // if ((i) == 2) {
-      //     eventPages.add(SizedBox(height: 1000));
-      //   }
-      if (!currentEvent.isTechnical &&
-          !displayedEvents.contains(currentEvent)) {
+      if (!currentEvent.isTechnical && !displayedEvents.contains(currentEvent)) {
         displayedEvents.add(currentEvent);
         if (eventPages.length % 2 == 0) {
-          print(i);
-
           eventPages.add(
             CombinedEventCard(event: currentEvent),
           );
-
           if ((i) == 8 || i == 11) {
             eventPages.add(SizedBox(height: 120));
           }
@@ -59,11 +50,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
             revCombinedEventCard(event: currentEvent),
           );
         }
-
-        // Check if i is a multiple of 3 and add SizedBox
-        // if ( (i)!=0 && (i) % 3 == 0) {
-        //   eventPages.add(SizedBox(height: 20)); // Adjust height as needed
-        // }
       }
     }
   }
@@ -113,7 +99,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
           Center(
             child: Column(
               children: [
-                // Container removed here
                 Container(
                   color: _containerColor,
                   width: MediaQuery.of(context).size.height * 1,
@@ -141,6 +126,13 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+              child: ArrowAnimation(),
             ),
           ),
         ],
@@ -537,5 +529,55 @@ class _SwipeableContentState extends State<SwipeableContent> {
         ),
       ),
     );
+  }
+}
+
+class ArrowAnimation extends StatefulWidget {
+  @override
+  _ArrowAnimationState createState() => _ArrowAnimationState();
+}
+
+class _ArrowAnimationState extends State<ArrowAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _animation = Tween<double>(begin: 0, end: 30).animate(_controller)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+ Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(_animation.value, 0),
+          child: Icon(
+            Icons.arrow_downward,
+            color: Colors.white,
+            size: 30,
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
