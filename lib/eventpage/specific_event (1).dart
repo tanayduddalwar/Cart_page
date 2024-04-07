@@ -47,7 +47,6 @@ class _SpecificPageState extends State<SpecificPage>
 
   void _handleTap() {
     _tapCount++;
-
     if (_tapCount == 3) {
       print('Image tapped 3 times');
       AwesomeDialog(
@@ -206,6 +205,7 @@ class _SpecificPageState extends State<SpecificPage>
           children: [
             FloatingActionButton(
               onPressed: () {
+                //snack bar add karna
                 setState(() {
                   isPassAdded = true;
                 });

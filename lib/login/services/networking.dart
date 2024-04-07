@@ -9,12 +9,6 @@ import 'package:http/http.dart' as http;
 class database {
   Future<SharedPreferences> prefs_ = SharedPreferences.getInstance();
 
-  Future<void> test() async {
-    // final SharedPreferences prefs = await prefs_;
-    // prefs.setString('access', 'test');
-    // print(prefs.getString("access"));
-  }
-
   Future<bool> register({
     required String username,
     required String email,

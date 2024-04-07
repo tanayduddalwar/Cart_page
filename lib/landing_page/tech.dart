@@ -67,7 +67,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            Get.offAll(() => HomePage());
+            Get.off(() => HomePage());
           },
           icon: Icon(
             Icons.arrow_back,
