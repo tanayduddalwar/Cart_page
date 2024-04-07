@@ -112,9 +112,16 @@ class _SpecificPageState extends State<SpecificPage>
                         "${widget.controller.events.length}",
                         style: TextStyle(fontFamily: "berky"),
                       ),
+                      position: badges.BadgePosition.topEnd(),
                       child: IconButton(
                         icon: Icon(Icons.shopping_cart),
-                        onPressed: () => {},
+                        onPressed: () async {
+                          if (await db.checkLoggedIn()) {
+                            Get.to(() => EventProducts());
+                          } else {
+                            Get.to(() => LoginPage());
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -149,7 +156,8 @@ class _SpecificPageState extends State<SpecificPage>
                             child: Hero(
                               tag: event.imageUrl,
                               child: Container(
-                                height: MediaQuery.of(context).size.height * 0.23,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.23,
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 alignment: Alignment.topCenter,
                                 decoration: BoxDecoration(

@@ -41,7 +41,7 @@ class CartController extends GetxController {
     if (_events.containsKey(eventobj)) {
       final snackBar = SnackBar(
         elevation: 5,
-        behavior: SnackBarBehavior.floating,
+        behavior: SnackBarBehavior.fixed,
         duration: Duration(seconds: 3),
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(

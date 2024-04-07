@@ -4,7 +4,6 @@ import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:cart_page/Sponsers/sponsers.dart';
 import 'package:cart_page/about/about.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
-import 'package:cart_page/developers/homeScreen.dart';
 import 'package:cart_page/landing_page/nontech.dart';
 import 'package:cart_page/landing_page/splash_screen.dart';
 import 'package:cart_page/landing_page/tech.dart';
@@ -27,17 +26,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Color navigationBarColor = Colors.white;
-  int selectedIndex = 2;
+  int selectedIndex = 1;
   late PageController pageController;
   database db = database();
   double value = 0;
   final CartController cartController = Get.put(CartController());
   bool nav = true;
+  bool isLoggedIn = false;
 
   @override
   void initState() {
     super.initState();
+    checkLoginStatus();
+
     pageController = PageController(initialPage: selectedIndex);
+  }
+
+  Future<void> checkLoginStatus() async {
+    // Check the login status here
+    bool loggedIn = await db.checkLoggedIn();
+    setState(() {
+      isLoggedIn = loggedIn;
+    });
   }
 
   @override
@@ -47,148 +57,134 @@ class _HomePageState extends State<HomePage> {
     return value == 0
         ? WillPopScope(
             onWillPop: () async {
-      setState(() {
-        selectedIndex = 2;
-        pageController.animateToPage(selectedIndex,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.easeOutQuad);
-      });
-      return false; // Prevent the default back button behavior
-    },
+              setState(() {
+                selectedIndex = 1;
+                pageController.animateToPage(selectedIndex,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOutQuad);
+              });
+              return true;
+            },
             child: Scaffold(
-                body: PageView(
-                  controller: pageController,
-                  children: [
-                    Stack(
-                      children: [
-                        SafeArea(child: body()),
-                        TweenAnimationBuilder(
-                            tween: Tween<double>(begin: 0, end: value),
-                            duration: Duration(milliseconds: 275),
-                            curve: Curves.easeInOut,
-                            builder: (_, double val, __) {
-                              return (Transform(
-                                alignment: Alignment.center,
-                                transform: Matrix4.identity()
-                                  ..setEntry(3, 2, 0.001)
-                                  ..setEntry(0, 3, 200 * val)
-                                  ..setEntry(1, 3, 80 * val)
-                                  ..rotateY((pi / 10) * val)
-                                  ..scale(1 - val * 0.35),
-                                child: Center(
-                                  child: Stack(
-                                    children: [
-                                      innerbody(),
-                                      Positioned(
-                                        top: Get.height * 0.055,
-                                        left: Get.height * 0.015,
-                                        child: Builder(
-                                            builder: (BuildContext context) {
-                                          return value == 0
-                                              ? IconButton(
-                                                  icon: ImageIcon(
-                                                    AssetImage(
-                                                        'assets/icons/menu.png'),
-                                                    color: Colors.white,
-                                                    size: Get.height * 0.0352,
-                                                  ),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      value == 0
-                                                          ? value = 1
-                                                          : value = 0;
-                                                    });
-                                                  },
-                                                )
-                                              : IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      value == 1
-                                                          ? value = 0
-                                                          : value = 1;
-                                                    });
-                                                  },
-                                                  icon: Icon(Icons.close));
-                                        }),
-                                      )
-                                    ],
-                                  ),
+              body: PageView(
+                controller: pageController,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  PISB(),
+                  Stack(
+                    children: [
+                      SafeArea(child: body()),
+                      TweenAnimationBuilder(
+                          tween: Tween<double>(begin: 0, end: value),
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                          builder: (_, double val, __) {
+                            return (Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.identity()
+                                ..setEntry(3, 2, 0.001)
+                                ..setEntry(0, 3, 200 * val)
+                                ..setEntry(1, 3, 80 * val)
+                                ..rotateY((pi / 10) * val)
+                                ..scale(1 - val * 0.35),
+                              child: Center(
+                                child: Stack(
+                                  children: [
+                                    innerbody(),
+                                    Positioned(
+                                      top: Get.height * 0.055,
+                                      left: Get.height * 0.015,
+                                      child: Builder(
+                                          builder: (BuildContext context) {
+                                        return value == 0
+                                            ? IconButton(
+                                                icon: ImageIcon(
+                                                  AssetImage(
+                                                      'assets/icons/menu.png'),
+                                                  color: Colors.white,
+                                                  size: Get.height * 0.0352,
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    value == 0
+                                                        ? value = 1
+                                                        : value = 0;
+                                                  });
+                                                },
+                                              )
+                                            : IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    value == 1
+                                                        ? value = 0
+                                                        : value = 1;
+                                                  });
+                                                },
+                                                icon: Icon(Icons.close));
+                                      }),
+                                    )
+                                  ],
                                 ),
-                              ));
-                            }),
-                      ],
-                    ),
-                  ],
+                              ),
+                            ));
+                          }),
+                    ],
+                  ),
+                  PingPage(),
+                  AdminPage()
+                  // Placeholder for AdminPage()
+                  //         Container(),
+                ],
+              ),
+              bottomNavigationBar: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
                 ),
-                bottomNavigationBar: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(20),
                   ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                    child: WaterDropNavBar(
-                      backgroundColor: Color.fromRGBO(0, 7, 29, 1.0),
-                      waterDropColor: Color(0xFF024083),
-                      bottomPadding: 12.0,
-                      iconSize: 30,
-                      onItemSelected: (index) async {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                        pageController.animateToPage(selectedIndex,
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeOutQuad);
-                        switch (index) {
-                          case 0:
-                            // Handle the first item
-                            break;
-                          case 1:
-                            // Handle the second item
-                            break;
-                          case 2:
-                            break;
-                          case 3:
-                            Get.to(EventProducts());
-                            break;
-                          case 4:
-                            if (await db.checkLoggedIn()) {
-                              Get.to(() => AdminPage());
-                            } else {
-                              Get.to(() => LoginPage());
-                            }
-
-                            break;
-                          // Add cases for other items as needed
-                        }
-                      },
-                      selectedIndex: selectedIndex,
-                      barItems: [
-                        BarItem(
-                            filledIcon: Icons.account_box,
-                            outlinedIcon: Icons.account_box_outlined),
-                        // BarItem(
-                        //   filledIcon: Icons.calendar_today,
-                        //   outlinedIcon: Icons.calendar_today_outlined,
-                        // ),
-                        BarItem(
-                            filledIcon: Icons.account_box,
-                            outlinedIcon: Icons.account_box_outlined),
-                        BarItem(
-                            filledIcon: Icons.home_rounded,
-                            outlinedIcon: Icons.home_outlined),
-                        BarItem(
-                            filledIcon: Icons.info,
-                            outlinedIcon: Icons.info_outline_rounded),
-
-                        BarItem(
-                            filledIcon: Icons.account_box,
-                            outlinedIcon: Icons.account_box_outlined),
-                      ],
-                    ),
+                  child: WaterDropNavBar(
+                    backgroundColor: Color.fromRGBO(0, 7, 29, 1.0),
+                    waterDropColor: Color(0xFF024083),
+                    bottomPadding: 12.0,
+                    iconSize: 30,
+                    onItemSelected: (index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      pageController.animateToPage(selectedIndex,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeOutQuad);
+                      switch (index) {
+                        case 3:
+                          if (!isLoggedIn) {
+                            Get.to(() => LoginPage());
+                          } else {
+                            Get.to(() => AdminPage());
+                          }
+                          break;
+                      }
+                    },
+                    selectedIndex: selectedIndex,
+                    barItems: [
+                      BarItem(
+                          filledIcon: Icons.account_box,
+                          outlinedIcon: Icons.account_box_outlined),
+                      BarItem(
+                          filledIcon: Icons.home_rounded,
+                          outlinedIcon: Icons.home_outlined),
+                      BarItem(
+                          filledIcon: Icons.info,
+                          outlinedIcon: Icons.info_outline_rounded),
+                      BarItem(
+                          filledIcon: Icons.account_box,
+                          outlinedIcon: Icons.account_box_outlined),
+                    ],
                   ),
-                )),
+                ),
+              ),
+            ),
           )
         : Scaffold(
             body: PageView(
@@ -199,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                     SafeArea(child: body()),
                     TweenAnimationBuilder(
                         tween: Tween<double>(begin: 0, end: value),
-                        duration: Duration(milliseconds: 275),
+                        duration: Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
                         builder: (_, double val, __) {
                           return (Transform(
@@ -268,7 +264,7 @@ Widget body() {
   final screenWidth = Get.width;
   return Stack(
     children: [
-     Container(
+      Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/bgimg/5.png"),
@@ -286,7 +282,7 @@ Widget body() {
             children: [
               SizedBox(height: Get.height * 0.07),
               Text(
-                'Credenz',
+                'Credenz\' 24',
                 style: GoogleFonts.berkshireSwash(
                   color: Colors.white,
                   fontSize: Get.width * 0.09,
@@ -311,7 +307,7 @@ Widget body() {
                     color: Colors.white60,
                   )),
               SizedBox(
-                height: screenHeight * 0.015,
+                height: screenHeight * 0.025,
               ),
               Row(
                 children: [
@@ -336,7 +332,7 @@ Widget body() {
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.050,
+                height: screenHeight * 0.035,
               ),
               Row(
                 children: [
@@ -361,7 +357,7 @@ Widget body() {
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.04,
+                height: screenHeight * 0.035,
               ),
               Container(
                   width: screenWidth * 0.8,
@@ -429,7 +425,6 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(DevelopersPage()),
                     child: Text("Developers",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -556,7 +551,7 @@ Widget innerbody() {
           Hero(
             tag: 'event-name',
             child: Text(
-              'Credenz 24',
+              'Credenz\' 24',
               style: GoogleFonts.berkshireSwash(
                 color: Colors.white,
                 fontSize: screenWidth * 0.09,

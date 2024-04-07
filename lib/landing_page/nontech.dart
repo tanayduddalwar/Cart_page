@@ -20,8 +20,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
 
   @override
   void initState() {
-    _buildEventPages();
-
     super.initState();
   }
 
@@ -31,19 +29,21 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
     super.dispose();
   }
 
-  void _buildEventPages() {
+  void _buildEventPages(BuildContext context) {
     eventPages.clear();
     List<Event> displayedEvents = [];
     for (int i = 0; i < Event.events.length; i++) {
       Event currentEvent = Event.events[i];
-      if (!currentEvent.isTechnical && !displayedEvents.contains(currentEvent)) {
+      if (!currentEvent.isTechnical &&
+          !displayedEvents.contains(currentEvent)) {
         displayedEvents.add(currentEvent);
         if (eventPages.length % 2 == 0) {
           eventPages.add(
             CombinedEventCard(event: currentEvent),
           );
           if ((i) == 8 || i == 11) {
-            eventPages.add(SizedBox(height: 120));
+            eventPages.add(
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2));
           }
         } else {
           eventPages.add(
@@ -56,6 +56,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
 
   @override
   Widget build(BuildContext context) {
+    _buildEventPages(context);
     return Scaffold(
       backgroundColor: _containerColor,
       appBar: AppBar(
@@ -381,7 +382,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
     List<dynamic> content = [
       event.description,
       event.rules,
-      
       event.contact,
     ];
 
@@ -559,7 +559,7 @@ class _ArrowAnimationState extends State<ArrowAnimation>
   }
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {

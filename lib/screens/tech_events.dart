@@ -56,18 +56,19 @@ class _TechEventsPageState extends State<TechEventsPage> {
                     title: Text(
                       widget.isTechnical[index]['event_name'],
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                          color: Colors.white, fontWeight: FontWeight.bold,fontFamily: 'berky'),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Price: ₹${widget.isTechnical[index]['event_cost']}', // Fixed the syntax here
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontFamily: 'berky'),
+
                         ),
                         Text(
                           'Start: ${formattedStartDate}\nEnd: ${formattedEndDate}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontFamily: 'berky'),
                         ),
                       ],
                     ),

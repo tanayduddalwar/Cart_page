@@ -20,7 +20,7 @@ import '../controllers/cart_controller.dart';
 import '../models/event_model.dart';
 
 class EventProducts extends StatelessWidget {
-    final CartController controller = Get.find();
+  final CartController controller = Get.find();
 
   EventProducts({Key? key}) : super(key: key);
 
@@ -100,6 +100,8 @@ class EventProducts extends StatelessWidget {
                               foregroundColor: Colors.white,
                               iconColor: Colors.red,
                               label: 'Payment',
+                              labelStyle:
+                                  TextStyle(fontFamily: 'berky', fontSize: 25),
                               shadow: const BoxShadow(color: Colors.red),
                               action: () {
                                 Get.to(() => Payment());
@@ -123,7 +125,6 @@ class EventProducts extends StatelessWidget {
     });
   }
 }
-
 
 class EventProductCard extends StatelessWidget {
   //final player = AudioPlayer();
@@ -212,17 +213,16 @@ class EventProductCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                     IconButton(
-  color: Colors.white,
-  onPressed: () async {
-    controller.removeProduct(context, eventobj);
-    if (controller.events.length == 0) {
-      Get.off(() => EmptyCart());
-    }
-  },
-  icon: Icon(Icons.remove_circle_outline_rounded),
-)
-
+                      IconButton(
+                        color: Colors.white,
+                        onPressed: () async {
+                          controller.removeProduct(context, eventobj);
+                          if (controller.events.length == 0) {
+                            Get.off(() => EmptyCart());
+                          }
+                        },
+                        icon: Icon(Icons.remove_circle_outline_rounded),
+                      )
                     ],
                   ),
                 ),

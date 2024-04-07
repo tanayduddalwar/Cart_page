@@ -1,4 +1,3 @@
-
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/login/services/networking.dart';
@@ -42,16 +41,21 @@ class Payment extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                         IconButton(
-        onPressed: () {
-          Get.back();
-        }, icon: Icon(Icons.arrow_back)),
-                          Text(
-                            "PAYMENTS",
-                            style: TextStyle(
-                              fontFamily: "berky",
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
+                          IconButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: Icon(Icons.arrow_back)),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.22),
+                            child: Text(
+                              "PAYMENTS",
+                              style: TextStyle(
+                                fontFamily: "berky",
+                                fontSize: 25,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
@@ -62,7 +66,7 @@ class Payment extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "berky",
                           fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -72,18 +76,12 @@ class Payment extends StatelessWidget {
                     "Amount to be paid: ₹${controller.total}",
                     style: TextStyle(
                       fontFamily: "berky",
+                      color: Colors.white,
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    "UPI Payment QRCode",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
-                    ),
-                  ),
                   UPIPaymentQRCode(
                     upiDetails: UPIDetails(
                       upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
@@ -91,13 +89,20 @@ class Payment extends StatelessWidget {
                       amount: totalAmount,
                       transactionNote: "IEEE",
                     ),
+                    eyeStyle: QrEyeStyle(
+                        color: Colors.white, eyeShape: QrEyeShape.square),
                     size: 180,
                     upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                   ),
-                  Text(
-                    "Scan QR to Pay",
-                    style:
-                        TextStyle(color: Colors.grey[600], letterSpacing: 1.2),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Scan QR to Pay",
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 5),
                   Row(
@@ -105,8 +110,7 @@ class Payment extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          // Add your onPressed logic here
-                          print('Button Pressed');
+                          return null;
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
@@ -142,7 +146,7 @@ class Payment extends StatelessWidget {
                               cursorColor: Colors.red,
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(

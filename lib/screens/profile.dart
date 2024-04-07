@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cart_page/about/about.dart';
 import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/user_model.dart';
@@ -60,97 +59,95 @@ class _AdminPageState extends State<AdminPage> {
       length: 2,
       child: Scaffold(
         body: FutureBuilder(
-            future: loaddata(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
-                );
-              } else {
-                return Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/bgimg/11.png"),
-                      fit: BoxFit.cover,
-                    ),
+          future: loaddata(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('${snapshot.error}'),
+              );
+            } else {
+              return Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/bgimg/11.png"),
+                    fit: BoxFit.cover,
                   ),
-                  child: Column(
-                    children: [
-                      //SizedBox(height: 40),
-                      AppBar(
-                        centerTitle: true,
-                        title: Text(
-                          "Profile",
-                          style: TextStyle(
+                ),
+                child: Column(
+                  children: [
+                    //SizedBox(height: 40),
+                    AppBar(
+                      centerTitle: true,
+                      title: Text(
+                        "Profile",
+                        style: TextStyle(
                             fontFamily: "berky",
                             fontSize: 30,
                             color: Colors.white
-                           // fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      // TextLiquidFill(
+                      //   text: 'PROFILE',
+                      //   waveColor: Colors.blueAccent,
+                      //   boxBackgroundColor:
+                      //       const Color.fromARGB(255, 48, 197, 230),
+                      //   textStyle: TextStyle(
+                      //     fontFamily: "Ulove",
+                      //     fontSize: 30.0,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      //   boxHeight: 300.0,
+                      // ),
+
+                      //   " PROFILE ",
+                      //   style: TextStyle(
+                      //     fontSize: 25,
+                      //     fontWeight: FontWeight.bold,
+                      //     fontFamily: "Ulove",
+                      //   ),
+                      // ),
+                      backgroundColor: Colors.transparent,
+                      actions: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: PopupMenuButton(
+                            iconColor: Colors.white,
+                            shadowColor: Colors.white,
+                            color: Colors.white,
+                            itemBuilder: (context) => [
+                              PopupMenuItem(
+                                child: Text("PING"),
+                                value: "PING",
+                              ),
+                              PopupMenuItem(
+                                child: Text("IEEE"),
+                                value: "IEEE",
+                              ),
+                              PopupMenuItem(
+                                child: Text("PRIVACY POLICY"),
+                                value: "PRIVACY POLICY",
+                              ),
+                              PopupMenuItem(
+                                child: Text("NTH"),
+                                value: "NTH",
+                              ),
+                            ],
+                            onSelected: (value) {
+                              if (value == "IEEE") {}
+                              if (value == "PRIVACY POLICY") {
+                                Get.to(PrivacyPolicy());
+                              }
+                            },
                           ),
                         ),
-                        // TextLiquidFill(
-                        //   text: 'PROFILE',
-                        //   waveColor: Colors.blueAccent,
-                        //   boxBackgroundColor:
-                        //       const Color.fromARGB(255, 48, 197, 230),
-                        //   textStyle: TextStyle(
-                        //     fontFamily: "Ulove",
-                        //     fontSize: 30.0,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        //   boxHeight: 300.0,
-                        // ),
-
-                        //   " PROFILE ",
-                        //   style: TextStyle(
-                        //     fontSize: 25,
-                        //     fontWeight: FontWeight.bold,
-                        //     fontFamily: "Ulove",
-                        //   ),
-                        // ),
-                        backgroundColor: Colors.transparent,
-                        actions: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: PopupMenuButton(
-                              iconColor: Colors.white,
-
-                              shadowColor: Colors.white,
-                              color: Colors.white,
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: Text("PING"),
-                                  value: "PING",
-                                ),
-                                PopupMenuItem(
-                                  child: Text("IEEE"),
-                                  value: "IEEE",
-                                ),
-                                PopupMenuItem(
-                                  child: Text("PRIVACY POLICY"),
-                                  value: "PRIVACY POLICY",
-                                ),
-                                PopupMenuItem(
-                                  child: Text("NTH"),
-                                  value: "NTH",
-                                ),
-                              ],
-                              onSelected: (value) {
-                                if (value == "IEEE") {}
-                                if (value == "PRIVACY POLICY") {
-                                  Get.to(PrivacyPolicy());
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      
+                      ],
                     ),
                     SizedBox(height: 15),
                     Row(
@@ -163,8 +160,8 @@ class _AdminPageState extends State<AdminPage> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.tealAccent,
-                              border:
-                                  Border.all(color: Colors.yellowAccent, width: 2),
+                              border: Border.all(
+                                  color: Colors.yellowAccent, width: 2),
                             ),
                             child: CircleAvatar(
                               radius: 45,
@@ -175,16 +172,26 @@ class _AdminPageState extends State<AdminPage> {
                         SizedBox(
                           width: 25,
                         ),
-                        Icon(Icons.person_pin_circle_sharp, size: 50,color: Colors.white,),
+                        Icon(
+                          Icons.person_pin_circle_sharp,
+                          size: 50,
+                          color: Colors.white,
+                        ),
                         Column(
                           children: [
                             Text(
                               "${profiledata['full_name']}",
-                              style: TextStyle(fontSize: 18, fontFamily: "berky",color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "berky",
+                                  color: Colors.white),
                             ),
                             Text(
                               "${profiledata['username']}",
-                              style: TextStyle(fontSize: 18, fontFamily: "berky",color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "berky",
+                                  color: Colors.white),
                             ),
                           ],
                         ),
@@ -250,7 +257,6 @@ class _AdminPageState extends State<AdminPage> {
                       ),
                       tabs: [
                         Tab(
-
                           iconMargin: EdgeInsets.all(50),
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -261,8 +267,8 @@ class _AdminPageState extends State<AdminPage> {
                             ),
                             child: Text(
                               "Tech",
-                              style: TextStyle(
-                                  fontSize: 19, fontFamily: "berky"),
+                              style:
+                                  TextStyle(fontSize: 19, fontFamily: "berky"),
                             ),
                           ),
                         ),
@@ -276,14 +282,15 @@ class _AdminPageState extends State<AdminPage> {
                             ),
                             child: Text(
                               "Non Tech",
-                              style: TextStyle(
-                                  fontSize: 19, fontFamily: "berky"),
+                              style:
+                                  TextStyle(fontSize: 19, fontFamily: "berky"),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 5), // Add some space between tabs and content
+                    SizedBox(
+                        height: 5), // Add some space between tabs and content
                     Expanded(
                       child: TabBarView(
                         children: [

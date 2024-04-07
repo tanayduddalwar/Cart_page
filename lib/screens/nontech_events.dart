@@ -21,15 +21,20 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/bgimg/11.png'), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage('assets/bgimg/11.png'), fit: BoxFit.cover),
         ),
         child: ListView.builder(
           itemCount: widget.isNonTechnical.length,
           itemBuilder: (context, index) {
-            final startDate = DateTime.parse(widget.isNonTechnical[index]['event_start']);
-            final endDate = DateTime.parse(widget.isNonTechnical[index]['event_end']);
-            final formattedStartDate = DateFormat.yMMMMd().add_jm().format(startDate);
-            final formattedEndDate = DateFormat.yMMMMd().add_jm().format(endDate);
+            final startDate =
+                DateTime.parse(widget.isNonTechnical[index]['event_start']);
+            final endDate =
+                DateTime.parse(widget.isNonTechnical[index]['event_end']);
+            final formattedStartDate =
+                DateFormat.yMMMMd().add_jm().format(startDate);
+            final formattedEndDate =
+                DateFormat.yMMMMd().add_jm().format(endDate);
 
             return Card(
               margin: EdgeInsets.all(8.0),
@@ -45,22 +50,26 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
                 child: ListTile(
                   title: Text(
                     widget.isNonTechnical[index]['event_name'],
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'berky'),
                   ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Price: ₹${widget.isNonTechnical[index]['event_cost']}',
-                        style: TextStyle(color: Colors.white),
+                        style:
+                            TextStyle(color: Colors.white, fontFamily: 'berky'),
                       ),
                       Text(
                         'Start: ${formattedStartDate}\nEnd: ${formattedEndDate}',
-                        style: TextStyle(color: Colors.white),
+                        style:
+                            TextStyle(color: Colors.white, fontFamily: 'berky'),
                       ),
                     ],
                   ),
-                 
                 ),
               ),
             );

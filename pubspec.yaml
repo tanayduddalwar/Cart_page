@@ -62,6 +62,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   super_banners: ^0.0.1
   flutter_animated_button: ^2.0.3
+  water_drop_nav_bar: ^2.2.1
 
   
 
@@ -74,13 +75,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  water_drop_nav_bar: ^2.2.1
   awesome_snackbar_content: ^0.1.2
 
-flutter_launcher_icons:
-      android: "launcher_icon"
-      ios: true
-      image_path: "assets/logo2 .jpeg"
+# flutter_launcher_icons:
+#       android: "launcher_icon"
+#       ios: true
+#       image_path: "assets/logo2.jpeg"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

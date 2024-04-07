@@ -4,7 +4,6 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'my_flutter_app_icons.dart';
 
 class ui extends StatelessWidget {
   final devimages = <String>[

@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
       bool loggedIn = await dt.login(username: username, password: password);
       print(loggedIn.toString());
       if (loggedIn) {
-        Get.offAll(() => HomePage()); 
+        Get.offAll(() => HomePage());
         // Navigate to next screen upon successful login
         // ...
       } else {
@@ -176,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Positioned.fill(
               child: Image.asset(
-                'assets/3.png',
+                'assets/bgimg/3.png',
                 color: Color.fromRGBO(255, 255, 255, 0.88),
                 colorBlendMode: BlendMode.modulate,
                 fit: BoxFit.cover,
@@ -195,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           'WELCOME',
                           style: TextStyle(
-                            fontFamily: 'ulove',
+                            fontFamily: 'berky',
                             fontSize: size.width * 0.1,
                             color: Colors.white,
                           ),
@@ -264,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: size.height * 0.02),
+                      SizedBox(height: size.height * 0.00),
                       Padding(
                         padding: EdgeInsets.all(size.width * 0.06),
                         child: GlassmorphicContainer(
@@ -343,21 +343,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(height: size.height * 0.009),
-                      Container(
-                        width: size.width * 0.8,
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () => _forgetpw(),
-                          child: Text(
-                            'Forgot password?',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: size.width * 0.045,
-                              fontFamily: 'berky',
-                            ),
-                          ),
-                        ),
-                      ),
                       SizedBox(height: size.height * 0.025),
                       CustomFormButton(
                         innerText: 'Login',

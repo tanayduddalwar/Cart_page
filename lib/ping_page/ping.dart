@@ -1,4 +1,3 @@
-
 import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
@@ -19,7 +18,7 @@ class _PingPageState extends State<PingPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final websteUri = Uri.parse('https://www.google.com/');
+    final websteUri = Uri.parse('https://issuu.com/p.i.n.g./docs/2-5');
 
     return SafeArea(
       child: Scaffold(
@@ -33,18 +32,18 @@ class _PingPageState extends State<PingPage> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Padding(
-            padding: EdgeInsets.only(left: screenWidth * 0.14,top: 20),
+            padding: EdgeInsets.only(left: screenWidth * 0.14, top: 20),
             child: SizedBox(
               width: 200,
-               child: Text(
-                 "P.I.N.G",
-                 style: TextStyle(
-                   fontFamily: "berky",
-                   fontSize: 30,
-                   color: Colors.white,
-                   fontWeight: FontWeight.bold,
-                 ),
-               ),
+              child: Text(
+                "P.I.N.G",
+                style: TextStyle(
+                  fontFamily: "berky",
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               // TextLiquidFill(
               //   text: 'P.I.N.G',
               //   waveColor: Colors.blueAccent,
@@ -79,7 +78,7 @@ class _PingPageState extends State<PingPage> {
                       color: const Color(0xFFE9E9E9),
                       child: Center(
                         child: Image.asset(
-                          'assets/images/img.jpg',
+                          'assets/img.jpg',
                           height: screenHeight * 0.66,
                           width: screenWidth * 1,
                           fit: BoxFit.fill,
@@ -109,7 +108,7 @@ class _PingPageState extends State<PingPage> {
                         child: const Center(
                           child: Text(
                             'P.I.N.G (PICT IEEE Newsletter Group is the official technical magazine of PICT published'
-                            'twise a year .PING server as a platform for individuals to portray their technical ingenuity.It highlight '
+                            'twice a year .PING server as a platform for individuals to portray their technical ingenuity.It highlight '
                             'article outcutting edge technologies form technocrats all around the global including student industrialists'
                             'and faculty members .It also features interviews of distinguished personalities in various technical domain.'
                             'P.I.N.G aims at keeping its readers up to data on recent developments in technology and help them extrapolate'
@@ -124,27 +123,6 @@ class _PingPageState extends State<PingPage> {
                       ),
                       const SizedBox(
                         height: 25,
-                      ),
-                      AnimatedButton(
-                        onPress: () {
-                          launchUrl(websteUri, mode: LaunchMode.inAppWebView);
-                        },
-                        height: 70,
-                        width: 200,
-                        text: 'Website',
-                        gradient:
-                            LinearGradient(colors: [Colors.red, Colors.orange]),
-                        selectedGradientColor: LinearGradient(
-                            colors: [Colors.pinkAccent, Colors.purpleAccent]),
-                        isReverse: true,
-                        selectedTextColor: Colors.black,
-                        transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-                        textStyle: const TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        borderColor: Colors.white,
-                        borderWidth: 1,
                       ),
                       const SizedBox(
                         height: 50,

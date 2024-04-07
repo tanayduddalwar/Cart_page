@@ -29,7 +29,7 @@ class CustomFormButton extends StatelessWidget {
         child: Text(
           innerText,
           style: const TextStyle(
-              color: Colors.white, fontFamily: 'ulove', fontSize: 26),
+              color: Colors.white, fontFamily: 'berky', fontSize: 26),
         ),
       ),
     );

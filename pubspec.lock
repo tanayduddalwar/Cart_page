@@ -851,7 +851,7 @@ packages:
     source: hosted
     version: "13.0.0"
   water_drop_nav_bar:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: water_drop_nav_bar
       sha256: "856c4f9ea013066b3f703f068e094701d484423b7b5869adecec4fbcaf7047f1"
