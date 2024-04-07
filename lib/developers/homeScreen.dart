@@ -2,7 +2,7 @@
 import 'package:cart_page/developers/interface.dart';
 import 'package:flutter/material.dart';
 
-import 'package:random_text_reveal/random_text_reveal.dart';
+
 
 class DevelopersPage extends StatefulWidget {
   const DevelopersPage({Key? key}) : super(key: key);

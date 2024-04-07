@@ -11,7 +11,6 @@ import 'package:cart_page/landing_page/tech.dart';
 import 'package:cart_page/login/components/login_page.dart';
 import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/ping_page/ping.dart';
-import 'package:cart_page/screens/aboutus.dart';
 import 'package:cart_page/screens/privacy_content.dart';
 import 'package:cart_page/screens/profile.dart';
 import 'package:cart_page/widgets/cart_products.dart';

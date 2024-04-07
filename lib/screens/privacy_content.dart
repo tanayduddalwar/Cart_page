@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_text_reveal/random_text_reveal.dart';
+
 
 class PrivacyPolicy extends StatelessWidget {
   PrivacyPolicy({super.key});
@@ -42,10 +42,10 @@ class PrivacyPolicy extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           color: Colors.white,
         ),
-        title: RandomTextReveal(
-          text: 'PRIVACY POLICY',
+        title:Text(
+           'PRIVACY POLICY',
           style: TextStyle(
-            fontFamily: 'Mars Bold',
+            fontFamily: 'berky',
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: fSize - 5.0,
@@ -205,7 +205,7 @@ class PrivacyPolicy extends StatelessWidget {
                       'OPEN TERMS AND CONDITONS',
                       style: TextStyle(
                         fontSize: fSize - 4.0,
-                        fontFamily: 'OxaniumRegular',
+                        fontFamily: 'berky',
                         color: Colors.white,
                       ),
                     ),

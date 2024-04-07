@@ -1,11 +1,10 @@
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
 import 'package:cart_page/eventpage/swipeable_content.dart';
-import 'package:cart_page/screens/aboutus.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import '../controllers/cart_controller.dart';
 import '../models/event_model.dart';
@@ -21,12 +20,7 @@ class CatelogProducts extends StatelessWidget {
           itemCount: Event.events.length,
           itemBuilder: (BuildContext context, int index) {
             return CatelogProductCard(index: index);
-            ElevatedButton(
-              onPressed: () {
-                Get.to(AboutUs());
-              },
-              child: Text("About Us"),
-            );
+
           },
         ),
       ),
@@ -41,7 +35,7 @@ class CatelogProducts extends StatelessWidget {
 }
 
 class CatelogProductCard extends StatelessWidget {
-  final player = AudioPlayer();
+  //final player = AudioPlayer();
   final CartController cartController = Get.put(CartController());
   final int index;
 
@@ -122,10 +116,7 @@ class CatelogProductCard extends StatelessWidget {
                         height: 50,
                         width: 110,
                         animatedOn: AnimatedOn.onHover,
-                        onPress: () {
-                          player.play(AssetSource(
-                              "waves-149581-[AudioTrimmer.com].mp3"));
-                        },
+                        onPress: () {},
                         text: 'ADD',
                         isReverse: true,
                         selectedTextColor: Colors.white70,

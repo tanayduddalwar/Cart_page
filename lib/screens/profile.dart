@@ -1,8 +1,8 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+
 import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/user_model.dart';
 import 'package:cart_page/screens/privacy_content.dart';
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
@@ -123,23 +123,23 @@ class _AdminPageState extends State<AdminPage> {
                         children: [
                           SizedBox(width: 20),
                           InkWell(
-                            child: CircularProfileAvatar(
-                              '',
-                              radius: 50,
-                              backgroundColor: Colors.tealAccent,
-                              borderWidth: 6,
-                              initialsText: Text(
-                                "Tanay",
-                                style: TextStyle(
-                                    fontFamily: "Bunaken", fontSize: 25),
-                              ),
-                              borderColor: Colors.yellowAccent,
-                              elevation: 30.0,
-                              foregroundColor: Colors.brown.withOpacity(0.5),
-                              cacheImage: true,
-                              imageFit: BoxFit.cover,
-                              showInitialTextAbovePicture: false,
-                            ),
+                            // child: CircularProfileAvatar(
+                            //   '',
+                            //   radius: 50,
+                            //   backgroundColor: Colors.tealAccent,
+                            //   borderWidth: 6,
+                            //   initialsText: Text(
+                            //     "Tanay",
+                            //     style: TextStyle(
+                            //         fontFamily: "Bunaken", fontSize: 25),
+                            //   ),
+                            //   borderColor: Colors.yellowAccent,
+                            //   elevation: 30.0,
+                            //   foregroundColor: Colors.brown.withOpacity(0.5),
+                            //   cacheImage: true,
+                            //   imageFit: BoxFit.cover,
+                            //   showInitialTextAbovePicture: false,
+                            // ),
                           ),
                           SizedBox(
                             width: 25,

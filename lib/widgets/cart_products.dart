@@ -1,31 +1,26 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:cart_page/eventpage/specific_event%20(1).dart';
 import 'package:cart_page/eventpage/swipeable_content.dart';
 import 'package:cart_page/screens/about.dart';
-import 'package:cart_page/screens/aboutus.dart';
 import 'package:cart_page/screens/payment.dart';
 import 'package:cart_page/screens/profile.dart';
 import 'package:cart_page/widgets/cart_total.dart';
 import 'package:cart_page/widgets/empty_cart.dart';
 import 'package:cart_page/widgets/event_product.dart';
-import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
+
 import 'package:get/get.dart';
-import 'package:simple_animated_button/elevated_layer_button.dart';
+
 import 'package:super_banners/super_banners.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sliding_widget/sliding_widget.dart';
 import 'package:badges/badges.dart' as badges;
-
 import '../controllers/cart_controller.dart';
 import '../models/event_model.dart';
 
 class EventProducts extends StatelessWidget {
-  final player = AudioPlayer();
-  final CartController controller = Get.find();
+    final CartController controller = Get.find();
 
   EventProducts({Key? key}) : super(key: key);
 
@@ -182,7 +177,7 @@ class EventProducts extends StatelessWidget {
 }
 
 class EventProductCard extends StatelessWidget {
-  final player = AudioPlayer();
+  //final player = AudioPlayer();
   final CartController controller;
   final Event eventobj;
   final int index;
@@ -271,7 +266,7 @@ class EventProductCard extends StatelessWidget {
                       IconButton(
                         color: Colors.white,
                         onPressed: () async {
-                          player.play(AssetSource("water-drop-85731.mp3"));
+                          //player.play(AssetSource("water-drop-85731.mp3"));
                           controller.removeProduct(context, eventobj);
                         },
                         icon: Icon(Icons.remove_circle_outline_rounded),
