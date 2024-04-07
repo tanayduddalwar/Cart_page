@@ -1,4 +1,4 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+
 import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';

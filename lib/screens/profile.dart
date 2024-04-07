@@ -4,7 +4,7 @@ import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/user_model.dart';
 import 'package:cart_page/ping_page/ping.dart';
 import 'package:cart_page/screens/privacy_content.dart';
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cart_page/controllers/cart_controller.dart';

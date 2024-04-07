@@ -1,10 +1,8 @@
-
 import 'package:cart_page/Buzzer/controllers/BuzzerController.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class BuzzerController extends GetxController {
   final teamcontroller = TextEditingController();
@@ -168,8 +166,19 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //extendBody: true,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("Quiz Showdown",style: TextStyle(fontFamily: "berky"),),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          "Quiz Showdown",
+          style: TextStyle(
+            fontFamily: "berky",
+            color: Colors.white,
+            fontSize: 25,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -179,137 +188,185 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            Text(
-              "Team : ${buzzerController.teamcontroller.text}",
-              style: const TextStyle(fontSize: 22,fontFamily: "berky"),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                CircularCountDownTimer(
-                  controller: _controller,
-                  initialDuration: 30,
-                  autoStart: false,
-                  width: MediaQuery.of(context).size.height * 0.1,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  duration: 30,
-                  fillColor: Colors.black,
-                  ringColor: Colors.grey,
-                  onComplete: () async {
-                    // calculateTimeDifferenceForOtherTeams(
-                    //     buzzerController.teamcontroller.text,
-                    //     questionController.quesId.value);
-                  },
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.purple),
-                  ),
-                  onPressed: () {
-                    db
-                        .collection(
-                            "question ${questionController.quesId.value}")
-                        .add(sendData(false))
-                        .then((DocumentReference ref) => print(ref.id));
-                    _controller.restart();
-                  },
-                  child: const Text(
-                    "Start",
-                    style: TextStyle(color: Colors.white,fontSize: 25,fontFamily: "berky"),
-                  ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.purple),
-                  ),
-                  onPressed: () {
-                    _controller.reset();
-                  },
-                  child: const Text(
-                    "Reset",
-                    style: TextStyle(color: Colors.white,fontFamily: "berky"),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            ElevatedButton(
-              onPressed: () {
-                db
-                    .collection("question ${questionController.quesId.value}")
-                    .add(sendData(true))
-                    .then((DocumentReference ref) => print(ref.id));
-                _subscribeToBuzzerStream();
-              },
-              style: ElevatedButton.styleFrom(
-                shape: const CircleBorder(),
-                padding: const EdgeInsets.all(80),
-                backgroundColor: Colors.red,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            opacity: 0.7,
+            fit: BoxFit.cover,
+            image: AssetImage('assets/bgimg/13.png'),
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.13,
               ),
-              child: const Text(
-                'BUZZER',
+              Text(
+                "Team : ${buzzerController.teamcontroller.text}",
+                style: const TextStyle(fontSize: 22, fontFamily: "berky"),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.003),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CircularCountDownTimer(
+                    controller: _controller,
+                    initialDuration: 30,
+                    autoStart: false,
+                    width: MediaQuery.of(context).size.height * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    duration: 30,
+                    fillColor: Colors.black,
+                    ringColor: Colors.grey,
+                    onComplete: () async {
+                      // calculateTimeDifferenceForOtherTeams(
+                      //     buzzerController.teamcontroller.text,
+                      //     questionController.quesId.value);
+                    },
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.purple),
+                    ),
+                    onPressed: () {
+                      db
+                          .collection(
+                              "question ${questionController.quesId.value}")
+                          .add(sendData(false))
+                          .then((DocumentReference ref) => print(ref.id));
+                      _controller.restart();
+                    },
+                    child: const Text(
+                      "Start",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: "berky"),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.purple),
+                    ),
+                    onPressed: () {
+                      _controller.reset();
+                    },
+                    child: const Text(
+                      "Reset",
+                      style:
+                          TextStyle(color: Colors.white, fontFamily: "berky"),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+              ElevatedButton(
+                onPressed: () {
+                  db
+                      .collection("question ${questionController.quesId.value}")
+                      .add(sendData(true))
+                      .then((DocumentReference ref) => print(ref.id));
+                  _subscribeToBuzzerStream();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(80),
+                  backgroundColor: Colors.red,
+                ),
+                child: const Text(
+                  'BUZZER',
+                  style: TextStyle(
+                    fontFamily: "berky",
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.004,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "Question :  ${questionController.quesId.value}",
+                    style: const TextStyle(fontSize: 20, fontFamily: "berky"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await deleteDocumentsByTeamName(
+                          buzzerController.teamcontroller.text);
+                      setState(() {
+                        questionController.quesId.value++;
+                      });
+                      results.clear();
+                    },
+                    child: const Text(
+                      "Next Question",
+                      style: TextStyle(fontFamily: "berky"),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Results : ",
                 style: TextStyle(
-                  fontFamily: "berky",
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'berky',
+                  color: Colors.black,
                 ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Question :  ${questionController.quesId.value}",
-                  style: const TextStyle(fontSize: 20,fontFamily: "berky"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await deleteDocumentsByTeamName(
-                        buzzerController.teamcontroller.text);
-                    setState(() {
-                      questionController.quesId.value++;
-                    });
-                    results.clear();
-                  },
-                  child: const Text("Next Question",style: TextStyle(fontFamily: "berky"),),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "Results : ",
-              style: TextStyle(fontSize: 15),
-            ),
-            const SizedBox(height: 10),
-            DataTable(
-              columns: [
-                const DataColumn(label: Text('Team Name',style: TextStyle(fontFamily: "berky"),)),
-                const DataColumn(label: Text('Time Difference',style: TextStyle(fontFamily: "berky"),)),
-              ],
-              rows: results.map((result) {
-                return DataRow(
-                  cells: [
-                    DataCell(Text(result['teamName'])),
-                    DataCell(Text('${result['timeDifference'] / 1000} s')),
-                  ],
-                );
-              }).toList(),
-            ),
-          ],
+              const SizedBox(height: 5),
+              DataTable(
+                columns: [
+                  const DataColumn(
+                      label: Text(
+                    'Team Name',
+                    style: TextStyle(
+                      fontFamily: "berky",
+                      fontSize: 17,
+                      color: Colors.black,
+                    ),
+                  )),
+                  const DataColumn(
+                      label: Text(
+                    'Time Difference',
+                    style: TextStyle(
+                      fontFamily: "berky",
+                      fontSize: 17,
+                      color: Colors.black,
+                    ),
+                  )),
+                ],
+                rows: results.map((result) {
+                  return DataRow(
+                    cells: [
+                      DataCell(
+                        Text(
+                          result['teamName'],
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      DataCell(
+                        Text(
+                          '${result['timeDifference'] / 1000} s',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );

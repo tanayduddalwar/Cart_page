@@ -7,13 +7,8 @@ import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-
-// import 'package:credenz/widgets/circularfab.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart'; // Assuming you have an Event model
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
 import 'package:get/get.dart';
-
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
