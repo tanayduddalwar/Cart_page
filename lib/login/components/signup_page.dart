@@ -297,6 +297,21 @@ class _SignupPageState extends State<SignupPage> {
     print(signedin);
     if (signedin) {
       Get.offAll(() => HomePage());
+    } else {
+      FocusScope.of(context).unfocus();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Check Credentails again',
+          // titleFamily: "Walter",
+          message: 'Password should be of minimum length 6',
+          // messageFontSize: 25,
+          // messageFamily: "Walter",
+          contentType: ContentType.failure,
+        ),
+      ));
     }
   }
 

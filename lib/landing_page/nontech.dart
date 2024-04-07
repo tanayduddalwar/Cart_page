@@ -16,6 +16,7 @@ class NonTechEventsPage extends StatefulWidget {
 
 class _NonTechEventsPageState extends State<NonTechEventsPage> {
   final PageController _pageController = PageController();
+  final CartController cartController = Get.put(CartController());
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
 

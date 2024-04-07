@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
-  final CartController controller = Get.find();
+  final CartController controller = Get.put(CartController());
   final Event event;
 
   SpecificPage({Key? key, required this.event}) : super(key: key);

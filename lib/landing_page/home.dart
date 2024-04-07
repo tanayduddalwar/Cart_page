@@ -4,6 +4,7 @@ import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:cart_page/Sponsers/sponsers.dart';
 import 'package:cart_page/about/about.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
+import 'package:cart_page/developers/homeScreen.dart';
 import 'package:cart_page/landing_page/nontech.dart';
 import 'package:cart_page/landing_page/splash_screen.dart';
 import 'package:cart_page/landing_page/tech.dart';
@@ -26,7 +27,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Color navigationBarColor = Colors.white;
-  int selectedIndex = 1;
+  int selectedIndex = 2;
   late PageController pageController;
   database db = database();
   double value = 0;
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         ? WillPopScope(
             onWillPop: () async {
               setState(() {
-                selectedIndex = 1;
+                selectedIndex = 2;
                 pageController.animateToPage(selectedIndex,
                     duration: const Duration(milliseconds: 400),
                     curve: Curves.easeOutQuad);
@@ -71,6 +72,7 @@ class _HomePageState extends State<HomePage> {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   PISB(),
+                  PingPage(),
                   Stack(
                     children: [
                       SafeArea(child: body()),
@@ -130,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                           }),
                     ],
                   ),
-                  PingPage(),
+                  DevelopersPage(),
                   //   AdminPage()
                   // Placeholder for AdminPage()
                 ],
@@ -156,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeOutQuad);
                       switch (index) {
-                        case 3:
+                        case 4:
                           if (!isLoggedIn) {
                             Get.to(() => LoginPage());
                           } else {
@@ -168,16 +170,15 @@ class _HomePageState extends State<HomePage> {
                     selectedIndex: selectedIndex,
                     barItems: [
                       BarItem(
-                          filledIcon: Icons.account_box,
-                          outlinedIcon: Icons.account_box_outlined),
+                          filledIcon: Icons.bookmark,
+                          outlinedIcon: Icons.bookmark),
+                      BarItem(filledIcon: Icons.info, outlinedIcon: Icons.info),
                       BarItem(
-                          filledIcon: Icons.home_rounded,
+                          filledIcon: Icons.home_outlined,
                           outlinedIcon: Icons.home_outlined),
+                      BarItem(filledIcon: Icons.code, outlinedIcon: Icons.code),
                       BarItem(
-                          filledIcon: Icons.info,
-                          outlinedIcon: Icons.info_outline_rounded),
-                      BarItem(
-                          filledIcon: Icons.account_box,
+                          filledIcon: Icons.account_box_outlined,
                           outlinedIcon: Icons.account_box_outlined),
                     ],
                   ),
@@ -401,7 +402,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.offAll(Login()),
+                    onTap: () => Get.to(Login()),
                     child: Text("Quiz",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -424,6 +425,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
+                    onTap: () => Get.to(() => DevelopersPage()),
                     child: Text("Developers",
                         style: TextStyle(
                             fontSize: screenHeight * 0.02,
@@ -572,7 +574,7 @@ Widget innerbody() {
                   color1: Color.fromRGBO(1, 93, 180, 0.5),
                   color2: Color.fromRGBO(1, 37, 84, 1),
                   onTap: () {
-                    Get.to(TechEventsPage());
+                    Get.to(() => TechEventsPage());
                   },
                 ),
               ),

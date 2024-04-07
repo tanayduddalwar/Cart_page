@@ -86,7 +86,7 @@ class CartController extends GetxController {
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       } else {
-        int eventId = eventobj.id; // Accessing the id property of eventobj
+        int eventId = eventobj.id; 
         EventIndex.remove(eventId);
         if (eventobj.isTechnical) {
           _techEvents.remove(eventobj);
@@ -99,7 +99,6 @@ class CartController extends GetxController {
               .push(MaterialPageRoute(builder: (context) => EmptyCart()));
         }
 
-        // Determine the type of event and remove it from the appropriate dictionary
 
         final snackBar = SnackBar(
           elevation: 5,

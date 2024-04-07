@@ -21,7 +21,7 @@ class SwipeableContent extends StatefulWidget {
 }
 
 class _SwipeableContentState extends State<SwipeableContent> {
-  final CartController controller = Get.find();
+  final CartController controller = Get.put(CartController());
   late PageController _pageController;
   int currentIndex = 0;
 
@@ -58,17 +58,14 @@ class _SwipeableContentState extends State<SwipeableContent> {
     Map<String, String> structure = event.structure;
     List<dynamic> contactList = event.contact;
 
-    // Format rules map
     String formattedRules = rules.entries
         .map((entry) => "${entry.key}: ${entry.value}\n ")
         .join('\n');
 
-    // Format structure map
     String formattedStructure = structure.entries
         .map((entry) => "${entry.key}: ${entry.value}\n")
         .join('\n');
 
-    // Format contact list
     String formattedContacts = contactList
         .map((contact) => "${contact['name']}: ${contact['phone']}\n")
         .join('\n');
