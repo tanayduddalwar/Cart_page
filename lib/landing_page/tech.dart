@@ -4,7 +4,6 @@ import 'package:cart_page/eventpage/specific_event%20(1).dart';
 import 'package:cart_page/landing_page/home.dart';
 import 'package:cart_page/models/event_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,22 +12,31 @@ class TechEventsPage extends StatefulWidget {
   _TechEventsPageState createState() => _TechEventsPageState();
 }
 
-class _TechEventsPageState extends State<TechEventsPage> {
+class _TechEventsPageState extends State<TechEventsPage> with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
   final CartController cartController = Get.put(CartController());
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
 
   @override
   void initState() {
-    // _pageController.addListener(_onPageChanged);
-
     super.initState();
+    _controller = AnimationController(
+     vsync: this,
+      duration: Duration(seconds: 1),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(
+      begin: -10, // Change the initial position to the top
+      end: 10, // Change the final position to the bottom
+    ).animate(_controller);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -44,14 +52,53 @@ class _TechEventsPageState extends State<TechEventsPage> {
             CombinedEventCard(event: currentEvent),
           );
 
-          if ((i) == 2 || i == 5) {
+          if ((i) == 2) {
             eventPages.add(
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2));
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, _animation.value),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Icon(
+                          Icons.arrow_downward,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          } else if (i == 5) {
+            eventPages.add(SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(0, _animation.value),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Icon(
+                        Icons.arrow_upward,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ));
+          } else {
+            eventPages.add(
+              revCombinedEventCard(event: currentEvent),
+            );
           }
-        } else {
-          eventPages.add(
-            revCombinedEventCard(event: currentEvent),
-          );
         }
       }
     }
@@ -136,7 +183,7 @@ class _TechEventsPageState extends State<TechEventsPage> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.only(bottom: 20.0),
-              child: ArrowAnimation(), // Add the arrow animation here
+              child: ArrowAnimation(animation: _animation),
             ),
           ),
         ],
@@ -146,38 +193,27 @@ class _TechEventsPageState extends State<TechEventsPage> {
 }
 
 class ArrowAnimation extends StatefulWidget {
+  final Animation<double> animation;
+
+  const ArrowAnimation({
+    Key? key,
+    required this.animation,
+  }) : super(key: key);
+
   @override
   _ArrowAnimationState createState() => _ArrowAnimationState();
 }
 
-class _ArrowAnimationState extends State<ArrowAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 1),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(
-      begin: -10, // Change the initial position to the top
-      end: 10, // Change the final position to the bottom
-    ).animate(_controller);
-  }
-
+class _ArrowAnimationState extends State<ArrowAnimation> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _animation,
+      animation: widget.animation,
       builder: (context, child) {
         return Transform.translate(
-          offset: Offset(0, _animation.value), // Animate the y-axis
+          offset: Offset(0, widget.animation.value),
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 20), // Adjust padding if needed
+            padding: const EdgeInsets.only(left: 20),
             child: Icon(
               Icons.arrow_downward,
               color: Colors.white,
@@ -187,12 +223,6 @@ class _ArrowAnimationState extends State<ArrowAnimation>
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
 
@@ -207,8 +237,6 @@ class CombinedEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to a new page or display a modal/dialog with swipeable content
-        // Example:
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -224,8 +252,7 @@ class CombinedEventCard extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.symmetric(
-          // Adjust as needed
-          horizontal: 10.0, // Adjust as needed
+          horizontal: 10.0,
         ),
         child: Column(
           children: [
@@ -243,7 +270,7 @@ class CombinedEventCard extends StatelessWidget {
                       child: Material(
                         type: MaterialType.transparency,
                         child: Text(
-                          event.name, // Access event name from Event object
+                          event.name,
                           style: TextStyle(
                             fontFamily: "berky",
                             fontSize: 25,
@@ -260,13 +287,12 @@ class CombinedEventCard extends StatelessWidget {
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
                   child: Hero(
-                    tag: event.imageUrl, // Unique tag for the hero animation
+                    tag: event.imageUrl,
                     child: EventCard(
                       color1: Color.fromRGBO(4, 90, 171, 0.7),
                       color2: Color.fromRGBO(1, 37, 84, 0.7),
                       width: MediaQuery.of(context).size.width * 0.4,
-                      eventimgsrc: event
-                          .imageUrl, // Access image source from Event object
+                      eventimgsrc: event.imageUrl,
                     ),
                   ),
                 ),
@@ -332,8 +358,6 @@ class revCombinedEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to a new page or display a modal/dialog with swipeable content
-        // Example:
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -342,8 +366,6 @@ class revCombinedEventCard extends StatelessWidget {
         );
       },
       child: Container(
-        //  height:  MediaQuery.of(context).size.width * 0.27,
-        //        width:  MediaQuery.of(context).size.width * 0.27,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/new.gif"),
@@ -351,8 +373,7 @@ class revCombinedEventCard extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.symmetric(
-          // Adjust as needed
-          horizontal: 10.0, // Adjust as needed
+          horizontal: 10.0,
         ),
         child: Column(
           children: [
@@ -363,13 +384,12 @@ class revCombinedEventCard extends StatelessWidget {
                     left: MediaQuery.of(context).size.width * 0.05,
                   ),
                   child: Hero(
-                    tag: event.imageUrl, // Unique tag for the hero animation
+                    tag: event.imageUrl,
                     child: EventCard(
                       color1: Color.fromRGBO(4, 90, 171, 0.7),
                       color2: Color.fromRGBO(1, 37, 84, 0.7),
                       width: MediaQuery.of(context).size.width * 0.4,
-                      eventimgsrc: event
-                          .imageUrl, // Access image source from Event object
+                      eventimgsrc: event.imageUrl,
                     ),
                   ),
                 ),
@@ -385,7 +405,7 @@ class revCombinedEventCard extends StatelessWidget {
                       child: Material(
                         type: MaterialType.transparency,
                         child: Text(
-                          event.name, // Access event name from Event object
+                          event.name,
                           style: TextStyle(
                             fontFamily: "berky",
                             fontSize: 30,
@@ -449,15 +469,11 @@ class _SwipeableContentState extends State<SwipeableContent> {
           alignment: Alignment.bottomCenter,
           child: GestureDetector(
             onHorizontalDragEnd: (details) {
-              // Swiped left
               if (details.velocity.pixelsPerSecond.dx < 0) {
                 setState(() {
-                  currentIndex =
-                      (currentIndex + 1) % 4; // Assuming there are 4 sections
+                  currentIndex = (currentIndex + 1) % 4;
                 });
-              }
-              // Swiped right
-              else if (details.velocity.pixelsPerSecond.dx > 0) {
+              } else if (details.velocity.pixelsPerSecond.dx > 0) {
                 setState(() {
                   currentIndex = (currentIndex - 1) % 4;
                   if (currentIndex < 0) currentIndex = 3;
@@ -466,15 +482,15 @@ class _SwipeableContentState extends State<SwipeableContent> {
             },
             child: Center(
               child: GlassmorphicContainer1(
-                borderRadius: MediaQuery.of(context).size.height *
-                    0.02, // 2% of screen height
+                borderRadius:
+                    MediaQuery.of(context).size.height * 0.02,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height *
-                              0.01), // 1% of screen height
+                              0.01),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
@@ -491,7 +507,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
                                 color: Colors.white,
                                 fontFamily: 'MaterialIcons',
                                 fontSize: MediaQuery.of(context).size.height *
-                                    0.03, // 3% of screen height
+                                    0.03,
                                 decoration: currentIndex == index
                                     ? TextDecoration.underline
                                     : null,
@@ -517,7 +533,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
                                   MediaQuery.of(context).size.height * 0.005,
                               horizontal:
                                   MediaQuery.of(context).size.width * 0.05),
-                          // 0.5% of screen height and 5% of screen width
                           child: Text(
                             content[currentIndex],
                             style: const TextStyle(
@@ -556,9 +571,9 @@ class _SwipeableContentState extends State<SwipeableContent> {
                           const Spacer(),
                           Container(
                             width: MediaQuery.of(context).size.height *
-                                0.1, // 10% of screen height
+                                0.1,
                             height: MediaQuery.of(context).size.height *
-                                0.06, // 10% of screen height
+                                0.06,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.blue.withOpacity(0.8),
