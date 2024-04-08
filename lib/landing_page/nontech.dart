@@ -14,20 +14,33 @@ class NonTechEventsPage extends StatefulWidget {
   _NonTechEventsPageState createState() => _NonTechEventsPageState();
 }
 
-class _NonTechEventsPageState extends State<NonTechEventsPage> {
+class _NonTechEventsPageState extends State<NonTechEventsPage>
+    with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
   final CartController cartController = Get.put(CartController());
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
-
+  late ScrollController _scrollController;
+  late AnimationController _controller;
+  late Animation<double> _animation;
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(
+      begin: -10,
+      end: 10,
+    ).animate(_controller);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _scrollController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -43,9 +56,50 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
           eventPages.add(
             CombinedEventCard(event: currentEvent),
           );
-          if ((i) == 8 || i == 11) {
+          if ((i) == 8) {
             eventPages.add(
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2));
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, _animation.value),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Icon(
+                          Icons.arrow_downward,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          } else if (i == 11) {
+            eventPages.add(
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, _animation.value),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
           }
         } else {
           eventPages.add(
@@ -131,13 +185,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: ArrowAnimation1(),
-            ),
-          ),
         ],
       ),
     );
@@ -194,7 +241,7 @@ class CombinedEventCard extends StatelessWidget {
                           event.name, // Access event name from Event object
                           style: TextStyle(
                             fontFamily: "berky",
-                            fontSize: 30,
+                            fontSize: 23,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -334,7 +381,7 @@ class revCombinedEventCard extends StatelessWidget {
                           event.name, // Access event name from Event object
                           style: TextStyle(
                             fontFamily: "berky",
-                            fontSize: 30,
+                            fontSize: 23,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),

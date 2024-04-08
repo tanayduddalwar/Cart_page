@@ -18,8 +18,7 @@ class _PingPageState extends State<PingPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final websteUri =
-        Uri.parse('https://issuu.com/p.i.n.g./docs/p.i.n.g._issue_17.11');
+    final websteUri = Uri.parse('https://www.pictieee.in/ping181');
 
     return SafeArea(
       child: Scaffold(

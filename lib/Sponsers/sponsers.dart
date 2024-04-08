@@ -15,10 +15,10 @@ class VideosScreen extends StatefulWidget {
 
 class _VideosScreenState extends State<VideosScreen> {
   final List<String> images = [
-    'assets/images/herody.png',
-    'assets/images/pubmatic.jpg',
-    'assets/images/rhythmflows.jpeg',
-    'assets/images/espressif-icon.png',
+    'assets/comingsoon.jpeg',
+    'assets/comingsoon.jpeg',
+    'assets/comingsoon.jpeg',
+    'assets/comingsoon.jpeg',
   ];
   late PageController _pageController;
   late Timer _timer;
@@ -64,7 +64,7 @@ class _VideosScreenState extends State<VideosScreen> {
           'SPONSORS',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 38.0,
+            fontSize: 30.0,
             fontFamily: 'berky',
             fontWeight: FontWeight.bold,
           ),
