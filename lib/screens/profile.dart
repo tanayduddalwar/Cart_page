@@ -74,13 +74,14 @@ class _AdminPageState extends State<AdminPage> {
                   child: mygif(),
                 );
               } else if (snapshot.hasError) {
-                Get.to(() => HomePage());
-                Fluttertoast.showToast(
+                 Fluttertoast.showToast(
                   msg: "Error in showing profile page!",
                   gravity: ToastGravity.BOTTOM,
                   backgroundColor: Colors.grey,
                   textColor: Colors.white,
                 );
+                 return HomePage();
+               
               } else {
                 return Container(
                   height: double.infinity,
