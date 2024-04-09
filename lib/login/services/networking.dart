@@ -9,6 +9,12 @@ import 'package:http/http.dart' as http;
 class database {
   Future<SharedPreferences> prefs_ = SharedPreferences.getInstance();
 
+  Future<void> test() async {
+    // final SharedPreferences prefs = await prefs_;
+    // prefs.setString('access', 'test');
+    // print(prefs.getString("access"));
+  }
+
   Future<bool> register({
     required String username,
     required String email,
@@ -76,6 +82,47 @@ class database {
     required int amount,
   }) async {
     try {
+      var url = Uri.parse('https://admin.credenz.in/api/placeorder/');
+
+      Map<String, dynamic> data = {
+        "event_list": eventList,
+        "transaction_id": transactionId,
+        "amount": amount,
+      };
+
+      String body = jsonEncode(data);
+
+      Map<String, String> headers = {
+        'Content-type': 'application/json',
+        "Authorization": "Bearer ${await getHeaders()}",
+      };
+
+      var response = await http.post(url, body: body, headers: headers);
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 201) {
+        print(response.body);
+        return true;
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        print('Error message: ${response.reasonPhrase}');
+        return false;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
+  Future<bool> getpass({
+    required List<int> eventList,
+    required int transactionId,
+    required int amount,
+  }) async {
+    try {
+     // eventList.addAll([101,102,103,104,105,106,107,108,109,110,111,112]);
       var url = Uri.parse('https://admin.credenz.in/api/placeorder/');
 
       Map<String, dynamic> data = {

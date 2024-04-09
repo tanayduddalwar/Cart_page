@@ -5,6 +5,7 @@ import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/login/components/login_page.dart';
 import 'package:cart_page/login/services/networking.dart';
 import 'package:cart_page/models/event_model.dart';
+import 'package:cart_page/screens/get_pass.dart';
 import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
@@ -204,11 +205,13 @@ class _SpecificPageState extends State<SpecificPage>
           ringWidth: 70,
           children: [
             FloatingActionButton(
-              onPressed: () {
+              onPressed: ()async {
                 //snack bar add karna
-                setState(() {
-                  isPassAdded = true;
-                });
+                if (await db.checkLoggedIn()) {
+                  Get.to(() => GetPass());
+                } else {
+                  Get.to(() => LoginPage());
+                }
               },
               child: const Icon(
                 Icons.card_giftcard_rounded,

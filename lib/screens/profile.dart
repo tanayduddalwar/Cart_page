@@ -7,6 +7,7 @@ import 'package:cart_page/ping_page/ping.dart';
 import 'package:cart_page/screens/privacy_content.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:cart_page/controllers/cart_controller.dart';
 import 'package:cart_page/screens/tech_events.dart';
@@ -25,9 +26,9 @@ class _AdminPageState extends State<AdminPage> {
   List<String> technicalEventNames = [
     "Clash",
     "REVERSE CODING",
-    "Cretonix",
+    "Cretronix",
     "Datawiz",
-    "Webweaver",
+    "Web weaver",
     "Roboliga"
   ];
   List<dynamic> isTechnical = [];
@@ -61,7 +62,7 @@ class _AdminPageState extends State<AdminPage> {
       length: 2,
       child: WillPopScope(
         onWillPop: () async {
-          Get.off(() => HomePage());
+          Get.offAll(() => HomePage());
           return false;
         },
         child: Scaffold(
@@ -73,8 +74,12 @@ class _AdminPageState extends State<AdminPage> {
                   child: mygif(),
                 );
               } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
+                Get.to(() => HomePage());
+                Fluttertoast.showToast(
+                  msg: "Error in showing profile page!",
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.grey,
+                  textColor: Colors.white,
                 );
               } else {
                 return Container(
@@ -96,7 +101,7 @@ class _AdminPageState extends State<AdminPage> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            Get.off(() => HomePage());
+                            Get.offAll(() => HomePage());
                           },
                         ),
                         centerTitle: true,
