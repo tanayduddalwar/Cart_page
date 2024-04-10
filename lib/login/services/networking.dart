@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:cart_page/landing_page/home.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 class database {
   Future<SharedPreferences> prefs_ = SharedPreferences.getInstance();
 
@@ -14,6 +16,61 @@ class database {
     // prefs.setString('access', 'test');
     // print(prefs.getString("access"));
   }
+ Future<bool> forgotPassword({required BuildContext context, required String email}) async {
+  try {
+    var url = Uri.https('admin.credenz.in', '/api/password-reset/'); // Replace with your actual URL
+    Map<String, String> body = {"email": email};
+    var response = await http.post(url, body: body);
+
+    if (response.statusCode == 200) {
+      // Reset email sent successfully
+      final snackBar = SnackBar(
+        elevation: 5,
+        behavior: SnackBarBehavior.fixed,
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Reset Email Sent!',
+          message: 'Please check your email to reset your password',
+          contentType: ContentType.success,
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return true;
+    } else {
+      // Failed to send reset email
+      final snackBar = SnackBar(
+        elevation: 5,
+        behavior: SnackBarBehavior.fixed,
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Error!',
+          message: 'Failed to send reset email. Please try again later.',
+          contentType: ContentType.failure,
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return false;
+    }
+  } catch (e) {
+    print("Error: $e");
+    final snackBar = SnackBar(
+      elevation: 5,
+      
+      behavior: SnackBarBehavior.fixed,
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'Error!',
+        message: 'An error occurred. Please try again later.',
+        contentType: ContentType.failure,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    return false;
+  }
+}
 
   Future<bool> register({
     required String username,

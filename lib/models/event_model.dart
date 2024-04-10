@@ -338,7 +338,7 @@ class Event {
           "1":
               "Channel your inner Wednesday Addams to solve this great mystery of PISB's very own Nevermore Academy"
         },
-        description: '19',
+        description: 'Your Hint is:19',
         contact: [
           {"name": "Karan Mundhada", "phone": "8080792381"},
           {"name": "Kshitij Dhapse", "phone": "9145299114"}

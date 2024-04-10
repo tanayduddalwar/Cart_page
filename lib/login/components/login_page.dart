@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _forgetpw() {
+  void forgetpw() {
     showDialog(
       context: context,
       barrierColor: Colors.black.withOpacity(0.77),
@@ -351,28 +351,53 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: size.height * 0.022),
                       SizedBox(
                         width: size.width * 0.8,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Column(
                           children: [
-                            Text(
-                              'Don\'t have an account ? ',
-                              style: TextStyle(
-                                fontSize: size.width * 0.045,
-                                color: Colors.white,
-                                fontFamily: 'berky',
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => direct(),
-                              child: Text(
-                                'SIGN-UP',
-                                style: TextStyle(
-                                  fontSize: size.width * 0.045,
-                                  color: Colors.white,
-                                  fontFamily: 'berky',
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Don\'t have an account ? ',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.045,
+                                    color: Colors.white,
+                                    fontFamily: 'berky',
+                                  ),
                                 ),
-                              ),
+                                GestureDetector(
+                                  onTap: () => direct(),
+                                  child: Text(
+                                    'SIGN-UP',
+                                    style: TextStyle(
+                                      fontSize: size.width * 0.045,
+                                      color: Colors.white,
+                                      fontFamily: 'berky',
+                                    ),
+                                  ),
+                                ),
+                                  
+                              
+                              ],
                             ),
+                            Text(
+                                  'Forgot Password?  ',
+                                  style: TextStyle(
+                                    fontSize: size.width * 0.045,
+                                    color: Colors.white,
+                                    fontFamily: 'berky',
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () => forgetpw(),
+                                  child: Text(
+                                    'Click Here',
+                                    style: TextStyle(
+                                      fontSize: size.width * 0.045,
+                                      color: Colors.white,
+                                      fontFamily: 'berky',
+                                    ),
+                                  ),
+                                ),
                           ],
                         ),
                       ),

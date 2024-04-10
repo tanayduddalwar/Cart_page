@@ -10,6 +10,7 @@ import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
@@ -50,7 +51,8 @@ class _SpecificPageState extends State<SpecificPage>
     _tapCount++;
     if (_tapCount == 3) {
       print('Image tapped 3 times');
-      AwesomeDialog(
+      if(widget.event.name=="NTH"){
+         AwesomeDialog(
         context: context,
         dialogType: DialogType.success,
         borderSide: const BorderSide(
@@ -68,6 +70,27 @@ class _SpecificPageState extends State<SpecificPage>
         desc: widget.event.description,
         showCloseIcon: true,
       ).show();
+
+      }
+      else{
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        borderSide: const BorderSide(
+          color: Colors.green,
+          width: 2,
+        ),
+        width: MediaQuery.of(context).size.width * 0.9,
+        buttonsBorderRadius: const BorderRadius.all(
+          Radius.circular(2),
+        ),
+        dismissOnTouchOutside: false,
+        dismissOnBackKeyPress: false,
+        headerAnimationLoop: false,
+        animType: AnimType.bottomSlide,
+        desc: widget.event.description,
+        showCloseIcon: true,
+      ).show();}
       _tapCount = 0;
     } else {
       Timer(Duration(seconds: 1), () {
@@ -205,8 +228,7 @@ class _SpecificPageState extends State<SpecificPage>
           ringWidth: 70,
           children: [
             FloatingActionButton(
-              onPressed: ()async {
-                //snack bar add karna
+              onPressed: () async {
                 if (await db.checkLoggedIn()) {
                   Get.to(() => GetPass());
                 } else {
@@ -217,7 +239,7 @@ class _SpecificPageState extends State<SpecificPage>
                 Icons.card_giftcard_rounded,
               ),
             ),
-            // Unique tag for the second FloatingActionButton
+            if (event.name == "NTH") ...[
             FloatingActionButton(
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
@@ -229,7 +251,8 @@ class _SpecificPageState extends State<SpecificPage>
               child: const Icon(Icons.shopping_cart),
             ),
           ],
-        ),
+        
+        ]),
       ),
     );
   }
