@@ -3,6 +3,7 @@ import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class PISB extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -22,13 +24,13 @@ class PISB extends StatelessWidget {
             },
             icon: Icon(Icons.arrow_back),
           ),
-          backgroundColor: Color.fromARGB(20, 2, 71, 100),
-          title: const Text(
+          backgroundColor: Colors.transparent,
+          title: Text(
             'PISB',
-            style: TextStyle(
+            style: GoogleFonts.mukta(
               color: Colors.white,
-              fontFamily: 'berky',
-              fontSize: 38.0,
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
             ),
           ),
           centerTitle: true,
@@ -39,13 +41,15 @@ class PISB extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: double.infinity,
-              child: Image.asset(
-                'assets/bgimg/7.png',
-                fit: BoxFit.cover,
+              child: ColorFiltered(
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.srcOver),
+                child: Image.asset(
+                  'assets/bgimg/7.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SafeArea(
-              child: SingleChildScrollView(
                 // Wrap your content inside SingleChildScrollView
                 child: Column(
                   children: [
@@ -70,22 +74,25 @@ class PISB extends StatelessWidget {
                           height: mediaQuery.size.height * 0.55,
                           width: mediaQuery.size.width * 1,
                           padding: const EdgeInsets.all(2),
-                          child: const Glassmorphism(
-                            blur: 7,
-                            opacity: 0.08,
-                            radius: 25,
-                            child: Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: Text(
-                                'PICT IEEE Student Branch (PISB) was established in the year 1988 with an aim of inculcating a sense of technical '
-                                'awareness amongst its student members. PISB aims to escalate the knowledge and trends in the diverse fields of '
-                                'technologies amongst its members. PISB upholds two majors events every year - Credenz and Credenz Tech Days with the '
-                                'first one being conducted in odd semester and the latter one in even semester. PISB is also marked '
-                                'by its Women in Engineering (WIE) chapter, an initiative for empowerment of women.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22.0,
-                                  fontFamily: 'berky',
+                          child: SingleChildScrollView(
+                            child: Glassmorphism(
+                              blur: 7,
+                              opacity: 0.03,
+                              radius: 25,
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: Text(
+                                  'PICT IEEE Student Branch (PISB) was established in the year 1988 with an aim of inculcating a sense of technical '
+                                  'awareness amongst its student members. PISB aims to escalate the knowledge and trends in the diverse fields of '
+                                  'technologies amongst its members. PISB upholds two majors events every year - Credenz and Credenz Tech Days with the '
+                                  'first one being conducted in odd semester and the latter one in even semester. PISB is also marked '
+                                  'by its Women in Engineering (WIE) chapter, an initiative for empowerment of women.',
+                                  style: GoogleFonts.mukta(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w500,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -95,7 +102,7 @@ class PISB extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+            
             ),
           ],
         ),

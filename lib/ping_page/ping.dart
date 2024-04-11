@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PingPage extends StatefulWidget {
   bool pressed = false;
@@ -30,32 +31,15 @@ class _PingPageState extends State<PingPage> {
               },
               icon: const Icon(Icons.arrow_back_rounded)),
           backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Padding(
-            padding: EdgeInsets.only(left: screenWidth * 0.14, top: 20),
-            child: SizedBox(
-              width: 200,
-              child: Text(
-                "P.I.N.G",
-                style: TextStyle(
-                  fontFamily: "berky",
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              // TextLiquidFill(
-              //   text: 'P.I.N.G',
-              //   waveColor: Colors.blueAccent,
-              //   boxBackgroundColor: const Color.fromARGB(255, 48, 197, 230),
-              //   textStyle: const TextStyle(
-              //     fontSize: 35.0,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              //   boxHeight: 100.0,
-              // ),
-            ),
+          title: Text(
+            "P.I.N.G",
+           style: GoogleFonts.mukta(
+          color: Colors.white,
+          fontSize: 34,
+          fontWeight: FontWeight.bold,
+                    ),
           ),
+          centerTitle: true,
         ),
         body: Container(
           decoration: const BoxDecoration(

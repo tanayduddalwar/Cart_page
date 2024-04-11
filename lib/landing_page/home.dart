@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
               return true;
             },
             child: Scaffold(
+              backgroundColor: Colors.black,
               body: PageView(
                 controller: pageController,
                 physics: NeverScrollableScrollPhysics(),
@@ -188,6 +189,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         : Scaffold(
+          backgroundColor: Colors.black,
             body: PageView(
               controller: pageController,
               children: [
@@ -268,6 +270,7 @@ Widget body() {
       Container(
         decoration: BoxDecoration(
           image: DecorationImage(
+            opacity: 0.65,
             image: AssetImage("assets/bgimg/5.png"),
             fit: BoxFit.cover,
           ),
@@ -324,11 +327,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(() => PISB()),
-                    child: Text("PISB",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "PISB",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -349,11 +355,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(PingPage()),
-                    child: Text("PING",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "PING",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -381,11 +390,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(VideosScreen()),
-                    child: Text("Sponsors",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "Sponsors",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -404,11 +416,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(Login()),
-                    child: Text("Quiz",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "Quiz",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -427,11 +442,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(() => DevelopersPage()),
-                    child: Text("Developers",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "Developers",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -457,11 +475,14 @@ Widget body() {
                   ),
                   InkWell(
                     onTap: () => Get.to(PrivacyPolicy()),
-                    child: Text("Privacy Policy",
-                        style: TextStyle(
-                            fontSize: screenHeight * 0.02,
-                            color: Colors.white,
-                            fontFamily: "berky")),
+                    child: Text(
+                      "Privacy Policy",
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -502,11 +523,14 @@ Widget body() {
                         } else {
                           return InkWell(
                             onTap: () => Get.to(() => LoginPage()),
-                            child: Text("Login",
-                                style: TextStyle(
-                                    fontSize: screenHeight * 0.02,
-                                    color: Colors.white,
-                                    fontFamily: "berky")),
+                            child: Text(
+                              "Login",
+                              style: GoogleFonts.mukta(
+                                color: Colors.white,
+                                fontSize: screenHeight * 0.02,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           );
                         }
                       } else {

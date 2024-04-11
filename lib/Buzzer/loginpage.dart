@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: AppBar(
@@ -33,7 +35,11 @@ class _LoginState extends State<Login> {
             icon: Icon(Icons.arrow_back)),
         title: Text(
           "QUIZ",
-          style: TextStyle(fontFamily: "berky",color: Colors.white,fontSize: 30),
+          style: GoogleFonts.mukta(
+            color: Colors.white,
+            fontSize: 34,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Container(
@@ -41,7 +47,7 @@ class _LoginState extends State<Login> {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(
-              'assets/bgimg/12.png',
+              'assets/bgimg/13.jpg',
             ),
           ),
         ),
@@ -51,11 +57,19 @@ class _LoginState extends State<Login> {
             children: [
               Text(
                 "Enter the Name of your team",
-                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(),
                   controller: buzzerController.teamcontroller,
@@ -66,12 +80,20 @@ class _LoginState extends State<Login> {
               ),
               Text(
                 "Enter the PIN to start QUIZ",
-                style: TextStyle(fontFamily: "berky", fontSize: 25,color: Colors.white),
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               OTPTextField(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
                 width: MediaQuery.of(context).size.width * 0.8,
                 fieldWidth: MediaQuery.of(context).size.width * 0.1,
                 length: 4,

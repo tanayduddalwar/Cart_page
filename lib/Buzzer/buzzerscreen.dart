@@ -3,6 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BuzzerController extends GetxController {
   final teamcontroller = TextEditingController();
@@ -171,12 +172,12 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: const Text(
+        title: Text(
           "Quiz Showdown",
-          style: TextStyle(
-            fontFamily: "berky",
+          style: GoogleFonts.mukta(
             color: Colors.white,
-            fontSize: 25,
+            fontSize: 34,
+            fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
@@ -191,9 +192,9 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            opacity: 0.7,
+            opacity: 1,
             fit: BoxFit.cover,
-            image: AssetImage('assets/bgimg/13.png'),
+            image: AssetImage('assets/bgimg/13.jpg'),
           ),
         ),
         child: Center(
@@ -205,7 +206,11 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
               ),
               Text(
                 "Team : ${buzzerController.teamcontroller.text}",
-                style: const TextStyle(fontSize: 22, fontFamily: "berky"),
+                style: GoogleFonts.mukta(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.003),
               Row(
@@ -213,13 +218,14 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 children: [
                   CircularCountDownTimer(
                     controller: _controller,
+                    backgroundColor: Color(0xff7FC7D9),
                     initialDuration: 30,
                     autoStart: false,
                     width: MediaQuery.of(context).size.height * 0.1,
                     height: MediaQuery.of(context).size.height * 0.1,
                     duration: 30,
-                    fillColor: Colors.black,
-                    ringColor: Colors.grey,
+                    fillColor: Color.fromARGB(255, 108, 155, 212),
+                    ringColor: Color.fromARGB(255, 212, 246, 255),
                     onComplete: () async {
                       // calculateTimeDifferenceForOtherTeams(
                       //     buzzerController.teamcontroller.text,
@@ -228,7 +234,8 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.purple),
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 161, 207, 205)),
                     ),
                     onPressed: () {
                       db
@@ -238,25 +245,30 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                           .then((DocumentReference ref) => print(ref.id));
                       _controller.restart();
                     },
-                    child: const Text(
+                    child: Text(
                       "Start",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: "berky"),
+                      style: GoogleFonts.montserrat(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.purple),
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 161, 207, 205)),
                     ),
                     onPressed: () {
                       _controller.reset();
                     },
-                    child: const Text(
+                    child: Text(
                       "Reset",
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: "berky"),
+                      style: GoogleFonts.montserrat(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -272,16 +284,17 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
+                  shadowColor: Colors.black,
+                  elevation: 25,
                   padding: const EdgeInsets.all(80),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color.fromARGB(255, 89, 180, 175),
                 ),
-                child: const Text(
+                child: Text(
                   'BUZZER',
-                  style: TextStyle(
-                    fontFamily: "berky",
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                  style: GoogleFonts.montserrat(
                     color: Colors.white,
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -306,7 +319,8 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                     },
                     child: const Text(
                       "Next Question",
-                      style: TextStyle(fontFamily: "berky"),
+                      style:
+                          TextStyle(fontFamily: "berky", color: Colors.black),
                     ),
                   ),
                 ],
@@ -319,7 +333,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'berky',
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 5),
@@ -331,7 +345,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                     style: TextStyle(
                       fontFamily: "berky",
                       fontSize: 17,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   )),
                   const DataColumn(
@@ -340,7 +354,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                     style: TextStyle(
                       fontFamily: "berky",
                       fontSize: 17,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   )),
                 ],
@@ -351,14 +365,19 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                         Text(
                           result['teamName'],
                           style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold),
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                       ),
                       DataCell(
                         Text(
                           '${result['timeDifference'] / 1000} s',
                           style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
