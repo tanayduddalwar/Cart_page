@@ -5,6 +5,7 @@ import 'package:cart_page/login/components/forget_password_page.dart';
 import 'package:cart_page/login/components/signup_page.dart';
 import 'package:cart_page/login/mygif.dart';
 import 'package:cart_page/login/services/networking.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
@@ -92,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
       bool loggedIn = await dt.login(username: username, password: password);
       print(loggedIn.toString());
       if (loggedIn) {
-        Get.offAll(() => HomePage());
+        Get.off(() => HomePage());
         // Navigate to next screen upon successful login
         // ...
       } else {
@@ -166,248 +167,250 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
+    return WillPopScope(
+      onWillPop: () async {
+        // Handle back button press here
+        // For example:
+        Get.off(() => HomePage());
+        return false; // Return true if you want to allow back navigation, false otherwise
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/bgimg/3.png',
-                color: Color.fromRGBO(255, 255, 255, 0.88),
-                colorBlendMode: BlendMode.modulate,
-                fit: BoxFit.cover,
+      child: GestureDetector(
+      
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/bgimg/3.png',
+                  color: Color.fromRGBO(255, 255, 255, 0.88),
+                  colorBlendMode: BlendMode.modulate,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Container(
-              width: size.width,
-              height: size.height,
-              child: SingleChildScrollView(
-                child: Form(
-                  key: _loginFormKey,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.1),
-                        child: Text(
-                          'WELCOME',
-                          style: TextStyle(
-                            fontFamily: 'berky',
-                            fontSize: size.width * 0.1,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(size.width * 0.06),
-                        child: GlassmorphicContainer(
-                          blur: 2,
-                          border: size.width * 0.009,
-                          borderGradient: LinearGradient(colors: [
-                            Colors.blue.withOpacity(0.3),
-                            Colors.blue.withOpacity(0.3),
-                          ]),
-                          borderRadius: size.width * 0.3,
-                          height: size.height * 0.08,
-                          linearGradient: LinearGradient(colors: [
-                            Colors.white.withOpacity(0.3),
-                            Colors.white.withOpacity(0.3),
-                          ]),
-                          width: size.width * 0.8,
-                          child: TextFormField(
+              Container(
+                width: size.width,
+                height: size.height,
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _loginFormKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height * 0.1),
+                          child: Text(
+                            'WELCOME',
                             style: TextStyle(
                               fontFamily: 'berky',
-                              fontSize: size.width * 0.06,
-                              color: Colors.black,
+                              fontSize: size.width * 0.1,
+                              color: Colors.white,
                             ),
-                            controller: _usernameController,
-                            keyboardType: TextInputType.text,
-                            cursorColor: Colors.blue,
-                            decoration: InputDecoration(
-                              icon: Padding(
-                                padding: EdgeInsets.only(
-                                  left: size.width * 0.02,
-                                  top: size.height * 0.033,
-                                  bottom: size.height * 0.017,
-                                ),
-                                child: Icon(
-                                  Icons.account_circle,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              hintText: 'Username',
-                              hintStyle: TextStyle(
-                                fontFamily: 'berky',
-                                fontSize: size.width * 0.053,
-                              ),
-                              contentPadding: EdgeInsets.only(
-                                bottom: size.height * 0.001,
-                                top: size.height * 0.02,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                ),
-                              ),
-                            ),
-                            validator: (textValue) {
-                              if (textValue == null || textValue.isEmpty) {
-                                return;
-                              }
-                            },
                           ),
                         ),
-                      ),
-                      SizedBox(height: size.height * 0.00),
-                      Padding(
-                        padding: EdgeInsets.all(size.width * 0.06),
-                        child: GlassmorphicContainer(
-                          blur: 2,
-                          border: size.width * 0.009,
-                          borderGradient: LinearGradient(colors: [
-                            Colors.blue.withOpacity(0.3),
-                            Colors.blue.withOpacity(0.3),
-                          ]),
-                          borderRadius: size.width * 0.3,
-                          height: size.height * 0.08,
-                          linearGradient: LinearGradient(colors: [
-                            Colors.white.withOpacity(0.2),
-                            Colors.white.withOpacity(0.3),
-                          ]),
-                          width: size.width * 0.8,
-                          child: TextFormField(
-                            style: TextStyle(
-                              fontFamily: 'berky',
-                              fontSize: size.width * 0.06,
-                              color: Colors.black,
-                            ),
-                            obscureText: _obscureText,
-                            controller: _passwordController,
-                            keyboardType: TextInputType.text,
-                            cursorColor: Colors.blue,
-                            decoration: InputDecoration(
-                              icon: Padding(
-                                padding: EdgeInsets.only(
-                                  left: size.width * 0.02,
-                                  top: size.height * 0.033,
-                                  bottom: size.height * 0.017,
-                                ),
-                                child: Icon(
-                                  Icons.password,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              hintText: "Password",
-                              hintStyle: TextStyle(
+                        Padding(
+                          padding: EdgeInsets.all(size.width * 0.06),
+                          child: GlassmorphicContainer(
+                            blur: 2,
+                            border: size.width * 0.009,
+                            borderGradient: LinearGradient(colors: [
+                              Colors.blue.withOpacity(0.3),
+                              Colors.blue.withOpacity(0.3),
+                            ]),
+                            borderRadius: size.width * 0.3,
+                            height: size.height * 0.08,
+                            linearGradient: LinearGradient(colors: [
+                              Colors.white.withOpacity(0.3),
+                              Colors.white.withOpacity(0.3),
+                            ]),
+                            width: size.width * 0.8,
+                            child: TextFormField(
+                              style: TextStyle(
                                 fontFamily: 'berky',
                                 fontSize: size.width * 0.06,
+                                color: Colors.black,
                               ),
-                              contentPadding: EdgeInsets.only(
-                                bottom: size.height * 0.001,
-                                top: size.height * 0.02,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
+                              controller: _usernameController,
+                              keyboardType: TextInputType.text,
+                              cursorColor: Colors.blue,
+                              decoration: InputDecoration(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: size.width * 0.02,
+                                    top: size.height * 0.033,
+                                    bottom: size.height * 0.017,
+                                  ),
+                                  child: Icon(
+                                    Icons.account_circle,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                hintText: 'Username',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'berky',
+                                  fontSize: size.width * 0.053,
+                                ),
+                                contentPadding: EdgeInsets.only(
+                                  bottom: size.height * 0.001,
+                                  top: size.height * 0.02,
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                  ),
                                 ),
                               ),
-                              suffixIcon: Container(
-                                padding:
-                                    EdgeInsets.only(top: size.height * 0.012),
-                                child: IconButton(
-                                  iconSize: size.width * 0.053,
-                                  icon: _obscureText
-                                      ? const Icon(Icons.visibility_off)
-                                      : const Icon(Icons.visibility),
-                                  color: Colors.white,
-                                  onPressed: toggle,
-                                ),
-                              ),
+                              validator: (textValue) {
+                                if (textValue == null || textValue.isEmpty) {
+                                  return;
+                                }
+                              },
                             ),
-                            validator: (textValue) {
-                              if (textValue == null || textValue.isEmpty) {
-                                return;
-                              }
-                              return null;
-                            },
                           ),
                         ),
-                      ),
-                      SizedBox(height: size.height * 0.009),
-                      SizedBox(height: size.height * 0.025),
-                      CustomFormButton(
-                        innerText: 'Login',
-                        onPressed: _handleLoginUser,
-                      ),
-                      SizedBox(height: size.height * 0.022),
-                      SizedBox(
-                        width: size.width * 0.8,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Don\'t have an account ? ',
-                                  style: TextStyle(
-                                    fontSize: size.width * 0.045,
+                        SizedBox(height: size.height * 0.00),
+                        Padding(
+                          padding: EdgeInsets.all(size.width * 0.06),
+                          child: GlassmorphicContainer(
+                            blur: 2,
+                            border: size.width * 0.009,
+                            borderGradient: LinearGradient(colors: [
+                              Colors.blue.withOpacity(0.3),
+                              Colors.blue.withOpacity(0.3),
+                            ]),
+                            borderRadius: size.width * 0.3,
+                            height: size.height * 0.08,
+                            linearGradient: LinearGradient(colors: [
+                              Colors.white.withOpacity(0.2),
+                              Colors.white.withOpacity(0.3),
+                            ]),
+                            width: size.width * 0.8,
+                            child: TextFormField(
+                              style: TextStyle(
+                                fontFamily: 'berky',
+                                fontSize: size.width * 0.06,
+                                color: Colors.black,
+                              ),
+                              obscureText: _obscureText,
+                              controller: _passwordController,
+                              keyboardType: TextInputType.text,
+                              cursorColor: Colors.blue,
+                              decoration: InputDecoration(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: size.width * 0.02,
+                                    top: size.height * 0.033,
+                                    bottom: size.height * 0.017,
+                                  ),
+                                  child: Icon(
+                                    Icons.password,
                                     color: Colors.white,
-                                    fontFamily: 'berky',
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () => direct(),
-                                  child: Text(
-                                    'SIGN-UP',
-                                    style: TextStyle(
-                                      fontSize: size.width * 0.045,
-                                      color: Colors.white,
-                                      fontFamily: 'berky',
-                                    ),
+                                hintText: "Password",
+                                hintStyle: TextStyle(
+                                  fontFamily: 'berky',
+                                  fontSize: size.width * 0.06,
+                                ),
+                                contentPadding: EdgeInsets.only(
+                                  bottom: size.height * 0.001,
+                                  top: size.height * 0.02,
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
                                   ),
                                 ),
-                                  
-                              
-                              ],
+                                suffixIcon: Container(
+                                  padding:
+                                      EdgeInsets.only(top: size.height * 0.012),
+                                  child: IconButton(
+                                    iconSize: size.width * 0.053,
+                                    icon: _obscureText
+                                        ? const Icon(Icons.visibility_off)
+                                        : const Icon(Icons.visibility),
+                                    color: Colors.white,
+                                    onPressed: toggle,
+                                  ),
+                                ),
+                              ),
+                              validator: (textValue) {
+                                if (textValue == null || textValue.isEmpty) {
+                                  return;
+                                }
+                                return null;
+                              },
                             ),
-                            Text(
-                                  'Forgot Password?  ',
-                                  style: TextStyle(
-                                    fontSize: size.width * 0.045,
-                                    color: Colors.white,
-                                    fontFamily: 'berky',
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () => forgetpw(),
-                                  child: Text(
-                                    'Click Here',
+                          ),
+                        ),
+                        SizedBox(height: size.height * 0.009),
+                        SizedBox(height: size.height * 0.025),
+                        CustomFormButton(
+                          innerText: 'Login',
+                          onPressed: _handleLoginUser,
+                        ),
+                        SizedBox(height: size.height * 0.022),
+                        SizedBox(
+                          width: size.width * 0.8,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Don\'t have an account ? ',
                                     style: TextStyle(
                                       fontSize: size.width * 0.045,
                                       color: Colors.white,
                                       fontFamily: 'berky',
                                     ),
                                   ),
-                                ),
-                          ],
+                                  GestureDetector(
+                                    onTap: () => direct(),
+                                    child: Text(
+                                      'SIGN-UP',
+                                      style: TextStyle(
+                                        fontSize: size.width * 0.045,
+                                        color: Colors.white,
+                                        fontFamily: 'berky',
+                                      ),
+                                    ),
+                                  ),
+                                    
+                                
+                                ],
+                              ),
+                              GestureDetector(
+                                 onTap: () => forgetpw(),
+                                child: Text(
+                                      'Forgot Password?  ',
+                                      style: TextStyle(
+                                        fontSize: size.width * 0.045,
+                                        color: Colors.white,
+                                        fontFamily: 'berky',
+                                      ),
+                                    ),
+                              ),
+                                  
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: size.height * 0.025),
-                    ],
+                        SizedBox(height: size.height * 0.025),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

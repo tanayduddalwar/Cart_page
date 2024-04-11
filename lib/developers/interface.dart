@@ -54,6 +54,8 @@ class ui extends StatelessWidget {
     'https://www.linkedin.com/in/siddhi-bodake-3b494129a/',
     'https://www.linkedin.com/in/shreya-pillai-08b63a25a/',
     'https://www.linkedin.com/in/ved-pingle-233028258/',
+    "https://www.linkedin.com/in/vedant-ghumare-129699289",
+    "https://www.linkedin.com/in/utkarsh-brahmankar-b464ba297",
   ];
 
   final List<String> urlGit = [
@@ -65,6 +67,8 @@ class ui extends StatelessWidget {
     'https://github.com/sidbod23',
     'https://github.com/shreyapillai819',
     'https://github.com/vedpingle',
+    "https://github.com/vedant-rgb",
+    "https://github.com/utkarshbrahmankar"
   ];
 
   ui({Key? key}) : super(key: key);
@@ -81,7 +85,7 @@ class ui extends StatelessWidget {
             child: Swiper(
               scrollDirection: Axis.horizontal,
               autoplay: true,
-              itemCount: 8,
+              itemCount: 10,
               loop: true, // Enable loop
               pagination: const SwiperPagination(
                 builder: DotSwiperPaginationBuilder(

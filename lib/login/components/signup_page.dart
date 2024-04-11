@@ -296,7 +296,7 @@ class _SignupPageState extends State<SignupPage> {
     );
     print(signedin);
     if (signedin) {
-      Get.offAll(() => HomePage());
+      Get.off(() => HomePage());
     } else {
       FocusScope.of(context).unfocus();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

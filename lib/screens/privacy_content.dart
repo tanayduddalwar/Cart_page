@@ -1,5 +1,7 @@
+import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   PrivacyPolicy({super.key});
@@ -15,7 +17,7 @@ class PrivacyPolicy extends StatelessWidget {
     'INFORMATION SECURITY',
     'We take appropriate security measures to protect against unauthorized access to or unauthorized alteration, disclosure or destruction of data. These include internal reviews of our data collection, storage and processing practices and security measures, including appropriate encryption and physical security measures to guard against unauthorized access to systems where we store personal data.All information gathered on our app is securely stored within our controlled database. The database is stored on servers secured behind a firewall; access to the servers is password-protected and is strictly limited. However, as effective as our security measures are, no security system is impenetrable. We cannot guarantee the security of our database, nor can we guarantee that information you supply will not be intercepted while being transmitted to us over the Internet. And, of course, any information you include in a posting to the discussion areas is available to anyone with Internet access. However the internet is an ever evolving medium. We may change our Privacy Policy from time to time to incorporate necessary future changes. Of course, our use of any information we gather will always be consistent with the policy under which the information was collected, regardless of what the new policy may be.'
   ];
-  @override
+@override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
@@ -32,190 +34,198 @@ class PrivacyPolicy extends StatelessWidget {
       fontSize: fSize - 4.0,
       fontWeight: FontWeight.bold,
     );
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blue,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.white,
-        ),
-        title:Text(
-           'PRIVACY POLICY',
-          style: TextStyle(
-            fontFamily: 'berky',
+
+    return WillPopScope(
+      onWillPop: () async {
+        Get.off(() => HomePage());
+        return true; // Return true to allow popping the screen
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.blue,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () {
+              Get.off(() => HomePage());
+            },
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: fSize - 5.0,
           ),
+          title: Text(
+            'PRIVACY POLICY',
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: fSize - 5.0,
+            ),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Container(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 0.04 * h,
-              ),
-              Image(
-                height: 0.3 * h,
-                image: const AssetImage("assets/Lock.jpg"),
-              ),
-              SizedBox(
-                height: 0.1 * h,
-              ),
-              SizedBox(
-                height: 0.08 * h,
-                width: 0.8 * w,
-                child: Text(
-                  'We never use or share your personal information without your permission.',
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontFamily: 'OxaniumRegular',
-                    fontSize: fSize - 3.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 0.05 * h,
-              ),
-              SizedBox(
-                height: 0.09 * h,
-                width: 0.8 * w,
-                child: Text(
-                  'We always abide by the following terms and conditions for all the information that you provide.',
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontFamily: 'OxaniumRegular',
-                    fontSize: fSize - 3.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 0.09 * h,
-              ),
-              TextButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    enableDrag: true,
-                    isScrollControlled: true,
-                    useSafeArea: true,
-                    backgroundColor: Colors.blue[300],
-                    barrierColor: Colors.transparent.withOpacity(0.5),
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: h,
-                        margin: const EdgeInsets.all(12.0),
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView(
-                          children: [
-                            IconButton(
-                              icon: const Icon(
-                                Icons.close,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            SizedBox(
-                              height: 0.015 * h,
-                            ),
-                            Center(
-                              child: Text(
-                                '${items[0]}\n',
-                                textAlign: TextAlign.justify,
-                                style: format2,
-                              ),
-                            ),
-                            Text(
-                              '${items[1]}\n',
-                              textAlign: TextAlign.justify,
-                              style: format,
-                            ),
-                            Center(
-                              child: Text(
-                                '${items[2]}\n',
-                                textAlign: TextAlign.justify,
-                                style: format2,
-                              ),
-                            ),
-                            Text(
-                              '${items[3]}\n',
-                              textAlign: TextAlign.justify,
-                              style: format,
-                            ),
-                            Center(
-                              child: Text(
-                                '${items[4]}\n',
-                                textAlign: TextAlign.justify,
-                                style: format2,
-                              ),
-                            ),
-                            Text(
-                              '${items[5]}\n',
-                              textAlign: TextAlign.justify,
-                              style: format,
-                            ),
-                            Center(
-                              child: Text(
-                                '${items[6]}\n',
-                                textAlign: TextAlign.justify,
-                                style: format2,
-                              ),
-                            ),
-                            Text(
-                              '${items[7]}\n',
-                              textAlign: TextAlign.justify,
-                              style: format,
-                            ),
-                            Center(
-                              child: Text(
-                                '${items[8]}\n',
-                                textAlign: TextAlign.justify,
-                                style: format2,
-                              ),
-                            ),
-                            Text(
-                              '${items[9]}\n',
-                              textAlign: TextAlign.justify,
-                              style: format,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Container(
+        body: Container(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
                   height: 0.04 * h,
+                ),
+                Image(
+                  height: 0.3 * h,
+                  image: const AssetImage("assets/Lock.jpg"),
+                ),
+                SizedBox(
+                  height: 0.1 * h,
+                ),
+                SizedBox(
+                  height: 0.08 * h,
                   width: 0.8 * w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 2, 84, 165),
+                  child: Text(
+                    'We never use or share your personal information without your permission.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontFamily: 'OxaniumRegular',
+                      fontSize: fSize - 3.0,
+                      color: Colors.white,
+                    ),
                   ),
-                  child: Center(
-                    child: Text(
-                      'OPEN TERMS AND CONDITONS',
-                      style: TextStyle(
-                        fontSize: fSize - 4.0,
-                        fontFamily: 'berky',
-                        color: Colors.white,
+                ),
+                SizedBox(
+                  height: 0.05 * h,
+                ),
+                SizedBox(
+                  height: 0.09 * h,
+                  width: 0.8 * w,
+                  child: Text(
+                    'We always abide by the following terms and conditions for all the information that you provide.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontFamily: 'OxaniumRegular',
+                      fontSize: fSize - 3.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 0.09 * h,
+                ),
+                TextButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      enableDrag: true,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      backgroundColor: Colors.blue[300],
+                      barrierColor: Colors.transparent.withOpacity(0.5),
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: h,
+                          margin: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView(
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              SizedBox(
+                                height: 0.015 * h,
+                              ),
+                              Center(
+                                child: Text(
+                                  '${items[0]}\n',
+                                  textAlign: TextAlign.justify,
+                                  style: format2,
+                                ),
+                              ),
+                              Text(
+                                '${items[1]}\n',
+                                textAlign: TextAlign.justify,
+                                style: format,
+                              ),
+                              Center(
+                                child: Text(
+                                  '${items[2]}\n',
+                                  textAlign: TextAlign.justify,
+                                  style: format2,
+                                ),
+                              ),
+                              Text(
+                                '${items[3]}\n',
+                                textAlign: TextAlign.justify,
+                                style: format,
+                              ),
+                              Center(
+                                child: Text(
+                                  '${items[4]}\n',
+                                  textAlign: TextAlign.justify,
+                                  style: format2,
+                                ),
+                              ),
+                              Text(
+                                '${items[5]}\n',
+                                textAlign: TextAlign.justify,
+                                style: format,
+                              ),
+                              Center(
+                                child: Text(
+                                  '${items[6]}\n',
+                                  textAlign: TextAlign.justify,
+                                  style: format2,
+                                ),
+                              ),
+                              Text(
+                                '${items[7]}\n',
+                                textAlign: TextAlign.justify,
+                                style: format,
+                              ),
+                              Center(
+                                child: Text(
+                                  '${items[8]}\n',
+                                  textAlign: TextAlign.justify,
+                                  style: format2,
+                                ),
+                              ),
+                              Text(
+                                '${items[9]}\n',
+                                textAlign: TextAlign.justify,
+                                style: format,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    height: 0.04 * h,
+                    width: 0.8 * w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(255, 2, 84, 165),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'OPEN TERMS AND CONDITIONS',
+                        style: GoogleFonts.montserrat(
+                          fontSize: fSize - 4.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+

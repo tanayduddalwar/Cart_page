@@ -1,6 +1,7 @@
 
 import 'package:cart_page/developers/interface.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -17,8 +18,8 @@ class _HomeState extends State<DevelopersPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text("Developers" ,style: TextStyle(
-          fontFamily: "berky",
+        title: Text("Developers" ,style: GoogleFonts.montserrat(
+         // fontFamily: "berky",
           fontWeight: FontWeight.bold,
           fontSize: 30,
           color: Colors.white,

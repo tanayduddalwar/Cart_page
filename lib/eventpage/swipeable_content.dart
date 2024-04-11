@@ -117,6 +117,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
+                      
                       padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.01),
                       child: Row(

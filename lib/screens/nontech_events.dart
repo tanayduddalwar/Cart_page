@@ -22,7 +22,9 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/bgimg/11.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/bgimg/11.png'),
+            fit: BoxFit.cover,
+          ),
         ),
         child: ListView.builder(
           itemCount: widget.isNonTechnical.length,
@@ -36,39 +38,68 @@ class _NonTechEventsPageState extends State<NonTechEventsPage> {
             final formattedEndDate =
                 DateFormat.yMMMMd().add_jm().format(endDate);
 
-            return Card(
+            return Container(
               margin: EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xff015db4), Color(0xff012554)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 0),
                   ),
+                ],
+              ),
+              child: Card(
+                margin: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: ListTile(
-                  title: Text(
-                    widget.isNonTechnical[index]['event_name'],
-                    style: TextStyle(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xff015db4),
+                        Color(0xff012554),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1,
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      widget.isNonTechnical[index]['event_name'],
+                      style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'berky'),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Price: ₹${widget.isNonTechnical[index]['event_cost']}',
-                        style:
-                            TextStyle(color: Colors.white, fontFamily: 'berky'),
+                        fontFamily: 'berky',
                       ),
-                      Text(
-                        'Start: ${formattedStartDate}\nEnd: ${formattedEndDate}',
-                        style:
-                            TextStyle(color: Colors.white, fontFamily: 'berky'),
-                      ),
-                    ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Price: ₹${widget.isNonTechnical[index]['event_cost']}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'berky',
+                          ),
+                        ),
+                        Text(
+                          'Start: ${formattedStartDate}\nEnd: ${formattedEndDate}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'berky',
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

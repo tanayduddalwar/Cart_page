@@ -62,7 +62,7 @@ class _AdminPageState extends State<AdminPage> {
       length: 2,
       child: WillPopScope(
         onWillPop: () async {
-          Get.offAll(() => HomePage());
+          Get.off(() => HomePage());
           return false;
         },
         child: Scaffold(
@@ -74,14 +74,13 @@ class _AdminPageState extends State<AdminPage> {
                   child: mygif(),
                 );
               } else if (snapshot.hasError) {
-                 Fluttertoast.showToast(
+                Fluttertoast.showToast(
                   msg: "Error in showing profile page!",
                   gravity: ToastGravity.BOTTOM,
                   backgroundColor: Colors.grey,
                   textColor: Colors.white,
                 );
-                 return HomePage();
-               
+                return HomePage();
               } else {
                 return Container(
                   height: double.infinity,
@@ -102,7 +101,7 @@ class _AdminPageState extends State<AdminPage> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            Get.offAll(() => HomePage());
+                            Get.off(() => HomePage());
                           },
                         ),
                         centerTitle: true,

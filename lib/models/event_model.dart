@@ -71,11 +71,52 @@ class Event {
         {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
       ],
       datetime: [
-        "Round 1 (Slot 1): 12th April 2024, 04:00 PM onwards",
-        "Round 1 (Slot 2): 13th April 2024, 09:00 AM onwards",
-        "Round 2: 14th April 2024, 11:30 AM to 1:30 PM"
+      "Round 1 (Slot 1): 19th April 2024, 04:00 PM onwards",
+      "Round 1 (Slot 2): 20th April 2024, 09:00 AM onwards",
+      "Round 2: 21th April 2024, 11:30 AM to 1:30 PM"
       ],
     ),
+    Event(
+        id: 112,
+        name: 'Xodia',
+        structure: {
+          "1":
+              "It would be a single-round competition and matches will be held in a single-elimination format."
+        },
+        body:
+            "Dive into the realm of bot development where participants craft bots, leveraging reinforcement learning techniques or algorithms, to compete head to head in an exhilarating gaming environment. Let the games begin!!",
+        price: 50,
+        imageUrl: 'assets/xodia.png',
+        duration: '50',
+        isTechnical: true,
+        description: 'Wrong Event Tapped',
+        rules: {
+          "1":
+              "The game environment for the competition would be 'Pocket Tanks'.",
+          "2":
+              "The details of the game environment will be released on the 12th April.",
+          "3":
+              "Participants have to build bots capable of competing against other bots in the provided game environment and submit them before the given deadline.",
+          "4":
+              "Participants can submit both RL (Reinforcement Learning) based as well as algorithmic bots.",
+          "5":
+              "The standard format of bot submission would be conveyed to participants.",
+          "6":
+              "The matches between bots will be conducted and streamed on the 14th April"
+        },
+        contact: [
+          {"name": "Prem Gaikwad", "phone": "9823392274"},
+          {"name": "Maheshwar Bhosale", "phone": "9067507393"}
+        ],
+        prizes: [
+          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
+        ],
+        datetime: [
+       "Environment Release: 19th April",
+      "Bot Submission: 19th and 20th April",
+      "Matches: 21th April"
+        ] // Set it as non-technical
+        ),
     Event(
         name: 'DataWiz',
         structure: {"1": "Individual event"},
@@ -115,8 +156,8 @@ class Event {
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-          "Start Time: 12th April 2024 00:00 IST",
-          "End Time: 14th April 2024 23:59 IST"
+         "Start Time: 19th April 2024 00:00 IST",
+      "End Time: 20th April 2024 23:59 IST"
         ]
 
         // Set it as technical
@@ -156,9 +197,7 @@ class Event {
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-          "Round 1 Start: 8th April 2024",
-          "Round 1 Submission : 11th April 2024, 11:59 PM",
-          "Round 2: 13th April 2023, 10:00 AM to 6:00 PM (Offline)"
+         "To be announced."
         ] // Set it as non-technical
         ),
     Event(
@@ -195,17 +234,103 @@ class Event {
           {"1": " First Prize: Rs. 3000", "2": " Second Prize: Rs. 2000"}
         ],
         datetime: [
-          "Round 1 (Slot 1): 12th April 2024, 4:00 PM to 5:00 PM",
-          "Round 2: 13th April 2024, 10:00 AM to 02:00 PM"
+          "Round 1 (Slot 1): 19th April 2024, 4:00 PM to 5:00 PM",
+      "Round 2: 20th April 2024, 10:00 AM to 02:00 PM"
         ] // Set it as technical
         ),
+
     Event(
+        id: 101,
+        name: 'Clash',
+        price: 50,
+        imageUrl: 'assets/Clash.png',
+        duration: '30',
+        isTechnical: true,
+        body:
+            "Put your logical acumen and coding expertise to the test as you clash with a round of perplexing MCQs followed by a set of time-bound coding challenges,carefully designed to assess your command over programming in the language of your choice- Python, C or C++. Showcase your technical proficiency as you have a go at competitive coding with plenty to learn and nothing to lose.",
+        rules: {
+          "1":
+              "Contenders are not allowed to use multiple smart devices while solving the test and it would be considered as malpractice if Caught ",
+          "2":
+              "Teams or players are not allowed to use any IDE or software once the game has started.",
+          "3":
+              "You are not allowed to switch tabs or close the browser during the game. If you do so, you will be logged out automatically.",
+          "4":
+              "Multiple Device Logins from same account are strictly prohibited"
+        },
+        structure: {
+          "1":
+              "Round-1: A 28 minute round of MCQs for individuals as well as a team(max 2 people) contenders  based on coding concepts in C/C++, Java and python, divided into Juniors and Seniors category. Juniors including F.E’s and S.E's, seniors including T.E’s and B.E’s  where you would also be provided with 3 boonful lifelines(description will be provided in the game itself) and the marking scheme would be as follows:- The primary marks allotted are +4 if answered correctly and -2 if the answer for a particular question is incorrect. If a question attempted is incorrect, then from the next question +2 marks are allotted for each correctly answered question, else -1 until you get a correct answer for upcoming questions.",
+          "2":
+              "Round-2: A 2 hour long round where each team or individuals have to solve 6-8 core competitive coding questions. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Languges allowed to code are C/C++, Java and Python. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
+        },
+        description: 'Wrong Event Tapped',
+        contact: [
+          {"name": "Prasad Khatake", "phone": "8767039196"},
+          {"name": "Animesh Jain", "phone": "7385170022"}
+        ],
+        prizes: [
+          {"1": "Sr. First Prize: Rs. 5000", "2": "Sr. Second Prize: Rs. 3000"},
+          {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
+        ],
+        datetime: [
+              "Round 1 (Slot 1): 19th April 2024, 4:00 PM onwards",
+      "Round 1 (Slot 2): 20th April 2024, 10:00 AM to 6:00 PM",
+      "Round 2: 21th April 2024, 9:15 AM to 11:15 PM"
+        ]),
+    Event(
+        id: 103,
+        name: 'NTH',
+        price: 0,
+        imageUrl: 'assets/nth.png',
+        duration: '30',
+        isTechnical: false,
+        body:
+            "Network Treasure Hunt is an online Treasure Hunt played across the globe. Read between the lines, find the hidden clues and connect the dots. You can use every tool at your disposal. Even with Google and Wikipedia by your side, it's going to be fun and challenging.",
+        rules: {
+          "1":
+              "The questions in this contest have clues and hints in form of images, video, GIFs, audio, and text.",
+          "2":
+              "A user can submit their answer after 'question/' in the url by replacing put_your_answer_here, the answer shouldn't contain any spaces.",
+          "3":
+              "A correct answer will direct the user to the next question while an incorrect answer will redirect the user to the same question as before.",
+          "4": "Top scorers will be visible on a dynamic leaderboard.",
+          "5":
+              "Additionally, a user will be awarded keys after solving a question and free keys will be awarded to active users after a certain duration of time.",
+          "6":
+              "Keys can be used to claim extra hints for questions further in the hunt.",
+          "7":
+              "The cost of the extra hint will be the ceiling function of 1.5 times the level of the current question.",
+          "8":
+              "A user can claim only 1 extra hint per question, so use this facility wisely.",
+          "9":
+              "After the 24-hour hunt, the one on the top of the leaderboard wins!",
+          "10":
+              "The winner will be declared once and there will be no change in our decision. Furthermore, users should play with one account only."
+        },
+        structure: {
+          "1":
+              "Channel your inner Wednesday Addams to solve this great mystery of PISB's very own Nevermore Academy"
+        },
+        description: 'Your Hint is:19',
+        contact: [
+          {"name": "Karan Mundhada", "phone": "8080792381"},
+          {"name": "Kshitij Dhapse", "phone": "9145299114"}
+        ],
+        prizes: [
+          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
+        ],
+        datetime: [
+         "Start Time: 13th April 9:00 PM",
+      "End Time: 14th April 9:00 PM"
+        ]),
+            Event(
         id: 111,
         name: 'Roboliga',
         price: 200,
         imageUrl: 'assets/roboliga.png',
         duration: '30',
-        isTechnical: true,
+        isTechnical: false,
         description: 'Wrong Event Tapped',
         structure: {
           "1": "Match :",
@@ -262,93 +387,8 @@ class Event {
           {"1": "First Prize: Rs. 8000", "2": "Second Prize: Rs. 6000"}
         ],
         datetime: [
-          "All matches: 12th April 2024, 11:00 AM to 6:00 PM",
-          "Semi-finals and Finals: 13th April 2024, 3:00 PM to 6:00 PM"
-        ]),
-    Event(
-        id: 101,
-        name: 'Clash',
-        price: 50,
-        imageUrl: 'assets/Clash.png',
-        duration: '30',
-        isTechnical: true,
-        body:
-            "Put your logical acumen and coding expertise to the test as you clash with a round of perplexing MCQs followed by a set of time-bound coding challenges,carefully designed to assess your command over programming in the language of your choice- Python, C or C++. Showcase your technical proficiency as you have a go at competitive coding with plenty to learn and nothing to lose.",
-        rules: {
-          "1":
-              "Contenders are not allowed to use multiple smart devices while solving the test and it would be considered as malpractice if Caught ",
-          "2":
-              "Teams or players are not allowed to use any IDE or software once the game has started.",
-          "3":
-              "You are not allowed to switch tabs or close the browser during the game. If you do so, you will be logged out automatically.",
-          "4":
-              "Multiple Device Logins from same account are strictly prohibited"
-        },
-        structure: {
-          "1":
-              "Round-1: A 28 minute round of MCQs for individuals as well as a team(max 2 people) contenders  based on coding concepts in C/C++, Java and python, divided into Juniors and Seniors category. Juniors including F.E’s and S.E's, seniors including T.E’s and B.E’s  where you would also be provided with 3 boonful lifelines(description will be provided in the game itself) and the marking scheme would be as follows:- The primary marks allotted are +4 if answered correctly and -2 if the answer for a particular question is incorrect. If a question attempted is incorrect, then from the next question +2 marks are allotted for each correctly answered question, else -1 until you get a correct answer for upcoming questions.",
-          "2":
-              "Round-2: A 2 hour long round where each team or individuals have to solve 6-8 core competitive coding questions. Questions would be a blend of Data-Structures and Algorithms and mind bending Competitive programming Questions which the contenders would have to solve and pave their path to victory. Note: Junior level questions would be comparatively a little less challenging than the Senior level. Languges allowed to code are C/C++, Java and Python. Judging for round 2 will be based on the time and space efficiency of your code to solve the given challenges in restricted time."
-        },
-        description: 'Wrong Event Tapped',
-        contact: [
-          {"name": "Prasad Khatake", "phone": "8767039196"},
-          {"name": "Animesh Jain", "phone": "7385170022"}
-        ],
-        prizes: [
-          {"1": "Sr. First Prize: Rs. 5000", "2": "Sr. Second Prize: Rs. 3000"},
-          {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
-        ],
-        datetime: [
-          "Round 1 (Slot 1): 12th April 2024, 4:00 PM onwards",
-          "Round 1 (Slot 2): 13th April 2024, 10:00 AM to 6:00 PM",
-          "Round 2: 14th April 2024, 9:15 AM to 11:15 PM"
-        ]),
-    Event(
-        id: 103,
-        name: 'NTH',
-        price: 0,
-        imageUrl: 'assets/nth.png',
-        duration: '30',
-        isTechnical: false,
-        body:
-            "Network Treasure Hunt is an online Treasure Hunt played across the globe. Read between the lines, find the hidden clues and connect the dots. You can use every tool at your disposal. Even with Google and Wikipedia by your side, it's going to be fun and challenging.",
-        rules: {
-          "1":
-              "The questions in this contest have clues and hints in form of images, video, GIFs, audio, and text.",
-          "2":
-              "A user can submit their answer after 'question/' in the url by replacing put_your_answer_here, the answer shouldn't contain any spaces.",
-          "3":
-              "A correct answer will direct the user to the next question while an incorrect answer will redirect the user to the same question as before.",
-          "4": "Top scorers will be visible on a dynamic leaderboard.",
-          "5":
-              "Additionally, a user will be awarded keys after solving a question and free keys will be awarded to active users after a certain duration of time.",
-          "6":
-              "Keys can be used to claim extra hints for questions further in the hunt.",
-          "7":
-              "The cost of the extra hint will be the ceiling function of 1.5 times the level of the current question.",
-          "8":
-              "A user can claim only 1 extra hint per question, so use this facility wisely.",
-          "9":
-              "After the 24-hour hunt, the one on the top of the leaderboard wins!",
-          "10":
-              "The winner will be declared once and there will be no change in our decision. Furthermore, users should play with one account only."
-        },
-        structure: {
-          "1":
-              "Channel your inner Wednesday Addams to solve this great mystery of PISB's very own Nevermore Academy"
-        },
-        description: 'Your Hint is:19',
-        contact: [
-          {"name": "Karan Mundhada", "phone": "8080792381"},
-          {"name": "Kshitij Dhapse", "phone": "9145299114"}
-        ],
-        prizes: [
-          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
-        ],
-        datetime: [
-          "Start Time: 13th April 21:00 IST",
-          "End Time: 14th April 21:00 IST"
+           "All matches: 19th April 2024, 11:00 AM to 7:00 PM",
+      "Semi-finals and Finals: 20th April 2024, 11:00 PM to 3:00 PM"
         ]),
     Event(
         name: 'Wall\nStreet',
@@ -391,8 +431,8 @@ class Event {
           {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
         ],
         datetime: [
-          "IPO release: From 10th April",
-          "Trading: 12th-14th April 2024, 9:00 AM to 3:00 PM"
+        "IPO release: From 16th April",
+      "Trading: 19th-20th April 2024, 9:00 AM to 3:00 PM"
         ]
 
         // Set it as technical
@@ -421,9 +461,9 @@ class Event {
             "Shark Tank Round:Qualified teams will be given random pitches and they have to pitch in front of real sharks who will judge your pitching skills to decide the winner team."
       },
       datetime: [
-        "Round 1: 12th April 2024, 01:00 PM to 3:00 PM",
-        "Round 2: 13th April 2024, 04:00 PM to 07:00 PM",
-        "Round 3: 14th April 2024, 11:30 AM to 2.30 PM"
+     "Round 1: 19th April 2024, 01:00 PM to 3:00 PM",
+      "Round 2: 20th April 2024, 04:00 PM to 07:00 PM",
+      "Round 3: 21th April 2024, 11:30 AM to 2.30 PM"
       ],
       prizes: [
         {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
@@ -469,8 +509,8 @@ class Event {
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-          "Round 1 (Slot 1): 12th April 2024, 4:30 PM to 06:00 PM",
-          "Round 2: 13th April 2024, 05:00 PM to 07:00 PM"
+             "Round 1 (Slot 1): 19th April 2024, 4:30 PM to 06:00 PM",
+      "Round 2: 20th April 2024, 05:00 PM to 07:00 PM"
         ]
 // Set it as non-technical
         ),
@@ -510,49 +550,9 @@ class Event {
           {"1": "To Be Declared"}
         ],
         datetime: [
-          "Start Time: 12th April 2024",
-          "End Time: 14th April 2024"
+              "Start Time: 19th April 2024",
+      "End Time: 20th April 2024"
         ]),
-    Event(
-        id: 112,
-        name: 'Xodia',
-        structure: {
-          "1":
-              "It would be a single-round competition and matches will be held in a single-elimination format."
-        },
-        body:
-            "Dive into the realm of bot development where participants craft bots, leveraging reinforcement learning techniques or algorithms, to compete head to head in an exhilarating gaming environment. Let the games begin!!",
-        price: 50,
-        imageUrl: 'assets/xodia.png',
-        duration: '50',
-        isTechnical: false,
-        description: 'Wrong Event Tapped',
-        rules: {
-          "1":
-              "The game environment for the competition would be 'Pocket Tanks'.",
-          "2":
-              "The details of the game environment will be released on the 12th April.",
-          "3":
-              "Participants have to build bots capable of competing against other bots in the provided game environment and submit them before the given deadline.",
-          "4":
-              "Participants can submit both RL (Reinforcement Learning) based as well as algorithmic bots.",
-          "5":
-              "The standard format of bot submission would be conveyed to participants.",
-          "6":
-              "The matches between bots will be conducted and streamed on the 14th April"
-        },
-        contact: [
-          {"name": "Prem Gaikwad", "phone": "9823392274"},
-          {"name": "Maheshwar Bhosale", "phone": "9067507393"}
-        ],
-        prizes: [
-          {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
-        ],
-        datetime: [
-          "Environment Release: 12th April",
-          "Bot Submission: 12th and 13th April",
-          "Matches: 14th April"
-        ] // Set it as non-technical
-        ),
+
   ];
 }
