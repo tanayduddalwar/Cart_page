@@ -61,6 +61,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   super_banners: ^0.0.1
   flutter_animated_button: ^2.0.3
+  rename: ^3.0.2
 
 #   url_launcher: ^6.2.4
 #   fluid_bottom_nav_bar: ^1.4.0
