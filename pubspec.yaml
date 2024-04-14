@@ -101,8 +101,8 @@ flutter:
     - assets/developers/
     - assets/images/
     - assets/icons/
-
     - assets/bgimg/
+    - assets/sponsors/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

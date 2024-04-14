@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         : Scaffold(
-          backgroundColor: Colors.black,
+            backgroundColor: Colors.black,
             body: PageView(
               controller: pageController,
               children: [

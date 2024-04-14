@@ -15,10 +15,20 @@ class VideosScreen extends StatefulWidget {
 
 class _VideosScreenState extends State<VideosScreen> {
   final List<String> images = [
-    'assets/comingsoon.jpeg',
-    'assets/comingsoon.jpeg',
-    'assets/comingsoon.jpeg',
-    'assets/comingsoon.jpeg',
+    'assets/sponsors/nescafe.jpeg',
+    'assets/sponsors/ims.jpeg',
+    'assets/sponsors/pizzeria.jpeg',
+  ];
+
+  final List<String> sponsorName = [
+    "Nescafe",
+    "IMS",
+    "1441 - Pizzeria",
+  ];
+  final List<String> sponsorDesc = [
+    "Beverage Sponsors",
+    "BPlan Sponsors",
+    "Food Sponsors",
   ];
   late PageController _pageController;
   late Timer _timer;
@@ -102,12 +112,41 @@ class _VideosScreenState extends State<VideosScreen> {
                         opacity: 0.08,
                         radius: 15,
                         child: FractionallySizedBox(
-                          widthFactor: 0.8, // Adjust the width factor as needed
+                          widthFactor: 0.9, // Adjust the width factor as needed
                           heightFactor:
-                              0.5, // Adjust the height factor as needed
-                          child: Image.asset(
-                            images[index],
-                            fit: BoxFit.cover,
+                              0.9, // Adjust the height factor as needed
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                images[index],
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                              ),
+                              Text(
+                                sponsorName[index],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'berky',
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.005,
+                              ),
+                              Text(
+                                sponsorDesc[index],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: 'berky',
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
