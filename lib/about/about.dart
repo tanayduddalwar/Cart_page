@@ -15,7 +15,7 @@ class PISB extends StatelessWidget {
       onWillPop: () async {
         // Handle back button press here
         // For example:
-        Get.off(() => HomePage());
+        Get.offAll(() => HomePage());
         return false; // Return true if you want to allow back navigation, false otherwise
       },
       child: MaterialApp(
