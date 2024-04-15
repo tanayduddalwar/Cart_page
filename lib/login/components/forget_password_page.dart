@@ -68,8 +68,8 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                         Text(
                           "Forgot Password",
                           style: TextStyle(
-                              fontFamily: 'Walter',
-                              fontSize: 40,
+                              fontFamily: 'berky',
+                              fontSize: 25,
                               color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -100,7 +100,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                       )),
                                   hintText: 'Email',
                                   hintStyle: TextStyle(
-                                      fontFamily: 'Walter', fontSize: 30),
+                                      fontFamily: 'berky', fontSize: 15),
                                   contentPadding: EdgeInsets.only(bottom: 0.01),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.blue),
@@ -144,7 +144,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                             child: const Text(
                               'Back to login',
                               style: TextStyle(
-                                fontFamily: 'Walter',
+                                fontFamily: 'berky',
                                 fontSize: 20,
                                 color: Colors.white,
                               ),

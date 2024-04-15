@@ -166,7 +166,7 @@ class Event {
         name: 'Web\nWeaver',
         body:
             "Ever wondered how GSOC and other Open-Source programs work? Register now for web-weaver to get a taste!",
-        price: 50,
+        price: 0,
         imageUrl: 'assets/webweaver.png',
         duration: '30',
         isTechnical: true,
