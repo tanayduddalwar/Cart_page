@@ -241,7 +241,7 @@ class CombinedEventCard extends StatelessWidget {
                           event.name, // Access event name from Event object
                           style: TextStyle(
                             fontFamily: "berky",
-                            fontSize: 23,
+                            fontSize: 21,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -381,7 +381,7 @@ class revCombinedEventCard extends StatelessWidget {
                           event.name, // Access event name from Event object
                           style: TextStyle(
                             fontFamily: "berky",
-                            fontSize: 23,
+                            fontSize: 21,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),

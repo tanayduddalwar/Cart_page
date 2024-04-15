@@ -15,17 +15,20 @@ class VideosScreen extends StatefulWidget {
 
 class _VideosScreenState extends State<VideosScreen> {
   final List<String> images = [
+    'assets/sponsors/fetchAi.png',
     'assets/sponsors/nescafe.jpeg',
     'assets/sponsors/ims.jpeg',
     'assets/sponsors/pizzeria.jpeg',
   ];
 
   final List<String> sponsorName = [
+    "fetch.ai",
     "Nescafe",
     "IMS",
     "1441 - Pizzeria",
   ];
   final List<String> sponsorDesc = [
+    'Title Sponsors',
     "Beverage Sponsors",
     "BPlan Sponsors",
     "Food Sponsors",

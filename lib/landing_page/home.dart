@@ -305,11 +305,8 @@ Widget body() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  width: screenWidth * 0.8,
-                  child: Divider(
-                    thickness: screenWidth * 0.002,
-                    color: Colors.white60,
-                  )),
+                width: screenWidth * 0.8,
+              ),
               SizedBox(
                 height: screenHeight * 0.025,
               ),
@@ -545,10 +542,6 @@ Widget body() {
               ),
               Container(
                 width: screenWidth * 0.6,
-                child: Divider(
-                  thickness: screenWidth * 0.002,
-                  color: Colors.white60,
-                ),
               ),
             ],
           ),

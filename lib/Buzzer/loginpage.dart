@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Enter the Name of your team",
+                  "    Enter the Name of your \n                   team",
                   style: GoogleFonts.montserrat(
                     color: Colors.black,
                     fontSize: 22,
@@ -125,7 +125,8 @@ class _LoginState extends State<Login> {
                   otpFieldStyle: OtpFieldStyle(
                     backgroundColor: Colors.transparent,
                     focusBorderColor: Colors.white,
-                    enabledBorderColor: Colors.green,
+                    enabledBorderColor: Colors.black,
+                    //borderColor: Colors.black),
                   ),
                   fieldStyle: FieldStyle.underline,
                 ),

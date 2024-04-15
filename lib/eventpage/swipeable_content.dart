@@ -117,7 +117,6 @@ class _SwipeableContentState extends State<SwipeableContent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      
                       padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.01),
                       child: Row(
@@ -173,7 +172,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
                                 content[index],
                                 style: const TextStyle(
                                   fontFamily: "berky",
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
                                   height: 1.5,

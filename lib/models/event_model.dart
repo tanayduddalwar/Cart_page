@@ -71,9 +71,9 @@ class Event {
         {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
       ],
       datetime: [
-      "Round 1 (Slot 1): 19th April 2024, 04:00 PM onwards",
-      "Round 1 (Slot 2): 20th April 2024, 09:00 AM onwards",
-      "Round 2: 21th April 2024, 11:30 AM to 1:30 PM"
+        "Round 1 (Slot 1): 19th April 2024, 04:00 PM onwards",
+        "Round 1 (Slot 2): 20th April 2024, 09:00 AM onwards",
+        "Round 2: 21th April 2024, 11:30 AM to 1:30 PM"
       ],
     ),
     Event(
@@ -112,9 +112,9 @@ class Event {
           {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
         ],
         datetime: [
-       "Environment Release: 19th April",
-      "Bot Submission: 19th and 20th April",
-      "Matches: 21th April"
+          "Environment Release: 19th April",
+          "Bot Submission: 19th and 20th April",
+          "Matches: 21th April"
         ] // Set it as non-technical
         ),
     Event(
@@ -156,8 +156,8 @@ class Event {
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-         "Start Time: 19th April 2024 00:00 IST",
-      "End Time: 20th April 2024 23:59 IST"
+          "Start Time: 19th April 2024 00:00 IST",
+          "End Time: 20th April 2024 23:59 IST"
         ]
 
         // Set it as technical
@@ -166,7 +166,7 @@ class Event {
         name: 'Web\nWeaver',
         body:
             "Ever wondered how GSOC and other Open-Source programs work? Register now for web-weaver to get a taste!",
-        price: 75,
+        price: 50,
         imageUrl: 'assets/webweaver.png',
         duration: '30',
         isTechnical: true,
@@ -196,9 +196,7 @@ class Event {
         prizes: [
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
-        datetime: [
-         "To be announced."
-        ] // Set it as non-technical
+        datetime: ["To be announced."] // Set it as non-technical
         ),
     Event(
         name: 'Cretonix',
@@ -235,10 +233,9 @@ class Event {
         ],
         datetime: [
           "Round 1 (Slot 1): 19th April 2024, 4:00 PM to 5:00 PM",
-      "Round 2: 20th April 2024, 10:00 AM to 02:00 PM"
+          "Round 2: 20th April 2024, 10:00 AM to 02:00 PM"
         ] // Set it as technical
         ),
-
     Event(
         id: 101,
         name: 'Clash',
@@ -274,9 +271,9 @@ class Event {
           {"1": "Jr. First Prize: Rs. 5000", "2": "Jr. Second Prize: Rs. 3000"}
         ],
         datetime: [
-              "Round 1 (Slot 1): 19th April 2024, 4:00 PM onwards",
-      "Round 1 (Slot 2): 20th April 2024, 10:00 AM to 6:00 PM",
-      "Round 2: 21th April 2024, 9:15 AM to 11:15 PM"
+          "Round 1 (Slot 1): 19th April 2024, 4:00 PM onwards",
+          "Round 1 (Slot 2): 20th April 2024, 10:00 AM to 6:00 PM",
+          "Round 2: 21th April 2024, 9:15 AM to 11:15 PM"
         ]),
     Event(
         id: 103,
@@ -321,10 +318,10 @@ class Event {
           {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
         ],
         datetime: [
-         "Start Time: 13th April 9:00 PM",
-      "End Time: 14th April 9:00 PM"
+          "Start Time: 13th April 9:00 PM",
+          "End Time: 14th April 9:00 PM"
         ]),
-            Event(
+    Event(
         id: 111,
         name: 'Roboliga',
         price: 200,
@@ -387,8 +384,8 @@ class Event {
           {"1": "First Prize: Rs. 8000", "2": "Second Prize: Rs. 6000"}
         ],
         datetime: [
-           "All matches: 19th April 2024, 11:00 AM to 7:00 PM",
-      "Semi-finals and Finals: 20th April 2024, 11:00 PM to 3:00 PM"
+          "All matches: 19th April 2024, 11:00 AM to 7:00 PM",
+          "Semi-finals and Finals: 20th April 2024, 11:00 PM to 3:00 PM"
         ]),
     Event(
         name: 'Wall\nStreet',
@@ -431,8 +428,8 @@ class Event {
           {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
         ],
         datetime: [
-        "IPO release: From 16th April",
-      "Trading: 19th-20th April 2024, 9:00 AM to 3:00 PM"
+          "IPO release: From 16th April",
+          "Trading: 19th-20th April 2024, 9:00 AM to 3:00 PM"
         ]
 
         // Set it as technical
@@ -461,9 +458,9 @@ class Event {
             "Shark Tank Round:Qualified teams will be given random pitches and they have to pitch in front of real sharks who will judge your pitching skills to decide the winner team."
       },
       datetime: [
-     "Round 1: 19th April 2024, 01:00 PM to 3:00 PM",
-      "Round 2: 20th April 2024, 04:00 PM to 07:00 PM",
-      "Round 3: 21th April 2024, 11:30 AM to 2.30 PM"
+        "Round 1: 19th April 2024, 01:00 PM to 3:00 PM",
+        "Round 2: 20th April 2024, 04:00 PM to 07:00 PM",
+        "Round 3: 21th April 2024, 11:30 AM to 2.30 PM"
       ],
       prizes: [
         {"1": "First Prize: Rs. 5000", "2": "Second Prize: Rs. 3000"}
@@ -499,7 +496,7 @@ class Event {
         imageUrl: 'assets/enigma.png',
         duration: '130',
         isTechnical: false,
-       description: 'Wrong Event Tapped',
+        description: 'Wrong Event Tapped',
         contact: [
           {"name": "Renuka Dad", "phone": "+91 99759 10877"},
           {"name": "Pratik Walale", "phone": "+91 94226 22709"},
@@ -509,8 +506,8 @@ class Event {
           {"1": "First Prize: Rs. 3000", "2": "Second Prize: Rs. 2000"}
         ],
         datetime: [
-             "Round 1 (Slot 1): 19th April 2024, 4:30 PM to 06:00 PM",
-      "Round 2: 20th April 2024, 05:00 PM to 07:00 PM"
+          "Round 1 (Slot 1): 19th April 2024, 4:30 PM to 06:00 PM",
+          "Round 2: 20th April 2024, 05:00 PM to 07:00 PM"
         ]
 // Set it as non-technical
         ),
@@ -523,7 +520,7 @@ class Event {
         imageUrl: 'assets/quizillionaire.png',
         duration: '30',
         isTechnical: false,
-       description: 'Wrong Event Tapped',
+        description: 'Wrong Event Tapped',
         structure: {
           "1": "Round 1: Menti meter round",
           "2": "Round 2:n•Buzzer round",
@@ -550,9 +547,8 @@ class Event {
           {"1": "To Be Declared"}
         ],
         datetime: [
-              "Start Time: 19th April 2024",
-      "End Time: 20th April 2024"
+          "Start Time: 19th April 2024",
+          "End Time: 20th April 2024"
         ]),
-
   ];
 }

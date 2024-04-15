@@ -27,6 +27,7 @@ class PISB extends StatelessWidget {
               'PISB',
               style: GoogleFonts.montserrat(
                 color: Colors.white,
+                fontWeight: FontWeight.bold,
                 fontSize: 38.0,
               ),
             ),
@@ -44,37 +45,36 @@ class PISB extends StatelessWidget {
                 ),
               ),
               SafeArea(
-                child: SingleChildScrollView(
-                  // Wrap your content inside SingleChildScrollView
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: mediaQuery.size.height * 0.08,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: mediaQuery.size.height * 0.04,
+                    ),
+                    Image.asset(
+                      'assets/IEEE_logo.png',
+                      width: mediaQuery.size.width * 0.7,
+                      height: mediaQuery.size.height * 0.15,
+                    ),
+                    SizedBox(
+                      height: mediaQuery.size.height * 0.04,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
                       ),
-                      Image.asset(
-                        'assets/IEEE_logo.png',
-                        width: mediaQuery.size.width * 0.7,
-                        height: mediaQuery.size.height * 0.15,
-                      ),
-                      SizedBox(
-                        height: mediaQuery.size.height * 0.08,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Container(
-                            height: mediaQuery.size.height * 0.55,
-                            width: mediaQuery.size.width * 1,
-                            padding: EdgeInsets.all(2),
-                            child: Glassmorphism(
-                              blur: 7,
-                              opacity: 0.08,
-                              radius: 25,
-                              child: Padding(
-                                padding: EdgeInsets.all(6),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Container(
+                          height: mediaQuery.size.height * 0.55,
+                          width: mediaQuery.size.width * 1,
+                          padding: EdgeInsets.all(2),
+                          child: Glassmorphism(
+                            blur: 7,
+                            opacity: 0.08,
+                            radius: 25,
+                            child: Padding(
+                              padding: EdgeInsets.all(6),
+                              child: SingleChildScrollView(
                                 child: Text(
                                   'PICT IEEE Student Branch (PISB) was established in the year 1988 with an aim of inculcating a sense of technical '
                                   'awareness amongst its student members. PISB aims to escalate the knowledge and trends in the diverse fields of '
@@ -91,8 +91,8 @@ class PISB extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

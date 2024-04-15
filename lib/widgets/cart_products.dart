@@ -127,7 +127,6 @@ class EventProducts extends StatelessWidget {
 }
 
 class EventProductCard extends StatelessWidget {
-  //final player = AudioPlayer();
   final CartController controller;
   final Event eventobj;
   final int index;
@@ -141,10 +140,10 @@ class EventProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Row(
-        children: [
-          Padding(
+    return Row(
+      children: [
+        Flexible(
+          child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: InkWell(
               onTap: () {
@@ -152,7 +151,7 @@ class EventProductCard extends StatelessWidget {
               },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.65,
                 decoration: BoxDecoration(
                   color: Colors.white38,
                   borderRadius: BorderRadius.circular(15),
@@ -168,8 +167,8 @@ class EventProductCard extends StatelessWidget {
                     children: [
                       SizedBox(height: 3),
                       Container(
-                        width: 60,
-                        height: 60,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.1,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: LinearGradient(
@@ -184,7 +183,6 @@ class EventProductCard extends StatelessWidget {
                         ),
                         child: CircleAvatar(
                           radius: 35,
-                          // backgroundImage: AssetImage("assets/credenz.png"),
                           backgroundImage: AssetImage(eventobj.imageUrl),
                           backgroundColor: Colors.transparent,
                         ),
@@ -229,88 +227,78 @@ class EventProductCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(0.1),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
+        ),
+        Padding(
+          padding: const EdgeInsets.all(0.1),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white38,
+                ),
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.width * 0.25,
+                child: Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.white38,
                   ),
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: Card(
-                    elevation: 0,
-                    color: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(height: 12),
-                        Container(
-                          width: 55,
-                          height: 55,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Colors.black,
-                                Colors.white
-                                // Colors.lightBlueAccent,
-                                // Colors.lightBlue,
-                                // Colors.lightGreen,
-                              ],
-                            ),
-                          ),
-                          child: CircleAvatar(
-                            radius: 35,
-                            backgroundImage:
-                                AssetImage("assets/images/Credenz.png"),
-                            backgroundColor: Colors.transparent,
-                          ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(height: 12),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.19,
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
                         ),
-                        SizedBox(height: 5),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [],
-                          ),
+                        child: CircleAvatar(
+                          radius: 35,
+                          backgroundImage:
+                              AssetImage("assets/images/Credenz.png"),
+                          backgroundColor: Colors.transparent,
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Positioned(
-                  top: -25, // Adjust the position as needed
-                  right: -18, // Adjust the position as needed
-                  child: CornerBanner(
-                    bannerPosition: CornerBannerPosition.topRight,
-                    bannerColor: Colors.teal,
-                    child: SizedBox(
-                      width: 100, // Adjust the size of the banner as needed
-                      height: 20, // Adjust the size of the banner as needed
-                      child: Center(
-                        child: Text(
-                          eventobj.isTechnical ? "Tech" : "Non tech",
-                          style: TextStyle(color: Colors.white),
-                        ),
+              ),
+              Positioned(
+                top: -25,
+                right: -18,
+                child: CornerBanner(
+                  bannerPosition: CornerBannerPosition.topRight,
+                  bannerColor: Colors.teal,
+                  child: SizedBox(
+                    width: 100,
+                    height: 20,
+                    child: Center(
+                      child: Text(
+                        eventobj.isTechnical ? "Tech" : "Non tech",
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

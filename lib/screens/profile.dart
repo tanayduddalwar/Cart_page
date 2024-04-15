@@ -145,27 +145,31 @@ class _AdminPageState extends State<AdminPage> {
                               itemBuilder: (context) => [
                                 PopupMenuItem(
                                   child: Text("PING"),
-                                  value: "PING",
+                                  //value: "PING",
+                                  onTap: () {
+                                    Get.to(PingPage());
+                                  },
                                 ),
                                 PopupMenuItem(
                                   child: Text("IEEE"),
-                                  value: "IEEE",
+                                  //value: "IEEE",
+                                  onTap: () {
+                                    Get.to(PISB());
+                                  },
                                 ),
                                 PopupMenuItem(
                                   child: Text("PRIVACY POLICY"),
-                                  value: "PRIVACY POLICY",
+                                  //value: "PRIVACY POLICY",
+                                  onTap: () {
+                                    Get.to(PrivacyPolicy());
+                                  },
                                 ),
                                 PopupMenuItem(
                                   child: Text("NTH"),
                                   value: "NTH",
+                                  onTap: () {},
                                 ),
                               ],
-                              onSelected: (value) {
-                                if (value == "IEEE") {}
-                                if (value == "PRIVACY POLICY") {
-                                  Get.to(PrivacyPolicy());
-                                }
-                              },
                             ),
                           ),
                         ],
