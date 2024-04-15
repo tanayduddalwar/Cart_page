@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
     return WillPopScope(
       onWillPop: () async {
         Get.off(() => HomePage());
-        return false; // Allow back navigation
+        return false;
       },
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -35,7 +35,10 @@ class _LoginState extends State<Login> {
           centerTitle: true,
           leading: IconButton(
             onPressed: () {
-              Get.off(() => HomePage());
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (ctx) {
+                return HomePage();
+              }));
             },
             icon: Icon(Icons.arrow_back),
           ),

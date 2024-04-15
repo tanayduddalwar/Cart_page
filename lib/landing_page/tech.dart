@@ -17,10 +17,11 @@ class TechEventsPage extends StatefulWidget {
 class _TechEventsPageState extends State<TechEventsPage>
     with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
-  final CartController cartController = Get.put(CartController());
+  final CartController cartController =
+      Get.put(CartController(), permanent: true);
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
-  late ScrollController _scrollController;
+  // late ScrollController _scrollController;
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -41,7 +42,7 @@ class _TechEventsPageState extends State<TechEventsPage>
   @override
   void dispose() {
     _pageController.dispose();
-    _scrollController.dispose();
+    // _scrollController.dispose();
     _controller.dispose();
     super.dispose();
   }

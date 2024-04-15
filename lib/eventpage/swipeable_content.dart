@@ -22,7 +22,7 @@ class SwipeableContent extends StatefulWidget {
 }
 
 class _SwipeableContentState extends State<SwipeableContent> {
-  final CartController controller = Get.put(CartController());
+  final CartController controller = Get.put(CartController(), permanent: true);
   late PageController _pageController;
   int currentIndex = 0;
 
@@ -213,42 +213,48 @@ class _SwipeableContentState extends State<SwipeableContent> {
                               shape: BoxShape.circle,
                               color: Colors.blue.withOpacity(0.8),
                             ),
-                           child: IconButton(
-  onPressed: () async {
-    if (event.name == "NTH") {
-      launch("https://nth.credenz.in/register");
-    } else if (event.name == "web weaver") {
-      launch("https://unstop.com/p/credenz-web-weaver-presented-by-fetchai-sctrs-pune-institute-of-computer-technology-dhankawadi-pune-953430?lb=aCmVWhXh");
-    } else {
-      database db = database();
-      if (await db.checkLoggedIn()) {
-        final snackBar = SnackBar(
-          elevation: 5,
-          behavior: SnackBarBehavior.fixed,
-          duration: Duration(seconds: 3),
-          backgroundColor: Colors.transparent,
-          content: AwesomeSnackbarContent(
-            title: 'Ready To Go !',
-            message: 'Event Added To Cart!',
-            contentType: ContentType.success,
-          ),
-        );
+                            child: IconButton(
+                              onPressed: () async {
+                                if (event.name == "NTH") {
+                                  await launchUrl(Uri.parse(
+                                      "https://nth.credenz.in/register"));
+                                } else if (event.name == "Web\nWeaver") {
+                                  await launchUrl(Uri.parse(
+                                      "https://unstop.com/p/credenz-web-weaver-presented-by-fetchai-sctrs-pune-institute-of-computer-technology-dhankawadi-pune-953430?lb=aCmVWhXh"));
+                                } else {
+                                  database db = database();
+                                  if (await db.checkLoggedIn()) {
+                                    final snackBar = SnackBar(
+                                      elevation: 5,
+                                      behavior: SnackBarBehavior.fixed,
+                                      duration: Duration(seconds: 3),
+                                      backgroundColor: Colors.transparent,
+                                      content: AwesomeSnackbarContent(
+                                        title: 'Ready To Go !',
+                                        message: 'Event Added To Cart!',
+                                        contentType: ContentType.success,
+                                      ),
+                                    );
 
-        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        controller.addProduct(context, event);
-      } else {
-        Get.to(() => LoginPage());
-      }
-    }
-  },
-  icon: Icon(
-    event.name == "NTH" || event.name=="Web Weaver" ? Icons.app_registration : Icons.add_shopping_cart_rounded,
-    color: Colors.amber,
-    size: 19,
-  ),
-),
-
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                    controller.addProduct(context, event);
+                                  } else {
+                                    Get.to(() => LoginPage());
+                                  }
+                                }
+                              },
+                              icon: Icon(
+                                event.name == "NTH" ||
+                                        event.name == "Web\nWeaver"
+                                    ? Icons.app_registration
+                                    : Icons.add_shopping_cart_rounded,
+                                color: Colors.amber,
+                                size: 19,
+                              ),
+                            ),
                           ),
                         ],
                       ),

@@ -32,7 +32,8 @@ class _HomePageState extends State<HomePage> {
   late PageController pageController;
   database db = database();
   double value = 0;
-  final CartController cartController = Get.put(CartController());
+  final CartController cartController =
+      Get.put(CartController(), permanent: true);
   bool nav = true;
   bool isLoggedIn = false;
 
@@ -79,18 +80,20 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       SafeArea(child: body()),
                       TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: value),
+                          tween: Tween<double>(
+                              begin: value == 1 ? 0 : 1,
+                              end: value == 1 ? 1 : 0),
                           duration: Duration(milliseconds: 275),
                           curve: Curves.easeInOut,
                           builder: (_, double val, __) {
                             return (Transform(
                               alignment: Alignment.center,
-                              transform: Matrix4.identity()
+                              transform: (Matrix4.identity()
                                 ..setEntry(3, 2, 0.001)
-                                ..setEntry(0, 3, 200 * val)
-                                ..setEntry(1, 3, 80 * val)
-                                ..rotateY((pi / 10) * val)
-                                ..scale(1 - val * 0.35),
+                                ..setEntry(0, 3, 150 * val)
+                                ..setEntry(1, 3, 20 * val)
+                                ..rotateY((pi / 9) * val)
+                                ..scale(1 - val * 0.35)),
                               child: Center(
                                 child: Stack(
                                   children: [
@@ -124,7 +127,11 @@ class _HomePageState extends State<HomePage> {
                                                         : value = 1;
                                                   });
                                                 },
-                                                icon: Icon(Icons.close));
+                                                icon: Icon(
+                                                  Icons.close,
+                                                  color: Colors.white,
+                                                  size: 35,
+                                                ));
                                       }),
                                     )
                                   ],
@@ -197,18 +204,26 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SafeArea(child: body()),
                     TweenAnimationBuilder(
-                        tween: Tween<double>(begin: 0, end: value),
+                        tween: Tween<double>(
+                            begin: value == 1 ? 0 : 1, end: value == 1 ? 1 : 0),
                         duration: Duration(milliseconds: 275),
                         curve: Curves.easeInOut,
                         builder: (_, double val, __) {
                           return (Transform(
                             alignment: Alignment.center,
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.001)
-                              ..setEntry(0, 3, 150 * val)
-                              ..setEntry(1, 3, 20 * val)
-                              ..rotateY((pi / 9) * val)
-                              ..scale(1 - val * 0.35),
+                            transform: value == 1
+                                ? (Matrix4.identity()
+                                  ..setEntry(3, 2, 0.001)
+                                  ..setEntry(0, 3, 150 * val)
+                                  ..setEntry(1, 3, 20 * val)
+                                  ..rotateY((pi / 9) * val)
+                                  ..scale(1 - val * 0.35))
+                                : (Matrix4.identity()
+                                  ..setEntry(3, 2, 0.001)
+                                  ..setEntry(0, 3, -150 * val)
+                                  ..setEntry(1, 3, -20 * val)
+                                  ..rotateY((-pi / 9) * val)
+                                  ..scale(1 + val * 0.35)),
                             child: Center(
                               child: Stack(
                                 children: [
@@ -323,7 +338,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(() => PISB()),
+                    onTap: () => Get.off(() => PISB()),
                     child: Text(
                       "PISB",
                       style: GoogleFonts.mukta(
@@ -351,7 +366,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PingPage()),
+                    onTap: () => Get.off(() => PingPage()),
                     child: Text(
                       "PING",
                       style: GoogleFonts.mukta(
@@ -386,7 +401,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(VideosScreen()),
+                    onTap: () => Get.off(() => VideosScreen()),
                     child: Text(
                       "Sponsors",
                       style: GoogleFonts.mukta(
@@ -412,7 +427,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(Login()),
+                    onTap: () => Get.off(() => Login()),
                     child: Text(
                       "Quiz",
                       style: GoogleFonts.mukta(
@@ -438,7 +453,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(() => DevelopersPage()),
+                    onTap: () => Get.off(() => DevelopersPage()),
                     child: Text(
                       "Developers",
                       style: GoogleFonts.mukta(
@@ -471,7 +486,7 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PrivacyPolicy()),
+                    onTap: () => Get.off(PrivacyPolicy()),
                     child: Text(
                       "Privacy Policy",
                       style: GoogleFonts.mukta(

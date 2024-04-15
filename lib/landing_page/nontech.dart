@@ -17,10 +17,11 @@ class NonTechEventsPage extends StatefulWidget {
 class _NonTechEventsPageState extends State<NonTechEventsPage>
     with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
-  final CartController cartController = Get.put(CartController());
+  final CartController cartController =
+      Get.put(CartController(), permanent: true);
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
-  late ScrollController _scrollController;
+  // late ScrollController _scrollController;
   late AnimationController _controller;
   late Animation<double> _animation;
   @override
@@ -39,7 +40,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage>
   @override
   void dispose() {
     _pageController.dispose();
-    _scrollController.dispose();
+    // _scrollController.dispose();
     _controller.dispose();
     super.dispose();
   }

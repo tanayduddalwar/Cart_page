@@ -10,7 +10,6 @@ import 'package:cart_page/widgets/cart_products.dart';
 import 'package:flutter/material.dart';
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'swipeable_content.dart';
 
 class SpecificPage extends StatefulWidget {
@@ -28,8 +27,7 @@ class SpecificPage extends StatefulWidget {
 class _SpecificPageState extends State<SpecificPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _extensionAnimation;
-  late Animation<double> _widthAnimation;
-  bool _isExtended = false;
+
   int _tapCount = 0;
 
   @override
@@ -100,11 +98,9 @@ class _SpecificPageState extends State<SpecificPage>
 
   @override
   Widget build(BuildContext context) {
-    bool isPassAdded = false;
     final Event event = widget.event;
     database db = database();
 
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
     return ScaffoldMessenger(
       child: Scaffold(
         extendBody: true,
@@ -227,6 +223,7 @@ class _SpecificPageState extends State<SpecificPage>
           ringWidth: 70,
           children: [
             FloatingActionButton(
+              heroTag: 'fab_cart',
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
                   Get.to(() => GetPass());
@@ -239,6 +236,7 @@ class _SpecificPageState extends State<SpecificPage>
               ),
             ),
             FloatingActionButton(
+              heroTag: 'fab_cart1',
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
                   Get.to(() => EventProducts());
