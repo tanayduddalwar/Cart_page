@@ -323,7 +323,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(() => PISB()),
+                    onTap: () => Get.off(() => PISB(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "PISB",
                       style: GoogleFonts.mukta(
@@ -351,7 +353,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PingPage()),
+                    onTap: () => Get.off(() => PingPage(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "PING",
                       style: GoogleFonts.mukta(
@@ -386,7 +390,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(VideosScreen()),
+                    onTap: () => Get.off(() => VideosScreen(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "Sponsors",
                       style: GoogleFonts.mukta(
@@ -412,7 +418,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(Login()),
+                    onTap: () => Get.off(() => Login(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "Quiz",
                       style: GoogleFonts.mukta(
@@ -438,7 +446,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(() => DevelopersPage()),
+                    onTap: () => Get.off(() => DevelopersPage(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "Developers",
                       style: GoogleFonts.mukta(
@@ -471,7 +481,9 @@ Widget body() {
                     width: screenWidth * 0.07,
                   ),
                   InkWell(
-                    onTap: () => Get.to(PrivacyPolicy()),
+                    onTap: () => Get.off(PrivacyPolicy(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500)),
                     child: Text(
                       "Privacy Policy",
                       style: GoogleFonts.mukta(
@@ -570,7 +582,9 @@ Widget innerbody() {
             tag: 'event-name',
             child: Text(
               'Credenz\' 24',
+              
               style: GoogleFonts.berkshireSwash(
+                
                 color: Colors.white,
                 fontSize: screenWidth * 0.09,
                 fontWeight: FontWeight.bold,
@@ -592,7 +606,8 @@ Widget innerbody() {
                   color1: Color.fromRGBO(1, 93, 180, 0.5),
                   color2: Color.fromRGBO(1, 37, 84, 1),
                   onTap: () {
-                    Get.to(() => TechEventsPage());
+                    Get.off(() => TechEventsPage(),transition: Transition.cupertinoDialog,
+            duration: Duration(milliseconds: 500));
                   },
                 ),
               ),
@@ -606,7 +621,8 @@ Widget innerbody() {
                   color1: Color.fromRGBO(1, 93, 180, 0.2),
                   color2: Color.fromRGBO(1, 10, 23, 1),
                   onTap: () {
-                    Get.to(() => NonTechEventsPage());
+                    Get.off(() => NonTechEventsPage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
                   },
                 ),
               ),

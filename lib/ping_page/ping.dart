@@ -22,21 +22,22 @@ class _PingPageState extends State<PingPage> {
 
     return WillPopScope(
       onWillPop: () async {
-        Get.off(() => HomePage());
+        Get.off(() => HomePage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
         return false;
       },
       child: SafeArea(
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Get.off(HomePage());
-                },
-                icon: Icon(Icons.arrow_back),
-              ),
-            ],
+            // actions: [
+            //   IconButton(
+            //     onPressed: () {
+            //       Get.off(HomePage());
+            //     },
+            //     icon: Icon(Icons.arrow_back),
+            //   ),
+            // ],
             centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0,

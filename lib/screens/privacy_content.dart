@@ -37,7 +37,8 @@ class PrivacyPolicy extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        Get.off(() => HomePage());
+        Get.off(() => HomePage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
         return true; // Return true to allow popping the screen
       },
       child: Scaffold(
@@ -47,7 +48,8 @@ class PrivacyPolicy extends StatelessWidget {
           backgroundColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {
-              Get.off(() => HomePage());
+              Get.off(() => HomePage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
             },
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,

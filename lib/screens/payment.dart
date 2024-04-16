@@ -82,17 +82,20 @@ class Payment extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  UPIPaymentQRCode(
-                    upiDetails: UPIDetails(
-                      upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
-                      payeeName: "PICT_IEEE_PISB",
-                      amount: totalAmount,
-                      transactionNote: "IEEE",
+                  Container(
+                    color: Colors.white,
+                    child: UPIPaymentQRCode(
+                      upiDetails: UPIDetails(
+                        upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
+                        payeeName: "PICT_IEEE_PISB",
+                        amount: totalAmount,
+                        transactionNote: "IEEE",
+                      ),
+                      eyeStyle: QrEyeStyle(
+                          color: Colors.black, eyeShape: QrEyeShape.square),
+                      size: 180,
+                      upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                     ),
-                    eyeStyle: QrEyeStyle(
-                        color: Colors.white, eyeShape: QrEyeShape.square),
-                    size: 180,
-                    upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

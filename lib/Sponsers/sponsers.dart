@@ -65,101 +65,112 @@ class _VideosScreenState extends State<VideosScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.off(() => HomePage());
-            },
-            icon: Icon(Icons.arrow_back)),
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'SPONSORS',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30.0,
-            fontFamily: 'berky',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true, //Title at Centre
-      ),
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          // Background Image
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/bgimg/7.png'),
-                fit: BoxFit.cover,
-              ),
+    return WillPopScope(
+      onWillPop: () async {
+        Get.off(() => HomePage(),
+            transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
+        return false; // Allow back navigation
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Get.off(() => HomePage(),
+                    transition: Transition.leftToRight,
+                    duration: Duration(milliseconds: 500));
+              },
+              icon: Icon(Icons.arrow_back)),
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            'SPONSORS',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30.0,
+              fontFamily: 'berky',
+              fontWeight: FontWeight.bold,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.7,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: images.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 32,
-                        horizontal: 16,
-                      ),
-                      child: Glassmorphism(
-                        blur: 10,
-                        opacity: 0.08,
-                        radius: 15,
-                        child: FractionallySizedBox(
-                          widthFactor: 0.9, // Adjust the width factor as needed
-                          heightFactor:
-                              0.9, // Adjust the height factor as needed
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                images[index],
-                                fit: BoxFit.fill,
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                              ),
-                              Text(
-                                sponsorName[index],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'berky',
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.005,
-                              ),
-                              Text(
-                                sponsorDesc[index],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'berky',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+          centerTitle: true, //Title at Centre
+        ),
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            // Background Image
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/bgimg/7.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: images.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 32,
+                          horizontal: 16,
+                        ),
+                        child: Glassmorphism(
+                          blur: 10,
+                          opacity: 0.08,
+                          radius: 15,
+                          child: FractionallySizedBox(
+                            widthFactor:
+                                0.9, // Adjust the width factor as needed
+                            heightFactor:
+                                0.9, // Adjust the height factor as needed
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  images[index],
+                                  fit: BoxFit.fill,
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                ),
+                                Text(
+                                  sponsorName[index],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontFamily: 'berky',
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.005,
+                                ),
+                                Text(
+                                  sponsorDesc[index],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontFamily: 'berky',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

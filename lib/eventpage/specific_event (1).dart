@@ -227,11 +227,15 @@ class _SpecificPageState extends State<SpecificPage>
           ringWidth: 70,
           children: [
             FloatingActionButton(
+              heroTag: 'fab_cart',
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
-                  Get.to(() => GetPass());
+                  Get.to(() => GetPass(),
+                      transition: Transition.downToUp,
+                      duration: Duration(milliseconds: 500));
                 } else {
-                  Get.to(() => LoginPage());
+                  Get.to(() => LoginPage(), transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500));
                 }
               },
               child: const Icon(
@@ -239,11 +243,14 @@ class _SpecificPageState extends State<SpecificPage>
               ),
             ),
             FloatingActionButton(
+              heroTag: 'fab1_cart',
               onPressed: () async {
                 if (await db.checkLoggedIn()) {
-                  Get.to(() => EventProducts());
+                  Get.to(() => EventProducts(), transition: Transition.downToUp,
+                        duration: Duration(milliseconds: 500));
                 } else {
-                  Get.to(() => LoginPage());
+                  Get.to(() => LoginPage(), transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500));
                 }
               },
               child: const Icon(Icons.shopping_cart),

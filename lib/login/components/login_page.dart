@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(
-          title: 'Ooch',
+          title: 'Oops',
           // titleFamily: "Walter",
           message: 'Invalid Username or Password',
           //messageFontSize: 25,

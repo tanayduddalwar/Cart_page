@@ -216,10 +216,12 @@ class _SwipeableContentState extends State<SwipeableContent> {
                            child: IconButton(
   onPressed: () async {
     if (event.name == "NTH") {
-      launch("https://nth.credenz.in/register");
-    } else if (event.name == "web weaver") {
-      launch("https://unstop.com/p/credenz-web-weaver-presented-by-fetchai-sctrs-pune-institute-of-computer-technology-dhankawadi-pune-953430?lb=aCmVWhXh");
-    } else {
+                                  await launchUrl(Uri.parse(
+                                      "https://nth.credenz.in/register"));
+                                } else if (event.name == "Web\nWeaver") {
+                                  await launchUrl(Uri.parse(
+                                      "https://unstop.com/p/credenz-web-weaver-presented-by-fetchai-sctrs-pune-institute-of-computer-technology-dhankawadi-pune-953430?lb=aCmVWhXh"));
+                                }else {
       database db = database();
       if (await db.checkLoggedIn()) {
         final snackBar = SnackBar(
@@ -243,7 +245,7 @@ class _SwipeableContentState extends State<SwipeableContent> {
     }
   },
   icon: Icon(
-    event.name == "NTH" || event.name=="Web Weaver" ? Icons.app_registration : Icons.add_shopping_cart_rounded,
+    event.name == "NTH" || event.name=="Web\nWeaver" ? Icons.app_registration : Icons.add_shopping_cart_rounded,
     color: Colors.amber,
     size: 19,
   ),

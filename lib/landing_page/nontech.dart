@@ -20,7 +20,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage>
   final CartController cartController = Get.put(CartController());
   Color _containerColor = Color(0xff040829);
   List<Widget> eventPages = [];
-  late ScrollController _scrollController;
   late AnimationController _controller;
   late Animation<double> _animation;
   @override
@@ -39,7 +38,6 @@ class _NonTechEventsPageState extends State<NonTechEventsPage>
   @override
   void dispose() {
     _pageController.dispose();
-    _scrollController.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -113,7 +111,12 @@ class _NonTechEventsPageState extends State<NonTechEventsPage>
   @override
   Widget build(BuildContext context) {
     _buildEventPages(context);
-    return Scaffold(
+   return WillPopScope(
+      onWillPop: () async {
+        Get.off(() => HomePage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
+        return true; // Return true to allow popping the screen
+      },child:  Scaffold(
       backgroundColor: _containerColor,
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -187,7 +190,7 @@ class _NonTechEventsPageState extends State<NonTechEventsPage>
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

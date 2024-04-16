@@ -15,7 +15,8 @@ class PISB extends StatelessWidget {
       onWillPop: () async {
         // Handle back button press here
         // For example:
-        Get.off(() => HomePage());
+        Get.off(() => HomePage(),transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
         return false; // Return true if you want to allow back navigation, false otherwise
       },
       child: MaterialApp(

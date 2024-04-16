@@ -8,7 +8,7 @@ import 'package:upi_payment_qrcode_generator/upi_payment_qrcode_generator.dart';
 
 class GetPass extends StatelessWidget {
   final CartController controller = Get.find(); // Use Get.find instead of Get.put
-  late int totalAmount = 250;
+  late int totalAmount = 100;
   final TextEditingController _transactionIdController = TextEditingController();
 
   @override
@@ -69,7 +69,7 @@ class GetPass extends StatelessWidget {
                   ),
                   SizedBox(height: 100),
                   Text(
-                    "Amount to be paid: ₹250",
+                    "Amount to be paid: ₹100",
                     style: TextStyle(
                       fontFamily: "berky",
                       color: Colors.white,
@@ -78,16 +78,19 @@ class GetPass extends StatelessWidget {
                     ),
                   ), // Remove the extra semicolon here
                   SizedBox(height: 10),
-                  UPIPaymentQRCode(
-                    upiDetails: UPIDetails(
-                      upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
-                      payeeName: "PICT_IEEE_PISB",
-                      amount: totalAmount.toDouble(),
-                      transactionNote: "IEEE",
+                  Container(
+                    color: Colors.white,
+                    child: UPIPaymentQRCode(
+                      upiDetails: UPIDetails(
+                        upiID: "scrtspuneinstofcompu.62804004@hdfcbank",
+                        payeeName: "PICT_IEEE_PISB",
+                        amount: totalAmount.toDouble(),
+                        transactionNote: "IEEE",
+                      ),
+                      eyeStyle: QrEyeStyle(color: Colors.black, eyeShape: QrEyeShape.square),
+                      size: 180,
+                      upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                     ),
-                    eyeStyle: QrEyeStyle(color: Colors.white, eyeShape: QrEyeShape.square),
-                    size: 180,
-                    upiQRErrorCorrectLevel: UPIQRErrorCorrectLevel.high,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

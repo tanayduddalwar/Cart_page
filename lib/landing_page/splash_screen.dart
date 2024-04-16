@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         // Navigate to the home page when animation completes
-       Get.to(()=> HomePage());
+        Get.off(() => HomePage());
       }
     });
   }
@@ -61,20 +61,23 @@ class _SplashScreenState extends State<SplashScreen>
           Center(
             child: _initialized
                 ? Container(
-              height: Get.height,
-                  width: Get.width,
-                  child: AspectRatio(
-                                aspectRatio: _controller.value.aspectRatio,
-                                child: VideoPlayer(_controller),
-                              ),
-                )
+                    height: Get.height,
+                    width: Get.width,
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    ),
+                  )
                 : CircularProgressIndicator(),
           ),
           AnimatedBuilder(
             animation: _animationController,
             builder: (context, child) {
               return Transform.translate(
-                offset: Offset(0.0, (1.0 - _animationController.value) * MediaQuery.of(context).size.height),
+                offset: Offset(
+                    0.0,
+                    (1.0 - _animationController.value) *
+                        MediaQuery.of(context).size.height),
                 child: Opacity(
                   opacity: _animationController.value,
                   child: child,
@@ -82,8 +85,8 @@ class _SplashScreenState extends State<SplashScreen>
               );
             },
             child: Center(
-              // Use your home page widget here
-            ),
+                // Use your home page widget here
+                ),
           ),
         ],
       ),

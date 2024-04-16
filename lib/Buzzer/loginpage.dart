@@ -23,7 +23,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.off(() => HomePage());
+        Get.off(() => HomePage(),
+            transition: Transition.leftToRight,
+            duration: Duration(milliseconds: 500));
         return false; // Allow back navigation
       },
       child: Scaffold(
@@ -35,7 +37,25 @@ class _LoginState extends State<Login> {
           centerTitle: true,
           leading: IconButton(
             onPressed: () {
-              Get.off(() => HomePage());
+              Navigator.of(context).pushReplacement(PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    HomePage(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(-1.0, 0.0);
+                  const end = Offset.zero;
+                  const curve = Curves.ease;
+                  var tween = Tween(begin: begin, end: end)
+                      .chain(CurveTween(curve: curve));
+                  var offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+                transitionDuration: Duration(milliseconds: 500),
+              ));
             },
             icon: Icon(Icons.arrow_back),
           ),
