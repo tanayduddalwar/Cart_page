@@ -202,32 +202,24 @@ class _AdminPageState extends State<AdminPage> {
                             size: 50,
                             color: Colors.white,
                           ),
-                         Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Flexible(
-      child: Text(
-        "${profiledata['full_name']}",
-        style: TextStyle(
-          fontSize: 18,
-          fontFamily: "berky",
-          color: Colors.white),
-        softWrap: true,
-      ),
-    ),
-    Flexible(
-      child: Text(
-        "${profiledata['username']}",
-        style: TextStyle(
-          fontSize: 18,
-          fontFamily: "berky",
-          color: Colors.white),
-        softWrap: true,
-      ),
-    ),
-  ],
-),
-
+                          Column(
+                            children: [
+                              Text(
+                                "${profiledata['full_name']}",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "berky",
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                "${profiledata['username']}",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "berky",
+                                    color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
 
