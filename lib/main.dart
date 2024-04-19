@@ -36,8 +36,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
-}
+  runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
   @override

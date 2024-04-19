@@ -1,4 +1,5 @@
 import 'package:cart_page/Buzzer/buzzerscreen.dart';
+import 'package:cart_page/Buzzer/controllers/BuzzerController.dart';
 import 'package:cart_page/landing_page/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

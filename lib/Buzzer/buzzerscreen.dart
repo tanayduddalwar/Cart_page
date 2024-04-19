@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cart_page/Buzzer/controllers/BuzzerController.dart';
 import 'package:cart_page/Buzzer/loginpage.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -5,12 +7,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-class BuzzerController extends GetxController {
-  final teamcontroller = TextEditingController();
-}
-
 class BuzzerScreen extends StatefulWidget {
+  
+  
+  
   BuzzerScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,23 +22,32 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
 
   final BuzzerController buzzerController = Get.put(BuzzerController());
   final QuestionController questionController = Get.put(QuestionController());
+  late Stream<DocumentSnapshot> startButtonStream;
   final CountDownController _controller = CountDownController();
+  late StreamSubscription<QuerySnapshot> adminStream;
+ // late StreamSubscription<QuerySnapshot> adminStream;
   late Stream<QuerySnapshot> buzzerStream;
   List<Map<String, dynamic>> results = [];
 
   Map<String, dynamic> sendData(bool val) {
     return {
-      "questionId": questionController.quesId.value,
+     "questionId": questionController.quesId.value,
       "teamName": buzzerController.teamcontroller.text,
       "startTime": DateTime.now().millisecondsSinceEpoch,
       "answer": val
     };
   }
-
   @override
   void dispose() {
+    _cancelAdminStreamSubscription();
     _cancelBuzzerStreamSubscription();
     super.dispose();
+  }
+
+ @override
+  void initState() {
+    super.initState();
+    _subscribeToAdminDocument();
   }
 
   void _subscribeToBuzzerStream() {
@@ -57,10 +66,31 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
     });
   }
 
+  
   void _cancelBuzzerStreamSubscription() {
     buzzerStream.drain();
   }
 
+  void _subscribeToAdminDocument() {
+    print("Admin ");
+    print(questionController.quesId.value);
+    adminStream = db
+        .collection('question ${questionController.quesId.value}')
+        .where('questionId', isEqualTo: questionController.quesId.value)
+        .where('admin', isEqualTo: true)
+        .snapshots()
+        .listen((snapshot) {
+      if (snapshot.docs.isNotEmpty) {
+        _controller.restart();
+      } else {
+        print("Nhui hua"); 
+      }
+    });
+  }
+
+  void _cancelAdminStreamSubscription() {
+    adminStream.cancel();
+  }
   Stream<QuerySnapshot> _getBuzzerStreamForQuestionId(int id) {
     print(id);
     return db.collection("question $id").snapshots();
@@ -90,9 +120,8 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
 
     var querySnapshot = await FirebaseFirestore.instance
         .collection("question ${questionController.quesId.value}")
-        .where('teamName', isEqualTo: teamName)
         .where('questionId', isEqualTo: questionController.quesId.value)
-        .where('answer', isEqualTo: false)
+        .where('admin', isEqualTo: true)
         .get();
 
     if (querySnapshot.docs.isNotEmpty) {
@@ -117,7 +146,6 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
       }
     });
   }
-
   Future<void> calculateTimeDifferenceForOtherTeams(
       String userTeamName, int questionId) async {
     List<Map<String, dynamic>> otherTeamResults = [];
@@ -168,7 +196,6 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
@@ -193,7 +220,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
+          image: DecorationImage (
             opacity: 1,
             fit: BoxFit.cover,
             image: AssetImage('assets/bgimg/13.png'),
@@ -215,62 +242,35 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.003),
-              Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CircularCountDownTimer(
                     controller: _controller,
-                    backgroundColor: Color(0xff7FC7D9),
                     initialDuration: 30,
                     autoStart: false,
                     width: MediaQuery.of(context).size.height * 0.1,
                     height: MediaQuery.of(context).size.height * 0.1,
                     duration: 30,
-                    fillColor: Color.fromARGB(255, 108, 155, 212),
-                    ringColor: Color.fromARGB(255, 212, 246, 255),
+                    fillColor: Colors.black,
+                    ringColor: Colors.grey,
                     onComplete: () async {
                       // calculateTimeDifferenceForOtherTeams(
                       //     buzzerController.teamcontroller.text,
                       //     questionController.quesId.value);
                     },
                   ),
+                 
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 161, 207, 205)),
-                    ),
-                    onPressed: () {
-                      db
-                          .collection(
-                              "question ${questionController.quesId.value}")
-                          .add(sendData(false))
-                          .then((DocumentReference ref) => print(ref.id));
-                      _controller.restart();
-                    },
-                    child: Text(
-                      "Start",
-                      style: GoogleFonts.montserrat(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 161, 207, 205)),
+                      backgroundColor: MaterialStateProperty.all(Colors.purple),
                     ),
                     onPressed: () {
                       _controller.reset();
                     },
-                    child: Text(
+                    child: const Text(
                       "Reset",
-                      style: GoogleFonts.montserrat(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
@@ -286,17 +286,15 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
-                  shadowColor: Colors.black,
-                  elevation: 25,
                   padding: const EdgeInsets.all(80),
                   backgroundColor: Color.fromARGB(255, 89, 180, 175),
                 ),
-                child: Text(
+                child: const Text(
                   'BUZZER',
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 34,
+                  style: TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -308,7 +306,8 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                 children: [
                   Text(
                     "Question :  ${questionController.quesId.value}",
-                    style: const TextStyle(fontSize: 20, fontFamily: "berky"),
+                    style:
+                        const TextStyle(fontSize: 20, fontFamily: "berky",color: Colors.white),
                   ),
                   ElevatedButton(
                     onPressed: () async {
@@ -318,19 +317,20 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                         questionController.quesId.value++;
                       });
                       results.clear();
+                       _subscribeToAdminDocument();
                     },
                     child: const Text(
                       "Next Question",
-                      style:
-                          TextStyle(fontFamily: "berky", color: Colors.black),
+                      style: TextStyle(
+                          fontFamily: "berky", color: Colors.black),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 "Results : ",
                 style: TextStyle(
                   fontSize: 20,
@@ -338,10 +338,10 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 5),
               DataTable(
                 columns: [
-                  const DataColumn(
+                  DataColumn(
                       label: Text(
                     'Team Name',
                     style: TextStyle(
@@ -350,7 +350,7 @@ class _BuzzerScreenState extends State<BuzzerScreen> {
                       color: Colors.white,
                     ),
                   )),
-                  const DataColumn(
+                  DataColumn(
                       label: Text(
                     'Time Difference',
                     style: TextStyle(
