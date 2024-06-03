@@ -8,12 +8,12 @@ Unlock the full Credenz experience with our exclusive fest passes, granting you 
 
 ![logo](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/Credenz App Schema.png)
 ![app screenshots-1](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/c1db7d51-ecf0-4424-970f-35e85395f30c)
-![app screenshots-1](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/c1db7d51-ecf0-4424-970f-35e85395f30c)
+
 ![app screenshots-2](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/1915b4be-5b41-4ddc-9b6e-e766b65465fe)
-![app screenshots-2](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/1915b4be-5b41-4ddc-9b6e-e766b65465fe)
+
 ![app screenshots-3](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/bec92aa0-aee4-4174-87a1-2fdeab5d14b8)
-![app screenshots-3](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/bec92aa0-aee4-4174-87a1-2fdeab5d14b8)
+
 ![app screenshots-4](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/d068d2fa-cee7-445b-b7c4-aa2bf241d96d)
-![app screenshots-4](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/d068d2fa-cee7-445b-b7c4-aa2bf241d96d)
+
 ![app screenshots-5](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/9381da72-b9ab-4560-9b3b-b7debaaa500d)
-![app screenshots-5](https://github.com/tanayduddalwar/Credenz-Unwelling-Depths-App/assets/119003967/9381da72-b9ab-4560-9b3b-b7debaaa500d)
+
